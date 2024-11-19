@@ -12,7 +12,6 @@ const config = {
     singleQuote: false,
     quoteProps: "as-needed",
     bracketSpacing: true,
-    arrowParens: "always",
 };
 
 export default config;
