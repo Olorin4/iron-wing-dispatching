@@ -1,27 +1,62 @@
 <!doctype html>
 <html lang="en">
-        <head>
-                <meta charset="UTF-8" />
-                <meta
-                        name="viewport"
-                        content="width=device-width, initial-scale=1.0"
-                />
-                <title><%= htmlWebpackPlugin.options.title %></title>
-        </head>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title><%= htmlWebpackPlugin.options.title %></title>
+    </head>
 
-        <body>
-                <header>
-                        <nav class="nav-bar-1"></nav>
-                </header>
-                <!-- END OF NAVBAR    -->
+    <body>
+        <!-- Navbar -->
+        <nav>
+            <div class="logo">Angelic Dispatching</div>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services & Pricing</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="blog.html">Blog</a></li>
+            </ul>
+        </nav>
 
-                <section class="dashboard"></section>
-                <!-- END OF DASHBOARD    -->
+        <!-- About Section -->
+        <section id="about">
+            <h1>About Us</h1>
+            <p>
+                Welcome to Angelic Dispatching. We are dedicated to providing
+                efficient and reliable dispatching services tailored to meet
+                your needs.
+            </p>
+        </section>
 
-                <section class="main-content"></section>
-                <!-- END OF MAIN CONTENT    -->
+        <!-- Services & Pricing Section -->
+        <section id="services">
+            <h1>Services & Pricing</h1>
+            <ul>
+                <li>Service 1 - $100</li>
+                <li>Service 2 - $200</li>
+                <li>Service 3 - Contact us for pricing</li>
+            </ul>
+        </section>
 
-                <section class="right-sidebar"></section>
-                <!-- END OF RIGHT SIDEBAR    -->
-        </body>
+        <!-- Contact Section -->
+        <section id="contact">
+            <h1>Contact Us</h1>
+            <form>
+                <label for="name">Name:</label><br />
+                <input type="text" id="name" name="name" /><br /><br />
+
+                <label for="email">Email:</label><br />
+                <input type="email" id="email" name="email" /><br /><br />
+
+                <label for="message">Message:</label><br />
+                <textarea id="message" name="message" rows="5"></textarea
+                ><br /><br />
+
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+
+        <!-- Footer -->
+        <footer>&copy; 2025 Angelic Dispatching. All rights reserved.</footer>
+    </body>
 </html>

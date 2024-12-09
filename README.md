@@ -1,4 +1,4 @@
-MENAS LOGISTICS WEBSITE
+ANGELIC DISPATCHING WEBSITE
 
 **Description**:
 A basic static website for my dispatching company.

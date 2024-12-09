@@ -1,5 +1,69 @@
 body {
-        display: grid;
-        grid-template-columns: 1fr 2.3fr 2.3fr;
-        grid-template-rows: 80px 805px;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Sticky navbar */
+nav {
+    position: sticky;
+    top: 0;
+    background-color: #1e3a8a; /* Dark blue */
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+}
+
+nav .logo {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Section styles */
+section {
+    padding: 50px 20px;
+}
+
+#about {
+    background-color: #eaf0f6; /* Light blue */
+}
+
+#services {
+    background-color: #f5f5f5; /* Neutral background */
+}
+
+#contact {
+    background-color: #d9e8ff; /* Very light blue */
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    background-color: #1e3a8a;
+    color: white;
+    padding: 10px 0;
 }
