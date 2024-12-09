@@ -8,6 +8,7 @@ module.exports = merge(common, {
     devServer: {
         static: "./dist",
         watchFiles: ["src/**/*"],
+        historyApiFallback: true, // Enable serving for single-page apps
     },
     output: {
         filename: "[name].bundle.js",

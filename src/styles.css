@@ -1,69 +1,209 @@
-body {
-    font-family: Arial, sans-serif;
+/* General Reset */
+body,
+h1,
+h2,
+h3,
+p,
+ul {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
-/* Sticky navbar */
-nav {
-    position: sticky;
-    top: 0;
-    background-color: #1e3a8a; /* Dark blue */
-    color: white;
-    padding: 10px 20px;
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+/* Header */
+header {
+    background: #1e3a8a;
+    color: #fff;
+    padding: 1rem 0;
+}
+
+header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 1000;
+    padding: 0 2rem;
 }
 
-nav .logo {
-    font-size: 1.5em;
+header .logo {
+    font-size: 1.5rem;
     font-weight: bold;
 }
 
-nav ul {
+header nav ul {
     list-style: none;
     display: flex;
-    margin: 0;
-    padding: 0;
 }
 
-nav ul li {
-    margin: 0 15px;
+header nav ul li {
+    margin: 0 1rem;
 }
 
-nav ul li a {
-    color: white;
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Hero */
+.hero {
+    background: url("./assets/images/caleb-ruiter-EmEQ6kK_5P0-unsplash.jpg")
+        center/cover no-repeat;
+    color: #fff;
+    text-align: center;
+    padding: 5rem 2rem;
+    position: relative;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(30, 58, 138, 0.7);
+    z-index: 1;
+}
+
+.hero-text {
+    position: relative;
+    z-index: 2;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+}
+
+.hero p {
+    margin: 1rem 0;
+}
+
+.cta-button {
+    background: #ffd700;
+    color: #000;
+    padding: 0.5rem 1rem;
     text-decoration: none;
     font-weight: bold;
+    border-radius: 5px;
 }
 
-nav ul li a:hover {
-    text-decoration: underline;
+/* Services Section */
+.services {
+    background: #fff;
+    padding: 3rem 2rem;
 }
 
-/* Section styles */
-section {
-    padding: 50px 20px;
+.services h2 {
+    text-align: center;
+    margin-bottom: 2rem;
 }
 
-#about {
-    background-color: #eaf0f6; /* Light blue */
+.service-cards {
+    display: flex;
+    justify-content: space-around;
 }
 
-#services {
-    background-color: #f5f5f5; /* Neutral background */
+.service-cards .card {
+    background: #e5e5e5;
+    padding: 1rem;
+    border-radius: 5px;
+    text-align: center;
+    width: 30%;
 }
 
+/* Pricing section */
+.pricing {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 40px 20px;
+    gap: 20px;
+}
+
+/* Pricing card */
+.pricing-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 300px;
+    text-align: center;
+}
+
+.pricing-card h2 {
+    font-size: 1.5em;
+    margin: 0 0 10px 0;
+    color: #1e3a8a;
+}
+
+.pricing-card p {
+    font-size: 1em;
+    color: #555;
+    margin: 10px 0;
+}
+
+.pricing-card .price {
+    font-size: 2em;
+    color: #1e3a8a;
+    margin: 10px 0;
+}
+
+.pricing-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.pricing-card ul li {
+    margin: 10px 0;
+}
+
+.pricing-card button {
+    background-color: #1e3a8a;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.pricing-card button:hover {
+    background-color: #163567;
+}
+
+/* About Section */
+.about {
+    padding: 3rem 2rem;
+    background: #596d48;
+    color: #fff;
+    text-align: center;
+}
+
+/* Blog Section */
+.blog {
+    padding: 3rem 2rem;
+    background: #f9f9f9;
+}
+
+.blog article {
+    text-align: center;
+}
+
+/* Contact Section */
 #contact {
     background-color: #d9e8ff; /* Very light blue */
 }
 
 /* Footer */
 footer {
+    background: #2c2c2c;
+    color: #fff;
     text-align: center;
-    background-color: #1e3a8a;
-    color: white;
-    padding: 10px 0;
+    padding: 1rem;
 }

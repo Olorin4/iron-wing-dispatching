@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Sign-up! - Iron Wing Dispatching</title>
+    </head>
+
+    <body>
+        <!-- Header Section -->
+        <header>
+            <div class="container">
+                <div class="logo">Iron Wing Dispatching</div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="index.html#services">Services</a></li>
+                        <li><a href="index.html#pricing">Pricing</a></li>
+                        <li><a href="./blog.html">Blog</a></li>
+
+                        <li>
+                            <a href="./sign-up.html">Contact</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Main Section -->
+        <section class="main">
+            <section class="left-section">
+                <img
+                    class="image"
+                    src="../assets/images/pexels-photoscom-93398.jpg"
+                    alt="A lone truck driving in the distance..."
+                />
+                <div class="logo-container">
+                    <img
+                        class="logo"
+                        src="../assets/images/Screenshot 2024-03-12 180444 (without background).png"
+                    />
+                </div>
+            </section>
+
+            <section class="right-section">
+                <div id="hero">
+                    <h3>
+                        This is not a real online service! But deep down, you
+                        know you need something like this in your life to help
+                        you realize your deepest dreams. Sign up now to get you
+                        started.
+                    </h3>
+                    <h3 class="heading">You <em>know</em> you want to.</h3>
+                </div>
+
+                <div class="form-container">
+                    <form novalidate>
+                        <fieldset class="user-input">
+                            <legend>Let's do this!</legend>
+
+                            <div class="user-name">
+                                <div class="first-name">
+                                    <label for="first-name">FIRST NAME </label>
+                                    <input
+                                        id="first-name"
+                                        type="text"
+                                        name="first-name"
+                                        required
+                                    />
+                                    <span aria-live="polite"></span>
+                                </div>
+                                <div class="last-name">
+                                    <label for="last-name">LAST NAME</label>
+                                    <input
+                                        id="last-name"
+                                        type="text"
+                                        name="last-name"
+                                        required
+                                    />
+                                    <span aria-live="polite"></span>
+                                </div>
+                            </div>
+
+                            <div class="user-info">
+                                <div class="e-mail">
+                                    <label for="e-mail">E-MAIL</label>
+                                    <input
+                                        id="e-mail"
+                                        type="e-mail"
+                                        name="e-mail"
+                                    />
+                                    <span></span>
+                                </div>
+                                <div class="tel">
+                                    <label for="tel">TELEPHONE NUMBER</label>
+                                    <input id="tel" type="tel" name="tel" />
+                                    <span></span>
+                                </div>
+                            </div>
+
+                            <div class="user-password">
+                                <div class="password">
+                                    <label for="password">PASSWORD</label>
+                                    <input
+                                        id="password"
+                                        type="password"
+                                        name="password"
+                                        required
+                                    />
+                                    <span aria-live="polite"></span>
+                                </div>
+                                <div class="confirm-pwd">
+                                    <label for="confirm-pwd"
+                                        >CONFIRM PASSWORD</label
+                                    >
+                                    <input
+                                        id="confirm-pwd"
+                                        type="password"
+                                        name="confirm-pwd"
+                                        required
+                                    />
+                                    <span aria-live="polite"></span>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <fieldset class="sign-up-button">
+                            <button type="submit" id="submitButton">
+                                Create Account
+                            </button>
+                            <p>
+                                Already have an account?
+                                <a href="../temp.html">Log in.</a>
+                            </p>
+                        </fieldset>
+                    </form>
+                </div>
+            </section>
+        </section>
+    </body>
+</html>

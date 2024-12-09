@@ -1,0 +1,36 @@
+.blog {
+    padding: 3rem 2rem;
+    background: #f9f9f9;
+}
+
+.blog article {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.blog article h3 {
+    color: #1e3a8a;
+    font-size: 1.5rem;
+}
+
+.blog article p {
+    margin: 0.5rem 0;
+}
+
+.blog article a {
+    color: #ffd700;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.blog article a:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
+footer {
+    background: #2c2c2c;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+}
