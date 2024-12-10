@@ -11,10 +11,12 @@
         <header>
             <div class="container">
                 <div class="logo">
-                    <img
-                        src="../assets/images/logo2.webp"
-                        alt="Iron Wing Dispatching logo"
-                    />
+                    <a href="./index.html">
+                        <img
+                            src="../assets/images/logo2.webp"
+                            alt="Iron Wing Dispatching logo"
+                        />
+                    </a>
                 </div>
                 <nav>
                     <ul>
@@ -71,6 +73,8 @@
                                             type="text"
                                             name="first-name"
                                             required
+                                            minlength="2"
+                                            maxlength="50"
                                         />
                                         <span aria-live="polite"></span>
                                     </div>
@@ -81,6 +85,8 @@
                                             type="text"
                                             name="last-name"
                                             required
+                                            minlength="2"
+                                            maxlength="50"
                                         />
                                         <span aria-live="polite"></span>
                                     </div>
@@ -113,6 +119,7 @@
                                             type="password"
                                             name="password"
                                             required
+                                            minlength="8"
                                         />
                                         <span aria-live="polite"></span>
                                     </div>
@@ -133,12 +140,8 @@
 
                             <fieldset class="sign-up-button">
                                 <button type="submit" id="submitButton">
-                                    Create Account
+                                    SUBMIT
                                 </button>
-                                <p>
-                                    Already have an account?
-                                    <a href="../temp.html">Log in.</a>
-                                </p>
                             </fieldset>
                         </form>
                     </div>

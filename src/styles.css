@@ -39,9 +39,14 @@ header .container .logo img {
     max-width: 100%;
     background: transparent;
     height: auto; /* Allow height to scale proportionally */
+    display: block;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.logo a {
+    display: inline-block;
 }
 
 @media (max-width: 768px) {

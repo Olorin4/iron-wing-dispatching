@@ -217,10 +217,6 @@ span.show-error {
     position: relative;
 }
 
-/* .show-error input:invalid {
-    border-color: red;
-} */
-
 /* RESET */
 * {
     box-sizing: border-box;
