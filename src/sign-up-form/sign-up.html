@@ -10,7 +10,12 @@
         <!-- Header Section -->
         <header>
             <div class="container">
-                <div class="logo">Iron Wing Dispatching</div>
+                <div class="logo">
+                    <img
+                        src="../assets/images/logo2.webp"
+                        alt="Iron Wing Dispatching logo"
+                    />
+                </div>
                 <nav>
                     <ul>
                         <li><a href="index.html#about">About Us</a></li>
@@ -27,115 +32,130 @@
         </header>
 
         <!-- Main Section -->
-        <section class="main">
-            <section class="left-section">
-                <img
-                    class="image"
-                    src="../assets/images/pexels-photoscom-93398.jpg"
-                    alt="A lone truck driving in the distance..."
-                />
-                <div class="logo-container">
+        <main>
+            <div class="wrapper">
+                <section class="left-section">
                     <img
-                        class="logo"
-                        src="../assets/images/Screenshot 2024-03-12 180444 (without background).png"
+                        class="image"
+                        src="../assets/images/pexels-photoscom-93398.jpg"
+                        alt="A lone truck driving in the distance..."
                     />
+                    <div class="logo-container">
+                        <img class="logo" src="../assets/images/logo2.webp" />
+                    </div>
+                </section>
+
+                <section class="right-section">
+                    <div id="hero">
+                        <h3>
+                            This is not a real online service! But deep down,
+                            you know you need something like this in your life
+                            to help you realize your deepest dreams. Sign up now
+                            to get you started.
+                        </h3>
+                        <h3 class="heading">You <em>know</em> you want to.</h3>
+                    </div>
+
+                    <div class="form-container">
+                        <form novalidate>
+                            <fieldset class="user-input">
+                                <legend>Let's do this!</legend>
+
+                                <div class="user-name">
+                                    <div class="first-name">
+                                        <label for="first-name"
+                                            >FIRST NAME
+                                        </label>
+                                        <input
+                                            id="first-name"
+                                            type="text"
+                                            name="first-name"
+                                            required
+                                        />
+                                        <span aria-live="polite"></span>
+                                    </div>
+                                    <div class="last-name">
+                                        <label for="last-name">LAST NAME</label>
+                                        <input
+                                            id="last-name"
+                                            type="text"
+                                            name="last-name"
+                                            required
+                                        />
+                                        <span aria-live="polite"></span>
+                                    </div>
+                                </div>
+
+                                <div class="user-info">
+                                    <div class="e-mail">
+                                        <label for="e-mail">E-MAIL</label>
+                                        <input
+                                            id="e-mail"
+                                            type="e-mail"
+                                            name="e-mail"
+                                        />
+                                        <span></span>
+                                    </div>
+                                    <div class="tel">
+                                        <label for="tel"
+                                            >TELEPHONE NUMBER</label
+                                        >
+                                        <input id="tel" type="tel" name="tel" />
+                                        <span></span>
+                                    </div>
+                                </div>
+
+                                <div class="user-password">
+                                    <div class="password">
+                                        <label for="password">PASSWORD</label>
+                                        <input
+                                            id="password"
+                                            type="password"
+                                            name="password"
+                                            required
+                                        />
+                                        <span aria-live="polite"></span>
+                                    </div>
+                                    <div class="confirm-pwd">
+                                        <label for="confirm-pwd"
+                                            >CONFIRM PASSWORD</label
+                                        >
+                                        <input
+                                            id="confirm-pwd"
+                                            type="password"
+                                            name="confirm-pwd"
+                                            required
+                                        />
+                                        <span aria-live="polite"></span>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            <fieldset class="sign-up-button">
+                                <button type="submit" id="submitButton">
+                                    Create Account
+                                </button>
+                                <p>
+                                    Already have an account?
+                                    <a href="../temp.html">Log in.</a>
+                                </p>
+                            </fieldset>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Footer Section -->
+        <footer>
+            <div class="container">
+                <p>&copy; 2025 Iron Wing Dispatching | All Rights Reserved</p>
+                <div class="social-icons">
+                    <a href="#">Facebook</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">LinkedIn</a>
                 </div>
-            </section>
-
-            <section class="right-section">
-                <div id="hero">
-                    <h3>
-                        This is not a real online service! But deep down, you
-                        know you need something like this in your life to help
-                        you realize your deepest dreams. Sign up now to get you
-                        started.
-                    </h3>
-                    <h3 class="heading">You <em>know</em> you want to.</h3>
-                </div>
-
-                <div class="form-container">
-                    <form novalidate>
-                        <fieldset class="user-input">
-                            <legend>Let's do this!</legend>
-
-                            <div class="user-name">
-                                <div class="first-name">
-                                    <label for="first-name">FIRST NAME </label>
-                                    <input
-                                        id="first-name"
-                                        type="text"
-                                        name="first-name"
-                                        required
-                                    />
-                                    <span aria-live="polite"></span>
-                                </div>
-                                <div class="last-name">
-                                    <label for="last-name">LAST NAME</label>
-                                    <input
-                                        id="last-name"
-                                        type="text"
-                                        name="last-name"
-                                        required
-                                    />
-                                    <span aria-live="polite"></span>
-                                </div>
-                            </div>
-
-                            <div class="user-info">
-                                <div class="e-mail">
-                                    <label for="e-mail">E-MAIL</label>
-                                    <input
-                                        id="e-mail"
-                                        type="e-mail"
-                                        name="e-mail"
-                                    />
-                                    <span></span>
-                                </div>
-                                <div class="tel">
-                                    <label for="tel">TELEPHONE NUMBER</label>
-                                    <input id="tel" type="tel" name="tel" />
-                                    <span></span>
-                                </div>
-                            </div>
-
-                            <div class="user-password">
-                                <div class="password">
-                                    <label for="password">PASSWORD</label>
-                                    <input
-                                        id="password"
-                                        type="password"
-                                        name="password"
-                                        required
-                                    />
-                                    <span aria-live="polite"></span>
-                                </div>
-                                <div class="confirm-pwd">
-                                    <label for="confirm-pwd"
-                                        >CONFIRM PASSWORD</label
-                                    >
-                                    <input
-                                        id="confirm-pwd"
-                                        type="password"
-                                        name="confirm-pwd"
-                                        required
-                                    />
-                                    <span aria-live="polite"></span>
-                                </div>
-                            </div>
-                        </fieldset>
-
-                        <fieldset class="sign-up-button">
-                            <button type="submit" id="submitButton">
-                                Create Account
-                            </button>
-                            <p>
-                                Already have an account?
-                                <a href="../temp.html">Log in.</a>
-                            </p>
-                        </fieldset>
-                    </form>
-                </div>
-            </section>
-        </section>
+            </div>
+        </footer>
     </body>
 </html>

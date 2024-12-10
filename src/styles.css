@@ -13,11 +13,14 @@ ul {
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 /* Header */
 header {
-    background: #1e3a8a;
+    background: #080d17;
     color: #fff;
     padding: 1rem 0;
 }
@@ -29,9 +32,22 @@ header .container {
     padding: 0 2rem;
 }
 
-header .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
+header .container .logo img {
+    /* font-size: 1.5rem;
+    font-weight: bold; */
+    width: 120px;
+    max-width: 100%;
+    background: transparent;
+    height: auto; /* Allow height to scale proportionally */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .logo img {
+        width: 80px; /* Smaller size for smaller screens */
+    }
 }
 
 header nav ul {
@@ -48,7 +64,12 @@ header nav ul li a {
     text-decoration: none;
 }
 
-/* Hero */
+/* Main section */
+main {
+    flex: 1;
+}
+
+/* Hero  section*/
 .hero {
     background: url("./assets/images/caleb-ruiter-EmEQ6kK_5P0-unsplash.jpg")
         center/cover no-repeat;
@@ -185,16 +206,6 @@ header nav ul li a {
     text-align: center;
 }
 
-/* Blog Section */
-.blog {
-    padding: 3rem 2rem;
-    background: #f9f9f9;
-}
-
-.blog article {
-    text-align: center;
-}
-
 /* Contact Section */
 #contact {
     background-color: #d9e8ff; /* Very light blue */
@@ -202,7 +213,7 @@ header nav ul li a {
 
 /* Footer */
 footer {
-    background: #2c2c2c;
+    background: #080d17;
     color: #fff;
     text-align: center;
     padding: 1rem;
