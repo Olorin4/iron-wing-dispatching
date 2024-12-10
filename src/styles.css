@@ -63,7 +63,7 @@ header .container .logo img {
     }
 }
 
-nav {
+header nav {
     margin-left: 30%;
 }
 
@@ -92,7 +92,7 @@ main {
         center/cover no-repeat;
     color: #fff;
     text-align: center;
-    height: 62vh;
+    height: 60vh;
     padding: 5rem 2rem;
     position: relative;
 }
@@ -142,14 +142,10 @@ a.cta-button:hover {
 .services {
     background: #fff;
     padding: 1.5rem 2rem;
-    height: 75vh;
-    /* display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center; */
+    height: 70vh;
 }
 
-.services h2 {
+.services h1 {
     text-align: center;
     margin-bottom: 2rem;
 }
@@ -179,7 +175,7 @@ a.cta-button:hover {
     justify-content: center;
     align-items: center;
     padding: 1.5rem 2rem;
-    height: 87vh;
+    height: 80vh;
 }
 
 .pricing .container {
@@ -236,34 +232,72 @@ a.cta-button:hover {
     margin: 10px 0;
 }
 
-.pricing-card button {
+.pricing-card a {
     grid-row: 8;
-    background-color: #1e3a8a;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1em;
 }
 
-.pricing-card button:hover {
-    background-color: #163567;
+.pricing-card a button {
+    background: #ffc800;
+    color: #080d17;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    font-weight: bold;
+    border: 3px outset rgb(8, 13, 23);
+    border-radius: 5px;
+    margin-top: 1rem;
+}
+
+.pricing-card a button:hover {
+    box-shadow: 0 0 20px rgba(231, 181, 2, 1);
+    transition: box-shadow 0.5s ease;
+    cursor: pointer;
 }
 
 /* About Section */
 .about {
-    padding: 3rem 2rem;
-    background: #596d48;
+    background: url("./assets/images/josiah-farrow-ucuOscdCaO4-unsplash.jpg")
+        center/cover no-repeat;
     color: #fff;
     text-align: center;
-    height: 85vh;
+    height: 73vh;
+    padding: 5rem 2rem;
+    position: relative;
+}
+
+.about::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(30, 58, 138, 0.7);
+    z-index: 1;
+}
+
+.about-text {
+    position: relative;
+    z-index: 2;
+    margin-top: auto; /* Push content to the middle of the about section */
+    text-align: center;
+    line-height: 1.6;
+}
+
+.about-text p {
+    max-width: 800px;
+    margin: 0 auto; /* Center the text block horizontally */
+    text-align: left;
+    padding: 1rem;
 }
 
 /* Contact Section */
 .contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background-color: #d9e8ff; /* Very light blue */
-    height: 100vh;
+    height: 50vh;
 }
 
 /* Footer */
