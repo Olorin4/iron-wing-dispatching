@@ -1,4 +1,8 @@
 /* General Reset */
+html {
+    scroll-behavior: smooth;
+}
+
 body,
 h1,
 h2,
@@ -18,6 +22,12 @@ body {
     min-height: 100vh;
 }
 
+a:link,
+a:visited {
+    color: inherit; /* Use the same color as the parent element or define a specific color */
+    text-decoration: none; /* Optional: remove underline */
+}
+
 /* Header */
 header {
     background: #080d17;
@@ -27,14 +37,12 @@ header {
 
 header .container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: 0 2rem;
 }
 
 header .container .logo img {
-    /* font-size: 1.5rem;
-    font-weight: bold; */
     width: 120px;
     max-width: 100%;
     background: transparent;
@@ -53,6 +61,10 @@ header .container .logo img {
     .logo img {
         width: 80px; /* Smaller size for smaller screens */
     }
+}
+
+nav {
+    margin-left: 30%;
 }
 
 header nav ul {
@@ -80,6 +92,7 @@ main {
         center/cover no-repeat;
     color: #fff;
     text-align: center;
+    height: 62vh;
     padding: 5rem 2rem;
     position: relative;
 }
@@ -98,6 +111,7 @@ main {
 .hero-text {
     position: relative;
     z-index: 2;
+    margin-top: auto; /* Push content to the middle of the hero section */
 }
 
 .hero h1 {
@@ -108,19 +122,31 @@ main {
     margin: 1rem 0;
 }
 
-.cta-button {
-    background: #ffd700;
-    color: #000;
+a.cta-button {
+    background: #ffc800;
+    color: #080d17;
     padding: 0.5rem 1rem;
     text-decoration: none;
     font-weight: bold;
+    border: 3px outset rgb(8, 13, 23);
     border-radius: 5px;
+    margin-top: 1rem;
+}
+
+a.cta-button:hover {
+    box-shadow: 0 0 20px rgba(231, 181, 2, 1);
+    transition: box-shadow 0.5s ease;
 }
 
 /* Services Section */
 .services {
     background: #fff;
-    padding: 3rem 2rem;
+    padding: 1.5rem 2rem;
+    height: 75vh;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center; */
 }
 
 .services h2 {
@@ -128,9 +154,14 @@ main {
     margin-bottom: 2rem;
 }
 
+.services a {
+    text-decoration: none;
+}
+
 .service-cards {
     display: flex;
     justify-content: space-around;
+    height: 220px;
 }
 
 .service-cards .card {
@@ -144,36 +175,52 @@ main {
 /* Pricing section */
 .pricing {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    height: 87vh;
+}
+
+.pricing .container {
+    display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    padding: 40px 20px;
-    gap: 20px;
 }
 
 /* Pricing card */
 .pricing-card {
+    display: grid;
+    grid-template-rows: repeat(8, 1fr);
+    justify-content: center;
+    align-items: center;
     background-color: white;
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    max-width: 300px;
+    margin: 10px;
+    height: 500px;
+    width: 250px;
     text-align: center;
 }
 
 .pricing-card h2 {
+    grid-row: 1;
     font-size: 1.5em;
     margin: 0 0 10px 0;
     color: #1e3a8a;
 }
 
 .pricing-card p {
+    grid-row: 2;
     font-size: 1em;
     color: #555;
     margin: 10px 0;
 }
 
 .pricing-card .price {
+    grid-row: 3;
     font-size: 2em;
     color: #1e3a8a;
     margin: 10px 0;
@@ -190,6 +237,7 @@ main {
 }
 
 .pricing-card button {
+    grid-row: 8;
     background-color: #1e3a8a;
     color: white;
     border: none;
@@ -209,11 +257,13 @@ main {
     background: #596d48;
     color: #fff;
     text-align: center;
+    height: 85vh;
 }
 
 /* Contact Section */
-#contact {
+.contact {
     background-color: #d9e8ff; /* Very light blue */
+    height: 100vh;
 }
 
 /* Footer */
