@@ -24,8 +24,8 @@ body {
 
 a:link,
 a:visited {
-    color: inherit; /* Use the same color as the parent element or define a specific color */
-    text-decoration: none; /* Optional: remove underline */
+    color: inherit;
+    text-decoration: none;
 }
 
 /* Header */
@@ -132,14 +132,17 @@ main {
 }
 
 a.cta-button {
+    display: inline-block;
     background: #ffc800;
     color: #080d17;
     padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    align-content: center;
     text-decoration: none;
     font-weight: bold;
     border: 3px outset rgb(8, 13, 23);
     border-radius: 5px;
-    margin-top: 1rem;
+    height: 30px;
 }
 
 a.cta-button:hover {
@@ -151,7 +154,7 @@ a.cta-button:hover {
 .services {
     background: #fff;
     padding: 1.5rem 2rem;
-    height: 70vh;
+    height: 40vh;
 }
 
 .services h1 {
@@ -177,6 +180,50 @@ a.cta-button:hover {
     width: 30%;
 }
 
+/* Sales Pitch Section  */
+.sales-pitch {
+    background: #f9f9f9; /* Light background for contrast */
+    padding: 3rem 2rem;
+    text-align: center;
+    height: 55vh;
+}
+
+.sales-pitch h2 {
+    color: #1e3a8a;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.sales-pitch .pitch-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+    line-height: 1.8;
+}
+
+.sales-pitch ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.sales-pitch ul li {
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.sales-pitch ul li::before {
+    content: "✔️";
+    position: absolute;
+    left: 0;
+    color: #ffd700;
+}
+
+.sales-pitch .cta-button {
+    display: inline-block;
+}
+
 /* Pricing section */
 .pricing {
     display: flex;
@@ -184,7 +231,7 @@ a.cta-button:hover {
     justify-content: center;
     align-items: center;
     padding: 1.5rem 2rem;
-    height: 80vh;
+    height: 87vh;
 }
 
 .pricing .container {
@@ -196,16 +243,16 @@ a.cta-button:hover {
 /* Pricing card */
 .pricing-card {
     display: grid;
-    grid-template-rows: repeat(8, 1fr);
+    grid-template-rows: 50px 50px 50px auto 50px;
     justify-content: center;
-    align-items: center;
+    align-items: start;
     background-color: white;
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
     margin: 10px;
-    height: 500px;
+    height: 630px;
     width: 250px;
     text-align: center;
 }
@@ -232,6 +279,7 @@ a.cta-button:hover {
 }
 
 .pricing-card ul {
+    grid-row: 4;
     list-style: none;
     padding: 0;
     margin: 20px 0;
@@ -242,18 +290,19 @@ a.cta-button:hover {
 }
 
 .pricing-card a {
-    grid-row: 8;
+    grid-row: 5;
 }
 
 .pricing-card a button {
     background: #ffc800;
     color: #080d17;
     padding: 0.5rem 1rem;
+    margin-top: 1rem;
     text-decoration: none;
     font-weight: bold;
+    font-size: 1.25em;
     border: 3px outset rgb(8, 13, 23);
     border-radius: 5px;
-    margin-top: 1rem;
 }
 
 .pricing-card a button:hover {
@@ -267,8 +316,8 @@ a.cta-button:hover {
     position: relative;
     color: #fff;
     text-align: center;
-    height: 73vh;
-    padding: 5rem 2rem;
+    height: 90vh;
+    padding: 1rem 2rem;
     overflow: hidden; /* Ensure content stays within the section */
 }
 
@@ -297,11 +346,11 @@ a.cta-button:hover {
     position: relative;
     z-index: 2; /* Place above the background image and overlay */
     margin-top: auto; /* Push content to the middle of the about section */
-    text-align: center;
     line-height: 1.6;
 }
 
-.about-text p {
+.about-text p,
+.about-text ul {
     max-width: 800px;
     margin: 0 auto; /* Center the text block horizontally */
     text-align: left;
@@ -310,7 +359,7 @@ a.cta-button:hover {
 
 .logo-overlay {
     position: absolute;
-    top: 30rem; /* Adjust to control vertical position */
+    top: 34rem; /* Adjust to control vertical position */
     left: 50%; /* Center horizontally */
     transform: translateX(-50%); /* Center alignment */
     z-index: 2; /* Ensure it appears above the background overlay */
@@ -320,6 +369,25 @@ a.cta-button:hover {
     max-width: 350px; /* Adjust the logo size */
     height: auto; /* Maintain aspect ratio */
     opacity: 0.4; /* Optional: Make it slightly transparent */
+}
+
+.benefits-list li {
+    display: flex; /* Use flexbox to align icon and text */
+    align-items: flex-start; /* Align text with the icon */
+    line-height: 1.6;
+    white-space: nowrap;
+}
+
+.benefits-list li::before {
+    content: "✔️"; /* Add the check icon */
+    color: #ffd700;
+    font-size: 1.2rem; /* Adjust size if needed */
+    margin-right: 0.5rem; /* Space between icon and text */
+    flex-shrink: 0; /* Prevent the icon from shrinking */
+}
+
+.benefits-list strong {
+    margin-right: 0.5em; /* Add space after bolded text */
 }
 
 /* Contact Section */
