@@ -63,7 +63,7 @@
                         <fieldset>
                             <legend>Let's do this!</legend>
 
-                            <div class="user-name">
+                            <div class="user-info">
                                 <div class="first-name">
                                     <label for="first-name">FIRST NAME </label>
                                     <input
@@ -103,36 +103,33 @@
                                 </div>
                                 <div class="tel">
                                     <label for="tel">TELEPHONE NUMBER</label>
-                                    <input
-                                        id="tel"
-                                        type="tel"
-                                        name="tel"
-                                        required
-                                    />
+                                    <input id="tel" type="tel" name="tel" />
                                     <span></span>
                                 </div>
                             </div>
 
-                            <div class="user-password">
-                                <div class="password">
-                                    <label for="password">PASSWORD</label>
+                            <div class="user-info">
+                                <div class="fleet-size">
+                                    <label for="fleet-size"
+                                        >NUMBER OF TRUCKS</label
+                                    >
                                     <input
-                                        id="password"
-                                        type="password"
-                                        name="password"
-                                        required
-                                        minlength="8"
+                                        id="fleet-size"
+                                        name="fleet-size"
+                                        type="number"
+                                        maxlength="4"
                                     />
                                     <span aria-live="polite"></span>
                                 </div>
-                                <div class="confirm-pwd">
-                                    <label for="confirm-pwd"
-                                        >CONFIRM PASSWORD</label
+                                <div class="trailer-type">
+                                    <label for="trailer-type"
+                                        >TYPE OF TRAILER</label
                                     >
                                     <input
-                                        id="confirm-pwd"
-                                        type="password"
-                                        name="confirm-pwd"
+                                        id="trailer-type"
+                                        name="trailer-type"
+                                        type="text"
+                                        maxlength="50"
                                         required
                                     />
                                     <span aria-live="polite"></span>

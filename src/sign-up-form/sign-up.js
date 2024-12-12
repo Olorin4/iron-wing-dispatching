@@ -32,26 +32,21 @@ export class FormValidator {
     validateField(input) {
         const value = input.value.trim();
         const type = input.type;
-        if (type === "email" && !validator.isEmail(value)) {
-            this.showError(input, "Please enter a valid email address.");
-            return false;
-        } else if (
-            type === "password" &&
-            !validator.isStrongPassword(value, { minLength: 8 })
+        if (
+            input.id === "fleet-size" &&
+            value !== "" &&
+            !validator.isInt(value, { min: 1 })
         ) {
-            this.showError(input, "Password must be strong (8+ characters).");
+            this.showError(input, "Please enter a valid number of trucks.");
+            return false;
+        } else if (input.id === "trailer-type" && value === "") {
+            this.showError(input, "Please enter the type of trailer.");
+            return false;
+        } else if (type === "email" && !validator.isEmail(value)) {
+            this.showError(input, "Please enter a valid email address.");
             return false;
         } else if (type === "text" && value === "") {
             this.showError(input, "This field is required.");
-            return false;
-        } else if (
-            input.id === "confirm-pwd" &&
-            !validator.equals(
-                value,
-                this.form.querySelector("#password").value.trim()
-            )
-        ) {
-            this.showError(input, "Passwords do not match.");
             return false;
         }
         this.hideError(input);

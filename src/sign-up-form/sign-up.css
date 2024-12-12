@@ -82,12 +82,13 @@ input {
     height: 22px;
 }
 
-.user-name {
+.user-info {
     display: flex;
     margin: 20px;
 }
 
 .first-name {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -95,6 +96,7 @@ input {
 }
 
 .last-name {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -109,12 +111,8 @@ label {
     color: rgb(136, 132, 132);
 }
 
-.user-info {
-    display: flex;
-    margin: 20px;
-}
-
 .e-mail {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -122,6 +120,7 @@ label {
 }
 
 .tel {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -129,19 +128,16 @@ label {
     margin-left: 20px;
 }
 
-.user-password {
-    display: flex;
-    margin: 20px;
-}
-
-.password {
+.fleet-size {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.confirm-pwd {
+.trailer-type {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -173,12 +169,6 @@ button {
     font-weight: 700;
 }
 
-p {
-    font-size: 0.7em;
-    color: rgb(136, 132, 132);
-    padding-left: 15px;
-}
-
 input:hover {
     background: rgba(200, 210, 239, 0.1);
 }
@@ -196,15 +186,6 @@ span.show-error {
     color: red;
     top: 35px;
     left: -0px;
-}
-
-.user-name,
-.last-name,
-.e-mail,
-.tel,
-.password,
-.confirm-pwd {
-    position: relative;
 }
 
 /* RESET */
