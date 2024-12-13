@@ -1,4 +1,12 @@
 /* Hero  section*/
+.hero,
+.services,
+.sales-pitch {
+    width: 100%;
+    max-width: 100%;
+    /* overflow: hidden; */
+}
+
 .hero {
     position: relative;
     color: #fff;
@@ -48,18 +56,17 @@ a.cta-button {
     background: #ffc800;
     color: #080d17;
     padding: 0.5rem 1rem;
-    margin-top: 1rem;
-    align-content: center;
     text-decoration: none;
     font-weight: bold;
     border: 3px outset rgb(8, 13, 23);
     border-radius: 5px;
-    height: 30px;
+    text-align: center; /* Ensure the text stays centered */
+    transition: all 0.3s ease; /* Smooth hover effects */
 }
 
 a.cta-button:hover {
     box-shadow: 0 0 20px rgba(231, 181, 2, 1);
-    transition: box-shadow 0.5s ease;
+    transform: scale(1.05); /* Slightly enlarge on hover */
 }
 
 /* Services Section */
@@ -69,7 +76,7 @@ a.cta-button:hover {
     justify-content: center;
     align-items: center;
     background: #fff;
-    height: 50vh;
+    height: 70vh;
 }
 
 .services h1 {
@@ -80,11 +87,12 @@ a.cta-button:hover {
 
 .service-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns */
+    gap: 1.5rem; /* Space between cards */
     width: 100%;
     max-width: 1200px;
-    justify-content: center;
+    margin: 0 auto;
+    padding: 1rem;
 }
 
 .service-cards h3 {
@@ -93,11 +101,20 @@ a.cta-button:hover {
     font-size: 1.25rem;
 }
 
+.service-cards p {
+    color: #555;
+    line-height: 1.5;
+    font-size: 1rem;
+}
+
 .service-cards .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Ensure even spacing */
+    align-items: center; /* Center-align text and elements */
+    padding: 1rem;
     background: #e5e5e5;
-    padding: 1.5rem;
     border-radius: 8px;
-    text-align: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition:
         transform 0.3s ease,
@@ -113,7 +130,7 @@ a.cta-button:hover {
 .sales-pitch {
     background: #f9f9f9;
     text-align: center;
-    height: 40vh;
+    height: 50vh;
     padding: 1.5rem;
 }
 
@@ -124,6 +141,10 @@ a.cta-button:hover {
 }
 
 .sales-pitch .pitch-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
     max-width: 800px;
     margin: 0 auto;
     text-align: left;
@@ -150,7 +171,7 @@ a.cta-button:hover {
 }
 
 .sales-pitch .cta-button {
-    display: inline-block;
+    align-self: center;
 }
 
 /* Pricing section */
@@ -219,7 +240,7 @@ a.cta-button:hover {
 }
 
 .pricing-card ul li {
-    margin: 10px 0;
+    margin: 8px 0;
 }
 
 .pricing-card a {
@@ -230,16 +251,17 @@ a.cta-button:hover {
     background: #ffc800;
     color: #080d17;
     padding: 0.5rem 1rem;
-    margin-top: 1rem;
+    text-decoration: none;
     font-weight: bold;
-    font-size: 1.25em;
     border: 3px outset rgb(8, 13, 23);
     border-radius: 5px;
+    text-align: center; /* Ensure the text stays centered */
+    transition: all 0.3s ease; /* Smooth hover effects */
 }
 
 .pricing-card a button:hover {
     box-shadow: 0 0 20px rgba(231, 181, 2, 1);
-    transition: box-shadow 0.5s ease;
+    transform: scale(1.05); /* Slightly enlarge on hover */
     cursor: pointer;
 }
 
@@ -355,7 +377,7 @@ a.cta-button:hover {
     }
 
     .service-cards {
-        grid-template-columns: 1fr; /* Stack cards vertically */
+        grid-template-columns: repeat(2, 1fr); /* Reduce to 2 columns */
     }
 
     .service-cards .card {
@@ -399,6 +421,18 @@ a.cta-button:hover {
 
     .about-text p {
         font-size: 1rem; /* Adjust font size */
+    }
+
+    @media (max-width: 1024px) {
+        .service-cards {
+            grid-template-columns: repeat(3, 1fr); /* Reduce to 3 columns */
+        }
+    }
+
+    @media (max-width: 480px) {
+        .service-cards {
+            grid-template-columns: 1fr; /* Single column for very small screens */
+        }
     }
 
     /* Footer */

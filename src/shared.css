@@ -1,17 +1,15 @@
 /* General Reset */
-html {
-    scroll-behavior: smooth;
+*,
+*::before,
+*::after {
+    box-sizing: border-box; /* Include padding and border in element's total width/height */
 }
 
-body,
-h1,
-h2,
-h3,
-p,
-ul {
+html,
+body {
+    scroll-behavior: smooth;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 body {
@@ -21,6 +19,15 @@ body {
     flex-direction: column;
     min-height: 100vh;
 }
+
+/* h1,
+h2,
+h3,
+p,
+ul {
+    margin: 0;
+    padding: 0;
+} */
 
 a:link,
 a:visited {
@@ -55,12 +62,6 @@ header .container .logo img {
 
 .logo a {
     display: inline-block;
-}
-
-@media (max-width: 768px) {
-    .logo img {
-        width: 80px; /* Smaller size for smaller screens */
-    }
 }
 
 .nav-links {
@@ -107,6 +108,10 @@ header .container .logo img {
 
 /* Mobile Menu */
 @media (max-width: 768px) {
+    .logo img {
+        width: 80px; /* Smaller size for smaller screens */
+    }
+
     .nav-links {
         display: none;
     }
