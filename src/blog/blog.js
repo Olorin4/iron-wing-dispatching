@@ -1,5 +1,5 @@
 import "../normalize.css";
-import "../styles.css";
+import "../shared.css";
 import "./blog.css";
 
 document.addEventListener("DOMContentLoaded", () => {

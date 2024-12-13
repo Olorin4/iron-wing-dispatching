@@ -1,6 +1,6 @@
 // sign-up.js contains form validation
 import "../normalize.css";
-import "../styles.css";
+import "../shared.css";
 import "./sign-up.css";
 import validator from "validator";
 

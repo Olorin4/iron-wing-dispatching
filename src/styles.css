@@ -1,91 +1,3 @@
-/* General Reset */
-html {
-    scroll-behavior: smooth;
-}
-
-body,
-h1,
-h2,
-h3,
-p,
-ul {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-a:link,
-a:visited {
-    color: inherit;
-    text-decoration: none;
-}
-
-/* Header */
-header {
-    background: #080d17;
-    color: #fff;
-    padding: 1rem 0;
-}
-
-header .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 2rem;
-}
-
-header .container .logo img {
-    width: 120px;
-    max-width: 100%;
-    background: transparent;
-    height: auto; /* Allow height to scale proportionally */
-    display: block;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.logo a {
-    display: inline-block;
-}
-
-@media (max-width: 768px) {
-    .logo img {
-        width: 80px; /* Smaller size for smaller screens */
-    }
-}
-
-header nav {
-    margin-left: 30%;
-}
-
-header nav ul {
-    list-style: none;
-    display: flex;
-}
-
-header nav ul li {
-    margin: 0 1rem;
-}
-
-header nav ul li a {
-    color: #fff;
-    text-decoration: none;
-}
-
-/* Main section */
-main {
-    flex: 1;
-}
-
 /* Hero  section*/
 .hero {
     position: relative;
@@ -152,40 +64,57 @@ a.cta-button:hover {
 
 /* Services Section */
 .services {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background: #fff;
-    padding: 1.5rem 2rem;
-    height: 40vh;
+    height: 50vh;
 }
 
 .services h1 {
-    text-align: center;
+    color: #1e3a8a;
     margin-bottom: 2rem;
-}
-
-.services a {
-    text-decoration: none;
+    font-size: 2rem;
 }
 
 .service-cards {
-    display: flex;
-    justify-content: space-around;
-    height: 220px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 1200px;
+    justify-content: center;
+}
+
+.service-cards h3 {
+    color: #1e3a8a;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
 }
 
 .service-cards .card {
     background: #e5e5e5;
-    padding: 1rem;
-    border-radius: 5px;
+    padding: 1.5rem;
+    border-radius: 8px;
     text-align: center;
-    width: 30%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.service-cards .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* Sales Pitch Section  */
 .sales-pitch {
-    background: #f9f9f9; /* Light background for contrast */
-    padding: 3rem 2rem;
+    background: #f9f9f9;
     text-align: center;
-    height: 55vh;
+    height: 40vh;
+    padding: 1.5rem;
 }
 
 .sales-pitch h2 {
@@ -230,8 +159,12 @@ a.cta-button:hover {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 1.5rem 2rem;
     height: 87vh;
+}
+
+.pricing h1 {
+    color: #1e3a8a;
+    margin-bottom: 2rem;
 }
 
 .pricing .container {
@@ -298,7 +231,6 @@ a.cta-button:hover {
     color: #080d17;
     padding: 0.5rem 1rem;
     margin-top: 1rem;
-    text-decoration: none;
     font-weight: bold;
     font-size: 1.25em;
     border: 3px outset rgb(8, 13, 23);
@@ -316,7 +248,7 @@ a.cta-button:hover {
     position: relative;
     color: #fff;
     text-align: center;
-    height: 90vh;
+    height: 80vh;
     padding: 1rem 2rem;
     overflow: hidden; /* Ensure content stays within the section */
 }
@@ -359,7 +291,7 @@ a.cta-button:hover {
 
 .logo-overlay {
     position: absolute;
-    top: 34rem; /* Adjust to control vertical position */
+    top: 25rem; /* Adjust to control vertical position */
     left: 50%; /* Center horizontally */
     transform: translateX(-50%); /* Center alignment */
     z-index: 2; /* Ensure it appears above the background overlay */
@@ -400,10 +332,77 @@ a.cta-button:hover {
     height: 50vh;
 }
 
-/* Footer */
-footer {
-    background: #080d17;
-    color: #fff;
-    text-align: center;
-    padding: 1rem;
+@media screen and (max-width: 768px) {
+    /* Adjust hero section height */
+    .hero {
+        height: auto;
+        padding: 3rem 1rem;
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 1.8rem; /* Smaller heading size */
+    }
+
+    .hero p {
+        font-size: 1rem; /* Smaller paragraph text */
+    }
+
+    /* Services section */
+    .services {
+        height: auto; /* Allow section to expand based on content */
+        padding: 2rem 1rem;
+    }
+
+    .service-cards {
+        grid-template-columns: 1fr; /* Stack cards vertically */
+    }
+
+    .service-cards .card {
+        width: 100%; /* Full width */
+    }
+
+    /* Sales pitch section */
+    .sales-pitch {
+        height: auto; /* Allow section to grow naturally */
+        padding: 2rem 1rem;
+    }
+
+    .sales-pitch h2 {
+        font-size: 1.5rem; /* Smaller heading size */
+    }
+
+    .sales-pitch .pitch-content {
+        font-size: 1rem; /* Adjust text size for better readability */
+    }
+
+    /* Pricing section */
+    .pricing {
+        height: auto; /* Allow height to adjust to content */
+        padding: 2rem 1rem;
+    }
+
+    .pricing .container {
+        flex-direction: column; /* Stack pricing cards vertically */
+        align-items: center; /* Center the cards */
+    }
+
+    .pricing-card {
+        width: 90%; /* Take up most of the screen width */
+    }
+
+    /* About section */
+    .about {
+        height: auto; /* Allow height to adjust to content */
+        padding: 2rem 1rem;
+    }
+
+    .about-text p {
+        font-size: 1rem; /* Adjust font size */
+    }
+
+    /* Footer */
+    footer {
+        padding: 1rem;
+    }
 }
