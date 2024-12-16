@@ -10,6 +10,7 @@ body {
     scroll-behavior: smooth;
     margin: 0;
     padding: 0;
+    user-select: none;
 }
 
 body {
@@ -20,14 +21,13 @@ body {
     min-height: 100vh;
 }
 
-/* h1,
+li,
+h1,
 h2,
 h3,
-p,
-ul {
-    margin: 0;
-    padding: 0;
-} */
+p {
+    user-select: text;
+}
 
 a:link,
 a:visited {
