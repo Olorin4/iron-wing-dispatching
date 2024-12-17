@@ -5,8 +5,16 @@
     box-sizing: border-box; /* Include padding and border in element's total width/height */
 }
 
+/* @font-face {
+    font-family: Arial, sans-serif;
+    src: url("./assets/fonts/Norse-Bold.otf") format("woff2");
+    font-display: swap;
+} */
+
 html,
 body {
+    font-family: Arial, sans-serif;
+    font-display: swap;
     scroll-behavior: smooth;
     margin: 0;
     padding: 0;
@@ -14,11 +22,11 @@ body {
 }
 
 body {
-    font-family: Arial, sans-serif;
     line-height: 1.6;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    overflow-x: hidden; /* Avoid horizontal scroll shifts */
 }
 
 li,
