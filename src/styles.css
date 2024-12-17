@@ -11,7 +11,7 @@
     position: relative;
     color: #fff;
     text-align: center;
-    min-height: 60vh;
+    min-height: 70vh;
     /* height: 60vh; */
     padding: 5rem 2rem;
     overflow: hidden; /* Ensure content stays within the section */
@@ -83,7 +83,7 @@ a.cta-button:hover {
     justify-content: center;
     align-items: center;
     background: #fff;
-    min-height: 70vh;
+    min-height: 85vh;
     /* height: 70vh; */
 }
 
@@ -321,8 +321,9 @@ a.cta-button:hover {
 }
 
 .logo-overlay {
-    position: absolute;
-    top: 25rem; /* Adjust to control vertical position */
+    position: relative;
+    top: 2.5rem; /* Adjust to control vertical position */
+    padding-bottom: 5rem;
     left: 50%; /* Center horizontally */
     transform: translateX(-50%); /* Center alignment */
     z-index: 2; /* Ensure it appears above the background overlay */
