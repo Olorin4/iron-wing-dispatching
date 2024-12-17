@@ -89,8 +89,25 @@ header .container .logo img {
 }
 
 .nav-links a {
+    position: relative;
     color: #fff;
     text-decoration: none;
+    padding: 0.5rem 1rem;
+}
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    bottom: 0; /* Align underline at the bottom */
+    left: 0;
+    width: 0; /* Start with no width */
+    height: 2px; /* Thickness of the underline */
+    background-color: #9da1a4;
+    transition: width 0.3s ease; /* Animate width */
+}
+
+.nav-links a:hover::after {
+    width: 100%; /* Expand underline on hover */
 }
 
 /* Hamburger Button */

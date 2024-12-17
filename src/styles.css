@@ -139,7 +139,7 @@ a.cta-button:hover {
 .sales-pitch {
     background: #f9f9f9;
     text-align: center;
-    height: 50vh;
+    min-height: 50vh;
     padding: 1.5rem;
 }
 
@@ -189,7 +189,7 @@ a.cta-button:hover {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 87vh;
+    min-height: 87vh;
 }
 
 .pricing h1 {
@@ -279,7 +279,7 @@ a.cta-button:hover {
     position: relative;
     color: #fff;
     text-align: center;
-    height: 80vh;
+    min-height: 80vh;
     padding: 1rem 2rem;
     overflow: hidden; /* Ensure content stays within the section */
 }

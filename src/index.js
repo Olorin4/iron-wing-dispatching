@@ -1,13 +1,32 @@
 import "./normalize.css";
 import "./shared.css";
 import "./styles.css";
+import { onLCP, onINP, onCLS } from "web-vitals";
 
+// Function to store metrics in localStorage
+function logAndStoreMetric(name, value) {
+    const metrics = JSON.parse(localStorage.getItem("web-vitals")) || {};
+    metrics[name] = value;
+    localStorage.setItem("web-vitals", JSON.stringify(metrics));
+
+    console.log(`${name}:`, value);
+}
+
+// Capture Web Vitals metrics
+onCLS((metric) => logAndStoreMetric("CLS", metric.value));
+onLCP((metric) => logAndStoreMetric("LCP", metric.value));
+onINP((metric) => logAndStoreMetric("INP", metric.value));
+
+console.log("Web Vitals script is running.");
+
+// DOMContentLoaded for Hamburger Menu
 document.addEventListener("DOMContentLoaded", () => {
     const hamburger = document.querySelector(".hamburger");
     const navLinks = document.querySelector("nav");
 
     hamburger.addEventListener("click", () => {
         navLinks.classList.toggle("active");
+        console.log("Hamburger menu toggled");
     });
 });
 
