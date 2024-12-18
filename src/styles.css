@@ -9,10 +9,9 @@
 
 .hero {
     position: relative;
-    color: #fff;
+    color: rgb(255, 255, 255);
     text-align: center;
-    min-height: 70vh;
-    /* height: 60vh; */
+    min-height: 75vh;
     padding: 5rem 2rem;
     overflow: hidden; /* Ensure content stays within the section */
 }
@@ -36,7 +35,11 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(30, 58, 138, 0.7);
+    background: linear-gradient(
+        172deg,
+        rgb(0, 98, 139) 0%,
+        rgb(0, 0, 0, 0.7) 100%
+    );
     z-index: 1;
     will-change: opacity;
 }
@@ -59,8 +62,8 @@
 
 a.cta-button {
     display: inline-block;
-    background: #ffc800;
-    color: #080d17;
+    background: rgb(255, 200, 0);
+    color: rgb(8, 13, 23);
     padding: 0.5rem 1rem;
     text-decoration: none;
     font-weight: bold;
@@ -80,22 +83,21 @@ a.cta-button:hover {
 .services {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    background: #fff;
-    min-height: 85vh;
-    /* height: 70vh; */
+    background: rgb(255, 255, 255);
+    min-height: 87vh;
 }
 
 .services h1 {
-    color: #1e3a8a;
-    margin-bottom: 2rem;
+    color: rgb(8, 13, 23);
     font-size: 2rem;
+    text-align: center;
 }
 
 .service-cards {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 columns */
+    grid-template-columns: repeat(3, 1fr); /* 4 columns */
     gap: 1.5rem; /* Space between cards */
     width: 100%;
     max-width: 1200px;
@@ -103,27 +105,18 @@ a.cta-button:hover {
     padding: 1rem;
 }
 
-.service-cards h3 {
-    color: #1e3a8a;
-    margin-bottom: 1rem;
-    font-size: 1.25rem;
-}
-
-.service-cards p {
-    color: #555;
-    line-height: 1.5;
-    font-size: 1rem;
-}
-
 .service-cards .card {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Ensure even spacing */
-    align-items: center; /* Center-align text and elements */
-    min-height: 300px;
+    flex-direction: column; /* Stack content vertically */
+    justify-content: space-between; /* Distribute space evenly */
+    align-items: center;
+    background: rgb(229, 229, 229);
+    height: 100%;
     padding: 1rem;
-    background: #e5e5e5;
     border-radius: 8px;
+    text-align: center;
+    border-radius: 8px;
+    overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition:
         transform 0.3s ease,
@@ -135,16 +128,28 @@ a.cta-button:hover {
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
+.service-cards .card h3 {
+    color: rgb(8, 13, 23);
+    /* margin-bottom: 1rem; */
+    /* font-size: 1.1rem; */
+}
+
+.service-cards .card p {
+    color: rgb(85, 85, 85);
+    line-height: 1.4;
+    font-size: 1rem;
+}
+
 /* Sales Pitch Section  */
 .sales-pitch {
-    background: #f9f9f9;
+    background: rgb(249, 249, 249);
     text-align: center;
     min-height: 50vh;
     padding: 1.5rem;
 }
 
-.sales-pitch h2 {
-    color: #1e3a8a;
+.sales-pitch h1 {
+    color: rgb(8, 13, 23);
     font-size: 2rem;
     margin-bottom: 1.5rem;
 }
@@ -176,7 +181,7 @@ a.cta-button:hover {
     content: "✔️";
     position: absolute;
     left: 0;
-    color: #ffd700;
+    color: rgb(255, 215, 0);
 }
 
 .sales-pitch .cta-button {
@@ -193,7 +198,7 @@ a.cta-button:hover {
 }
 
 .pricing h1 {
-    color: #1e3a8a;
+    color: rgb(8, 13, 23);
     margin-bottom: 2rem;
 }
 
@@ -210,7 +215,7 @@ a.cta-button:hover {
     justify-content: center;
     align-items: start;
     background-color: white;
-    border: 1px solid #ddd;
+    border: 1px solid rgb(221, 221, 221);
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -224,20 +229,20 @@ a.cta-button:hover {
     grid-row: 1;
     font-size: 1.5em;
     margin: 0 0 10px 0;
-    color: #1e3a8a;
+    color: rgb(8, 13, 23);
 }
 
 .pricing-card p {
     grid-row: 2;
     font-size: 1em;
-    color: #555;
+    color: rgb(85, 85, 85);
     margin: 10px 0;
 }
 
 .pricing-card .price {
     grid-row: 3;
     font-size: 2em;
-    color: #1e3a8a;
+    color: rgb(8, 13, 23);
     margin: 10px 0;
 }
 
@@ -257,8 +262,8 @@ a.cta-button:hover {
 }
 
 .pricing-card a button {
-    background: #ffc800;
-    color: #080d17;
+    background: rgb(255, 200, 0);
+    color: rgb(8, 13, 23);
     padding: 0.5rem 1rem;
     text-decoration: none;
     font-weight: bold;
@@ -277,7 +282,7 @@ a.cta-button:hover {
 /* About Section */
 .about {
     position: relative;
-    color: #fff;
+    color: rgb(255, 255, 255);
     text-align: center;
     min-height: 80vh;
     padding: 1rem 2rem;
@@ -302,7 +307,11 @@ a.cta-button:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(30, 58, 138, 0.7); /* Overlay color */
+    background: linear-gradient(
+        172deg,
+        rgb(0, 98, 139) 0%,
+        rgb(0, 0, 0, 0.7) 100%
+    );
     z-index: 1;
 }
 
@@ -403,12 +412,6 @@ a.cta-button:hover {
 
     .about-text p {
         font-size: 1rem; /* Adjust font size */
-    }
-
-    @media (max-width: 1024px) {
-        .service-cards {
-            grid-template-columns: repeat(3, 1fr); /* Reduce to 3 columns */
-        }
     }
 
     @media (max-width: 480px) {
