@@ -63,14 +63,13 @@ header .container {
 }
 
 header .container .logo img {
-    width: 120px;
-    max-width: 100%;
-    background: transparent;
-    height: auto; /* Allow height to scale proportionally */
     display: block;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 120px;
+    max-width: 100%;
+    height: auto; /* Allow height to scale proportionally */
 }
 
 .logo a {

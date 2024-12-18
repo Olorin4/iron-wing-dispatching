@@ -97,7 +97,7 @@ a.cta-button:hover {
 
 .service-cards {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 4 columns */
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem; /* Space between cards */
     width: 100%;
     max-width: 1200px;
@@ -221,7 +221,7 @@ a.cta-button:hover {
     padding: 20px;
     margin: 10px;
     height: 630px;
-    width: 250px;
+    width: 280px;
     text-align: center;
 }
 
