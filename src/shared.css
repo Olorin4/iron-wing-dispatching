@@ -46,11 +46,6 @@ a:visited {
 /* Header */
 header {
     background: rgb(8, 13, 23);
-    background: linear-gradient(
-        90deg,
-        rgb(8, 13, 23) 50%,
-        rgba(1, 7, 20, 0.7) 150%
-    );
     color: rgb(255, 255, 255);
     padding: 1rem 0;
 }
@@ -197,7 +192,9 @@ main {
 
 /* Footer */
 footer {
-    background: #080d17;
+    position: relative;
+    z-index: 3;
+    background: rgb(8, 13, 23);
     color: rgb(255, 255, 255);
     text-align: center;
     padding: 1rem;
