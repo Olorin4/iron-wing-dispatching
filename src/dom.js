@@ -1,4 +1,4 @@
-export function hamburgerMenu() {
+function hamburgerMenu() {
     const hamburger = document.querySelector(".hamburger");
     const navLinks = document.querySelector("nav");
     hamburger.addEventListener("click", () => {
@@ -7,7 +7,7 @@ export function hamburgerMenu() {
     });
 }
 
-export function showServices() {
+function showServices() {
     const showMoreLink = document.querySelector(".show-more-link");
     const hiddenServices = document.querySelector(".hidden-services");
     let expanded = false;
@@ -38,7 +38,7 @@ export function showServices() {
     });
 }
 
-export function contactPopup() {
+function contactPopup() {
     const contactTrigger = document.getElementById("contact-trigger");
     const popupOverlay = document.getElementById("popup-overlay");
     const popupContent = document.getElementById("popup-content");
@@ -47,6 +47,8 @@ export function contactPopup() {
     // Show the popup when contact link is clicked
     contactTrigger.addEventListener("click", () => {
         popupOverlay.style.display = "flex";
+        const emailField = popupContent.querySelector("#email");
+        emailField.focus();
     });
 
     // Close the popup when clicking "x"
@@ -61,3 +63,36 @@ export function contactPopup() {
         }
     });
 }
+
+function imageFadeIn() {
+    const pitchImages = document.querySelectorAll(".pitch-image");
+
+    const observerOptions = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.1,
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                const isSmallScreen = window.innerWidth < 1200;
+
+                if (entry.target.closest("#sales-pitch-1")) {
+                    entry.target.style.animation = isSmallScreen
+                        ? "fadeInFromBottom 1s ease forwards"
+                        : "fadeInFromLeft 1s ease forwards";
+                } else if (entry.target.closest("#sales-pitch-2")) {
+                    entry.target.style.animation = isSmallScreen
+                        ? "fadeInFromBottom 1s ease forwards"
+                        : "fadeInFromRight 1s ease forwards";
+                }
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    pitchImages.forEach((image) => observer.observe(image));
+}
+
+export { hamburgerMenu, showServices, contactPopup, imageFadeIn };

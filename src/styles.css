@@ -3,7 +3,7 @@
     position: relative;
     color: rgb(255, 255, 255);
     text-align: center;
-    min-height: 75vh;
+    min-height: 85vh;
     padding: 5rem 2rem;
     overflow: hidden;
 }
@@ -89,14 +89,15 @@
 }
 
 .service-cards .card {
-    background: rgb(229, 229, 229);
-    padding: 1rem;
+    background: #f1f1f1;
+    padding: 1.5rem;
     border-radius: 8px;
     text-align: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition:
         transform 0.3s ease,
         box-shadow 0.3s ease;
+    position: relative;
 }
 
 .service-cards .card:hover {
@@ -105,13 +106,30 @@
 }
 
 .service-cards .card h3 {
-    color: rgb(8, 13, 23);
+    color: rgb(8, 52, 124);
+    margin: 1rem 0 0.5rem 0;
+    font-size: 1.25rem;
+    font-weight: bold;
 }
 
 .service-cards .card p {
-    color: #555;
+    color: rgb(85, 85, 85);
     line-height: 1.4;
     font-size: 1rem;
+    margin-bottom: 0;
+}
+
+.card-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.card-icon img {
+    display: block;
+    color: rgb(8, 52, 124);
+    width: 38px;
 }
 
 /* Hidden Services Transition */
@@ -166,6 +184,7 @@
 }
 
 .sales-pitch .container {
+    position: relative;
     display: grid;
     grid-template-columns: 1fr 3fr;
     gap: 1.5rem;
@@ -179,6 +198,19 @@
     height: auto;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateX(-100%);
+}
+
+@keyframes fadeInFromLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 .pitch-content {
@@ -210,13 +242,96 @@
     color: rgb(255, 215, 0);
 }
 
-/* Second Sales Pitch Reverse Layout */
 #sales-pitch-2 .container {
     grid-template-columns: 3fr 1fr;
 }
 
-#sales-pitch-2 .primary-cta {
-    margin-top: 25px;
+#sales-pitch-2 .pitch-image {
+    transform: translateX(100%);
+}
+
+@keyframes fadeInFromRight {
+    0% {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none; /* Hidden by default */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Above other elements */
+}
+
+.popup-content {
+    background: rgb(8, 13, 23); /* Same as header background */
+    color: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    position: relative;
+    max-width: 400px;
+    width: 90%;
+}
+
+.popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.popup-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+.popup-close {
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+.popup-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+.popup-form input[type="email"],
+.popup-form input[type="tel"],
+.popup-form textarea {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+.popup-form input[type="email"]:focus,
+.popup-form input[type="tel"]:focus,
+.popup-form textarea:focus {
+    outline: none;
+    border-color: #888;
+}
+
+.popup-form button.primary-cta {
+    cursor: pointer;
 }
 
 /* Pricing section */
@@ -254,6 +369,11 @@
     height: 630px;
     width: 280px;
     text-align: center;
+    transition: box-shadow 0.3s ease;
+}
+
+.pricing-card:hover {
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
 .pricing-card h2 {
@@ -357,16 +477,43 @@
 }
 
 /* Responsive Adjustments */
+@media (max-width: 1200px) {
+    .sales-pitch .container {
+        /* grid-template-columns: 1fr; Stack images and text */
+        text-align: center;
+    }
+
+    .pitch-image {
+        transform: translateY(20%); /* Slide from below for smaller screens */
+        opacity: 0; /* Start invisible */
+        margin: 0 auto; /* Center the image */
+    }
+
+    #sales-pitch-2 .pitch-image {
+        transform: translateY(20%); /* Slide from below */
+    }
+
+    @keyframes fadeInFromBottom {
+        0% {
+            opacity: 0;
+            transform: translateY(20%);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
 @media screen and (max-width: 768px) {
     .hero h1 {
         font-size: 1.8rem;
     }
-
     .service-cards {
+        grid-template-columns: repeat(2, 1fr);
         gap: 5px;
         padding: 0 10px;
     }
-
     #sales-pitch-1 .container,
     #sales-pitch-2 .container {
         grid-template-columns: 1fr;
@@ -380,7 +527,6 @@
         align-items: center;
         text-align: center;
     }
-
     .about-text p {
         font-size: 1rem;
     }
@@ -390,92 +536,9 @@
     .service-cards {
         grid-template-columns: 1fr;
     }
-
     .hidden-cards {
         grid-template-columns: 1fr;
     }
-}
-
-/* Popup overlay background */
-.popup-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: none; /* Hidden by default */
-    justify-content: center;
-    align-items: center;
-    z-index: 9999; /* Above other elements */
-}
-
-/* Popup content container */
-.popup-content {
-    background: rgb(8, 13, 23); /* Same as header background */
-    color: #fff;
-    padding: 1.5rem;
-    border-radius: 8px;
-    position: relative;
-    max-width: 400px;
-    width: 90%;
-}
-
-/* Popup header */
-.popup-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-}
-
-.popup-header h2 {
-    margin: 0;
-    font-size: 1.5rem;
-    color: #fff;
-}
-
-.popup-close {
-    cursor: pointer;
-    font-size: 1.5rem;
-    color: #fff;
-}
-
-/* Popup form */
-.popup-form label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: bold;
-    color: #fff;
-}
-
-.popup-form input[type="email"],
-.popup-form input[type="tel"],
-.popup-form textarea {
-    width: 100%;
-    padding: 0.5rem;
-    margin-bottom: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1rem;
-    font-family: Arial, sans-serif;
-    color: #333;
-}
-
-.popup-form input[type="email"]:focus,
-.popup-form input[type="tel"]:focus,
-.popup-form textarea:focus {
-    outline: none;
-    border-color: #888;
-}
-
-/* The primary-cta button styles are likely already defined in your CSS */
-.popup-form button.primary-cta {
-    cursor: pointer;
-}
-
-/* Responsive adjustments if necessary */
-@media (max-width: 480px) {
     .popup-content {
         width: 95%;
         padding: 1rem;
