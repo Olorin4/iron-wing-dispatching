@@ -1,6 +1,5 @@
 import "./normalize.css";
-import "./shared.css";
-import "./styles.css";
+import "./alt.css";
 import { onLCP, onINP, onCLS } from "web-vitals";
 
 // Function to store metrics in localStorage

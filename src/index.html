@@ -20,6 +20,21 @@
                         />
                     </a>
                 </div>
+                <!-- Added a phone number and icon -->
+                <div class="contact-top">
+                    <svg
+                        class="phone-icon"
+                        width="18"
+                        height="18"
+                        fill="#fff"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            d="M22 16.92v3a2.09 2.09 0 0 1-2.28 2 19.91 19.91 0 0 1-8.64-3.17A19.5 19.5 0 0 1 2.29 9.92a2.07 2.07 0 0 1 .54-2.09l2-2a2.07 2.07 0 0 1 2.3-.45l2.6 1.05a2.09 2.09 0 0 1 1.27 1.92v3a2.07 2.07 0 0 1-.6 1.49L9.88 14a16 16 0 0 0 6.78 6.78l1.19-1.19a2.06 2.06 0 0 1 1.49-.6h3a2.09 2.09 0 0 1 1.92 1.27z"
+                        />
+                    </svg>
+                    <span class="phone-number">1-800-555-1234</span>
+                </div>
                 <button class="hamburger" aria-label="Toggle navigation">
                     <span></span>
                     <span></span>
@@ -31,7 +46,12 @@
                         <li><a href="index.html#services">Services</a></li>
                         <li><a href="index.html#pricing">Pricing</a></li>
                         <li><a href="./blog.html">Blog</a></li>
-                        <li><a href="./sign-up.html">Contact</a></li>
+                        <!-- Contact link in a shiny silver button -->
+                        <li>
+                            <a href="./sign-up.html" class="contact-button">
+                                Contact
+                            </a>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -54,11 +74,14 @@
                     class="hero-image"
                 />
                 <div class="hero-text">
-                    <h1>Welcome to Iron Wing</h1>
                     <h1>
-                        Dispatching Services for Owner-Operators and Carriers
+                        Iron Wing Dispatching <br />
+                        By Truckers, For Truckers.
                     </h1>
-                    <p>Streamline your operations with precision and care.</p>
+                    <h2>
+                        We know your challenges and deliver solutions that keep
+                        you moving.
+                    </h2>
                     <a href="#pricing" class="cta-button">
                         See Dispatching Rates
                     </a>
@@ -69,25 +92,23 @@
             <section id="services" class="services">
                 <a href="#services"><h1>Our Services</h1></a>
                 <div class="service-cards">
-                    <!-- Card 1 -->
+                    <!-- First 3 cards always visible -->
                     <div class="card">
                         <h3>Load Sourcing</h3>
                         <p>
                             We search for high-paying loads that match your
-                            preferences and negotiate with brokers and shippers
-                            the best possible freight rates.
+                            preferences and negotiate the best possible freight
+                            rates.
                         </p>
                     </div>
-                    <!-- Card 2 -->
                     <div class="card">
                         <h3>Driver Dispatching</h3>
                         <p>
                             We provide rate confirmations and dispatch
-                            instructions to keep you focused on driving your
+                            instructions, keeping you focused on driving your
                             truck.
                         </p>
                     </div>
-                    <!-- Card 3 -->
                     <div class="card">
                         <h3>Route Optimization</h3>
                         <p>
@@ -95,53 +116,58 @@
                             savings and minimize downtime and deadheading.
                         </p>
                     </div>
-                    <!-- Card 4 -->
-                    <div class="card">
-                        <h3>Administrative Support</h3>
-                        <p>
-                            We handle carrier setup paperwork, BoLs, Rate
-                            Confirmations, invoices, IFTA reports etc
-                        </p>
+                </div>
+
+                <!-- Hidden cards container -->
+                <div class="hidden-services" style="max-height: 0">
+                    <div class="service-cards hidden-cards">
+                        <div class="card">
+                            <h3>Administrative Support</h3>
+                            <p>
+                                We handle carrier setup paperwork, BoLs, Rate
+                                Confirmations, invoices, IFTA reports, etc.
+                            </p>
+                        </div>
+                        <div class="card">
+                            <h3>Factoring Assistance</h3>
+                            <p>
+                                We submit paperwork to factoring companies to
+                                ensure quick payment processing.
+                            </p>
+                        </div>
+                        <div class="card">
+                            <h3>Compliance Management</h3>
+                            <p>
+                                We keep all your documents and certifications
+                                up-to-date.
+                            </p>
+                        </div>
+                        <div class="card">
+                            <h3>24/7 Support</h3>
+                            <p>
+                                We offer round-the-clock assistance to resolve
+                                issues anytime, anywhere.
+                            </p>
+                        </div>
+                        <div class="card">
+                            <h3>Lumper/Detention</h3>
+                            <p>
+                                We assist you in claiming lumper and detention
+                                fees.
+                            </p>
+                        </div>
+                        <div class="card">
+                            <h3>Dedicated Lanes</h3>
+                            <p>
+                                We can assist you in securing contracts directly
+                                with shippers.
+                            </p>
+                        </div>
                     </div>
-                    <!-- Card 5 -->
-                    <div class="card">
-                        <h3>Factoring Assistance</h3>
-                        <p>
-                            We submit paperwork to factoring companies to ensure
-                            quick payment processing.
-                        </p>
-                    </div>
-                    <!-- Card 6 -->
-                    <div class="card">
-                        <h3>Compliance Management</h3>
-                        <p>
-                            We ensure all your documents and certifications
-                            remain up-to-date.
-                        </p>
-                    </div>
-                    <!-- Card 7 -->
-                    <div class="card">
-                        <h3>24/7 Support</h3>
-                        <p>
-                            We offer round-the-clock assistance to resolve
-                            issues anytime, anywhere.
-                        </p>
-                    </div>
-                    <!-- Card 8 -->
-                    <div class="card">
-                        <h3>Lumper/Detention</h3>
-                        <p>
-                            We assist you in claiming lumper and detention fees.
-                        </p>
-                    </div>
-                    <!-- Card 9 -->
-                    <div class="card">
-                        <h3>Dedicated Lanes</h3>
-                        <p>
-                            We can assist you in securing contracts directly
-                            with shippers.
-                        </p>
-                    </div>
+                </div>
+
+                <div class="show-more-container">
+                    <button class="show-more-button">Show More Services</button>
                 </div>
             </section>
 
@@ -218,58 +244,100 @@
             </section>
 
             <!-- Pricing section -->
+            <!-- Converted to a comparison table -->
             <section id="pricing" class="pricing">
                 <a href="#pricing"><h1>Pricing</h1></a>
-                <div class="container">
-                    <div class="pricing-card">
-                        <h2>Basic Plan</h2>
-                        <p>Perfect for owner-operators with 1-3 trucks.</p>
-                        <div class="price">4%</div>
-                        <ul>
-                            <li>Load Sourcing</li>
-                            <li>Route Optimization</li>
-                            <li>Business hours Support</li>
-                            <li>Basic Administrative Support</li>
-                        </ul>
-                        <a href="./sign-up.html">
-                            <button>Apply Now</button>
-                        </a>
-                    </div>
-                    <div class="pricing-card">
-                        <h2>Standard Plan</h2>
-                        <p>Ideal for growing small carriers.</p>
-                        <div class="price">6%</div>
-                        <ul>
-                            <li>Load Sourcing</li>
-                            <li>Route Optimization</li>
-                            <li>24/7 support</li>
-                            <li>Advanced Administrative Support</li>
-                            <li>Dedicated dispatcher</li>
-                            <li>Factoring assistance</li>
-                            <li>Assistance with Lumper/Detention</li>
-                        </ul>
-                        <a href="./sign-up.html">
-                            <button>Apply Now</button>
-                        </a>
-                    </div>
-                    <div class="pricing-card">
-                        <h2>Premium Plan</h2>
-                        <p>For fleets with more than 10 trucks.</p>
-                        <div class="price">8%</div>
-                        <ul>
-                            <li>Load Sourcing</li>
-                            <li>Route Optimization</li>
-                            <li>Priority 24/7 support</li>
-                            <li>Full Administrative Support</li>
-                            <li>Dedicated dispatcher</li>
-                            <li>Factoring assistance</li>
-                            <li>Assistance with Lumper/Detention</li>
-                            <li>Compliance assistance</li>
-                        </ul>
-                        <a href="./sign-up.html">
-                            <button>Apply Now</button>
-                        </a>
-                    </div>
+                <div class="pricing-table-container">
+                    <table class="pricing-table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Basic Plan</th>
+                                <th>Standard Plan</th>
+                                <th>Premium Plan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Ideal For</td>
+                                <td>1-3 trucks</td>
+                                <td>Growing small carriers</td>
+                                <td>Fleets > 10 trucks</td>
+                            </tr>
+                            <tr>
+                                <td>Rate</td>
+                                <td>4%</td>
+                                <td>6%</td>
+                                <td>8%</td>
+                            </tr>
+                            <tr>
+                                <td>Load Sourcing</td>
+                                <td>✔️</td>
+                                <td>✔️</td>
+                                <td>✔️</td>
+                            </tr>
+                            <tr>
+                                <td>Route Optimization</td>
+                                <td>✔️</td>
+                                <td>✔️</td>
+                                <td>✔️</td>
+                            </tr>
+                            <tr>
+                                <td>Support Hours</td>
+                                <td>Business Hours</td>
+                                <td>24/7</td>
+                                <td>Priority 24/7</td>
+                            </tr>
+                            <tr>
+                                <td>Administrative Support</td>
+                                <td>Basic</td>
+                                <td>Advanced</td>
+                                <td>Full</td>
+                            </tr>
+                            <tr>
+                                <td>Dedicated Dispatcher</td>
+                                <td>–</td>
+                                <td>✔️</td>
+                                <td>✔️</td>
+                            </tr>
+                            <tr>
+                                <td>Factoring Assistance</td>
+                                <td>–</td>
+                                <td>✔️</td>
+                                <td>✔️</td>
+                            </tr>
+                            <tr>
+                                <td>Lumper/Detention Assistance</td>
+                                <td>–</td>
+                                <td>✔️</td>
+                                <td>✔️</td>
+                            </tr>
+                            <tr>
+                                <td>Compliance Assistance</td>
+                                <td>–</td>
+                                <td>–</td>
+                                <td>✔️</td>
+                            </tr>
+                            <tr class="cta-row">
+                                <td></td>
+                                <td>
+                                    <a href="./sign-up.html"
+                                        ><button>Apply Now</button></a
+                                    >
+                                </td>
+                                <td>
+                                    <a href="./sign-up.html"
+                                        ><button>Apply Now</button></a
+                                    >
+                                </td>
+                                <td>
+                                    <a href="./sign-up.html"
+                                        ><button>Apply Now</button></a
+                                    >
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </section>
 
@@ -295,19 +363,30 @@
                     <p>
                         At Iron Wing Dispatching, we specialize in providing
                         personalized dispatch services tailored to the unique
-                        needs of truck owner-operators and small motor carriers.
-                        Our mission is to maximize your profitability by finding
-                        the best loads, negotiating with brokers and shippers,
-                        and handling the logistics — so you can focus on what
-                        you do best: driving.
+                        needs of owner-operators and small motor carriers. Our
+                        mission is to maximize your profitability by finding the
+                        best loads, negotiating with brokers, and handling the
+                        logistics—so you can focus on driving.
                     </p>
                     <p>
-                        Led by Nick Kalas, a former trucker with first hand
-                        experience, Iron Wing Dispatching understands the
-                        challenges of the road and the value of a reliable
-                        dispatcher. We’re here to enhance your trucking
-                        experience and help you grow your business with
-                        professionalism and care.
+                        What sets us apart is our firsthand experience. Before
+                        launching Iron Wing Dispatching, our founder spent years
+                        behind the wheel as an owner-operator. He knows the long
+                        hours on the road, the unpredictability of freight
+                        markets, and the frustration of dealing with endless
+                        paperwork. That’s why we’re committed to going beyond
+                        the basics. We understand the pressures you face because
+                        we’ve felt them ourselves. We use that insight to
+                        deliver solutions that not only streamline operations
+                        but also anticipate your challenges—from securing
+                        reliable loads that fit your schedule to managing
+                        compliance so you’re never caught off guard.
+                    </p>
+                    <p>
+                        At Iron Wing, you’re not just another carrier—you’re a
+                        partner. We’re here to enhance your trucking experience,
+                        support your growth, and help you succeed in an industry
+                        we know inside and out.
                     </p>
                 </div>
                 <div class="logo-overlay">
@@ -324,8 +403,13 @@
 
         <!-- Footer Section -->
         <footer>
-            <div class="container">
+            <div class="container footer-content">
                 <p>&copy; 2025 Iron Wing Dispatching | All Rights Reserved</p>
+                <p>
+                    Email:
+                    <span class="footer-email">info@ironwingdispatch.com</span>
+                </p>
+                <p>Phone: <span class="footer-phone">1-800-555-1234</span></p>
                 <div class="social-icons">
                     <a href="#">Facebook</a>
                     <a href="#">Twitter</a>
@@ -333,5 +417,27 @@
                 </div>
             </div>
         </footer>
+
+        <script>
+            const showMoreBtn = document.querySelector(".show-more-button");
+            const hiddenServices = document.querySelector(".hidden-services");
+            let expanded = false;
+
+            showMoreBtn.addEventListener("click", () => {
+                if (!expanded) {
+                    // Calculate height of hidden content for a smooth transition
+                    const hiddenContent =
+                        hiddenServices.querySelector(".hidden-cards");
+                    const fullHeight = hiddenContent.scrollHeight + "px";
+                    hiddenServices.style.maxHeight = fullHeight;
+                    showMoreBtn.textContent = "Show Less Services";
+                    expanded = true;
+                } else {
+                    hiddenServices.style.maxHeight = "0";
+                    showMoreBtn.textContent = "Show More Services";
+                    expanded = false;
+                }
+            });
+        </script>
     </body>
 </html>
