@@ -1,32 +1,30 @@
 import "./normalize.css";
-import "./alt.css";
+import "./shared.css";
+import "./styles.css";
 import { onLCP, onINP, onCLS } from "web-vitals";
+import { hamburgerMenu, showServices } from "./dom";
 
 // Function to store metrics in localStorage
-function logAndStoreMetric(name, value) {
+export function logAndStoreMetric(name, value) {
     const metrics = JSON.parse(localStorage.getItem("web-vitals")) || {};
     metrics[name] = value;
     localStorage.setItem("web-vitals", JSON.stringify(metrics));
     console.log(`${name}:`, value);
 }
 
-// Capture Web Vitals metrics
-console.log("Web Vitals script is running.");
-onCLS((metric) => logAndStoreMetric("CLS", metric.value));
-onLCP((metric) => logAndStoreMetric("LCP", metric.value));
-onINP((metric) => logAndStoreMetric("INP", metric.value));
-
 document.addEventListener("DOMContentLoaded", () => {
-    const hamburger = document.querySelector(".hamburger");
-    const navLinks = document.querySelector("nav");
-    hamburger.addEventListener("click", () => {
-        navLinks.classList.toggle("active");
-        console.log("Hamburger menu toggled");
-    });
+    // Capture Web Vitals metrics
+    console.log("Web Vitals script is running.");
+    onCLS((metric) => logAndStoreMetric("CLS", metric.value));
+    onLCP((metric) => logAndStoreMetric("LCP", metric.value));
+    onINP((metric) => logAndStoreMetric("INP", metric.value));
+
+    hamburgerMenu();
+    showServices();
 });
 
 // TO DO:
-// - Add more styling to the service and pricing sections.
+// - Add more styling and svg icons to the service and pricing sections.
 // - Fix Cumulative Layout Shift
 // - add a chatbot
 // - add more contact forms in the homepage

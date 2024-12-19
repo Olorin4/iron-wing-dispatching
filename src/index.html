@@ -1,4 +1,6 @@
 <!doctype html>
+<!-- Psalm 127:1-2, “Unless the Lord builds the house, they labor in vain who build it; -->
+
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
@@ -22,17 +24,11 @@
                 </div>
                 <!-- Added a phone number and icon -->
                 <div class="contact-top">
-                    <svg
+                    <img
+                        src="./assets/images/phone-call.svg"
+                        alt="Call a dispatcher now!"
                         class="phone-icon"
-                        width="18"
-                        height="18"
-                        fill="#fff"
-                        viewBox="0 0 24 24"
-                    >
-                        <path
-                            d="M22 16.92v3a2.09 2.09 0 0 1-2.28 2 19.91 19.91 0 0 1-8.64-3.17A19.5 19.5 0 0 1 2.29 9.92a2.07 2.07 0 0 1 .54-2.09l2-2a2.07 2.07 0 0 1 2.3-.45l2.6 1.05a2.09 2.09 0 0 1 1.27 1.92v3a2.07 2.07 0 0 1-.6 1.49L9.88 14a16 16 0 0 0 6.78 6.78l1.19-1.19a2.06 2.06 0 0 1 1.49-.6h3a2.09 2.09 0 0 1 1.92 1.27z"
-                        />
-                    </svg>
+                    />
                     <span class="phone-number">1-800-555-1234</span>
                 </div>
                 <button class="hamburger" aria-label="Toggle navigation">
@@ -48,7 +44,7 @@
                         <li><a href="./blog.html">Blog</a></li>
                         <!-- Contact link in a shiny silver button -->
                         <li>
-                            <a href="./sign-up.html" class="contact-button">
+                            <a href="./sign-up.html" class="secondary-cta">
                                 Contact
                             </a>
                         </li>
@@ -82,7 +78,7 @@
                         We know your challenges and deliver solutions that keep
                         you moving.
                     </h2>
-                    <a href="#pricing" class="cta-button">
+                    <a href="#pricing" class="primary-cta">
                         See Dispatching Rates
                     </a>
                 </div>
@@ -102,18 +98,17 @@
                         </p>
                     </div>
                     <div class="card">
-                        <h3>Driver Dispatching</h3>
-                        <p>
-                            We provide rate confirmations and dispatch
-                            instructions, keeping you focused on driving your
-                            truck.
-                        </p>
-                    </div>
-                    <div class="card">
                         <h3>Route Optimization</h3>
                         <p>
                             We plan the most efficient routes to maximize fuel
                             savings and minimize downtime and deadheading.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h3>Administrative Support</h3>
+                        <p>
+                            We handle carrier setup paperwork, BoLs, Rate
+                            Confirmations, invoices, IFTA reports, etc.
                         </p>
                     </div>
                 </div>
@@ -122,10 +117,11 @@
                 <div class="hidden-services" style="max-height: 0">
                     <div class="service-cards hidden-cards">
                         <div class="card">
-                            <h3>Administrative Support</h3>
+                            <h3>Driver Dispatching</h3>
                             <p>
-                                We handle carrier setup paperwork, BoLs, Rate
-                                Confirmations, invoices, IFTA reports, etc.
+                                We provide rate confirmations and dispatch
+                                instructions, keeping you focused on driving
+                                your truck.
                             </p>
                         </div>
                         <div class="card">
@@ -167,7 +163,13 @@
                 </div>
 
                 <div class="show-more-container">
-                    <button class="show-more-button">Show More Services</button>
+                    <a href="javascript:void(0)" class="show-more-link">
+                        Show More Services
+                        <img
+                            src="./assets/images/chevron-down.svg"
+                            alt="Shoe more dispatching services"
+                        />
+                    </a>
                 </div>
             </section>
 
@@ -185,6 +187,42 @@
                     />
                     <div class="pitch-content right">
                         <p>
+                            Before founding Iron Wing Dispatching, our
+                            experience was earned firsthand behind the
+                            wheel—hauling freight across countless miles of open
+                            road. We know the long hours, the tight delivery
+                            windows, the frustration of deadhead miles, and the
+                            constant balancing act between running legal hours
+                            and pushing for better-paying freight. <br /><br />
+                            That understanding drives our mission to provide not
+                            just dispatching, but a true partnership. From
+                            identifying profitable loads tailored to your
+                            specific trailer type, to smoothing out
+                            communication with brokers, navigating compliance
+                            paperwork, and ensuring you’re never stranded
+                            without options—we cover every angle. <br /><br />
+                            Our 24/7 support, data-driven route optimization,
+                            and proactive logistics planning are all designed to
+                            reduce stress and maximize your bottom line. After
+                            all, when you've been in the driver’s seat, you know
+                            that efficiency, fairness, and a reliable support
+                            system can make all the difference between another
+                            long haul and a truly rewarding journey.
+                        </p>
+                        <a href="#pricing" class="primary-cta">
+                            Choose a Plan Below
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="sales-pitch-2" class="sales-pitch">
+                <a href="#sales-pitch-2">
+                    <h1>We understand the Trucking Industry</h1>
+                </a>
+                <div class="container">
+                    <div class="pitch-content left">
+                        <p>
                             We’re more than just a service provider — we’re your
                             trusted partner on the road. Our dispatchers work
                             tirelessly to secure the best loads, optimize
@@ -200,8 +238,9 @@
                                 your challenges.
                             </li>
                             <li>
-                                <strong>24/7 Support:</strong> Always available
-                                to address your needs, day or night.
+                                <strong>24/7 Support:</strong> Enjoy driving
+                                your truck, knowing that we're always a phone
+                                call away.
                             </li>
                             <li>
                                 <strong>Maximized Earnings:</strong> Strategic
@@ -209,27 +248,7 @@
                                 profitably.
                             </li>
                         </ul>
-                        <a href="#pricing" class="cta-button">
-                            Choose a Plan Below
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-            <section id="sales-pitch-2" class="sales-pitch">
-                <a href="#sales-pitch-2">
-                    <h1>We understand the Trucking Industry</h1>
-                </a>
-                <div class="container">
-                    <div class="pitch-content left">
-                        <p>
-                            We know the job of a trucker. Our services are
-                            designed to support your needs at every stage. Our
-                            knowledgeable dispatchers work 24/7 to maximize your
-                            earnings and keep your operations efficient and
-                            stress free.
-                        </p>
-                        <a href="#pricing" class="cta-button">
+                        <a href="#pricing" class="primary-cta">
                             Still have questions?
                         </a>
                     </div>
@@ -244,100 +263,58 @@
             </section>
 
             <!-- Pricing section -->
-            <!-- Converted to a comparison table -->
             <section id="pricing" class="pricing">
                 <a href="#pricing"><h1>Pricing</h1></a>
-                <div class="pricing-table-container">
-                    <table class="pricing-table">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>Basic Plan</th>
-                                <th>Standard Plan</th>
-                                <th>Premium Plan</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Ideal For</td>
-                                <td>1-3 trucks</td>
-                                <td>Growing small carriers</td>
-                                <td>Fleets > 10 trucks</td>
-                            </tr>
-                            <tr>
-                                <td>Rate</td>
-                                <td>4%</td>
-                                <td>6%</td>
-                                <td>8%</td>
-                            </tr>
-                            <tr>
-                                <td>Load Sourcing</td>
-                                <td>✔️</td>
-                                <td>✔️</td>
-                                <td>✔️</td>
-                            </tr>
-                            <tr>
-                                <td>Route Optimization</td>
-                                <td>✔️</td>
-                                <td>✔️</td>
-                                <td>✔️</td>
-                            </tr>
-                            <tr>
-                                <td>Support Hours</td>
-                                <td>Business Hours</td>
-                                <td>24/7</td>
-                                <td>Priority 24/7</td>
-                            </tr>
-                            <tr>
-                                <td>Administrative Support</td>
-                                <td>Basic</td>
-                                <td>Advanced</td>
-                                <td>Full</td>
-                            </tr>
-                            <tr>
-                                <td>Dedicated Dispatcher</td>
-                                <td>–</td>
-                                <td>✔️</td>
-                                <td>✔️</td>
-                            </tr>
-                            <tr>
-                                <td>Factoring Assistance</td>
-                                <td>–</td>
-                                <td>✔️</td>
-                                <td>✔️</td>
-                            </tr>
-                            <tr>
-                                <td>Lumper/Detention Assistance</td>
-                                <td>–</td>
-                                <td>✔️</td>
-                                <td>✔️</td>
-                            </tr>
-                            <tr>
-                                <td>Compliance Assistance</td>
-                                <td>–</td>
-                                <td>–</td>
-                                <td>✔️</td>
-                            </tr>
-                            <tr class="cta-row">
-                                <td></td>
-                                <td>
-                                    <a href="./sign-up.html"
-                                        ><button>Apply Now</button></a
-                                    >
-                                </td>
-                                <td>
-                                    <a href="./sign-up.html"
-                                        ><button>Apply Now</button></a
-                                    >
-                                </td>
-                                <td>
-                                    <a href="./sign-up.html"
-                                        ><button>Apply Now</button></a
-                                    >
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="container">
+                    <div class="pricing-card">
+                        <h2>Basic Plan</h2>
+                        <p>Perfect for owner-operators.</p>
+                        <div class="price">4%</div>
+                        <ul>
+                            <li>Load Sourcing</li>
+                            <li>Route Optimization</li>
+                            <li>Business hours Support</li>
+                            <li>Basic Administrative Support</li>
+                        </ul>
+                        <a href="./sign-up.html">
+                            <button>Apply Now</button>
+                        </a>
+                    </div>
+                    <div class="pricing-card">
+                        <h2>Standard Plan</h2>
+                        <p>Ideal for growing small carriers.</p>
+                        <div class="price">6%</div>
+                        <ul>
+                            <li>Load Sourcing</li>
+                            <li>Route Optimization</li>
+                            <li>24/7 support</li>
+                            <li>Advanced Administrative Support</li>
+                            <li>Dedicated dispatcher</li>
+                            <li>Factoring assistance</li>
+                            <li>Lumper/Detention assistance</li>
+                        </ul>
+                        <a href="./sign-up.html">
+                            <button>Apply Now</button>
+                        </a>
+                    </div>
+                    <div class="pricing-card">
+                        <h2>Premium Plan</h2>
+                        <p>For larger fleets.</p>
+                        <div class="price">8%</div>
+                        <ul>
+                            <li>Load Sourcing</li>
+                            <li>Route Optimization</li>
+                            <li>Priority 24/7 support</li>
+                            <li>Full Administrative Support</li>
+                            <li>Dedicated dispatcher</li>
+                            <li>Factoring assistance</li>
+                            <li>Lumper/Detention assistance</li>
+                            <li>Compliance assistance</li>
+                        </ul>
+                        <a href="./sign-up.html">
+                            <button>Apply Now</button>
+                        </a>
+                    </div>
                 </div>
             </section>
 
@@ -417,27 +394,5 @@
                 </div>
             </div>
         </footer>
-
-        <script>
-            const showMoreBtn = document.querySelector(".show-more-button");
-            const hiddenServices = document.querySelector(".hidden-services");
-            let expanded = false;
-
-            showMoreBtn.addEventListener("click", () => {
-                if (!expanded) {
-                    // Calculate height of hidden content for a smooth transition
-                    const hiddenContent =
-                        hiddenServices.querySelector(".hidden-cards");
-                    const fullHeight = hiddenContent.scrollHeight + "px";
-                    hiddenServices.style.maxHeight = fullHeight;
-                    showMoreBtn.textContent = "Show Less Services";
-                    expanded = true;
-                } else {
-                    hiddenServices.style.maxHeight = "0";
-                    showMoreBtn.textContent = "Show More Services";
-                    expanded = false;
-                }
-            });
-        </script>
     </body>
 </html>
