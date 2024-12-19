@@ -2,7 +2,7 @@ import "./normalize.css";
 import "./shared.css";
 import "./styles.css";
 import { onLCP, onINP, onCLS } from "web-vitals";
-import { hamburgerMenu, showServices } from "./dom";
+import { hamburgerMenu, showServices, contactPopup } from "./dom";
 
 // Function to store metrics in localStorage
 export function logAndStoreMetric(name, value) {
@@ -21,15 +21,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     hamburgerMenu();
     showServices();
+    contactPopup();
 });
 
 // TO DO:
+// - Add a smaller contact form prompt in the 2nd sales pitch, to catch undecided clients.
 // - Add more styling and svg icons to the service and pricing sections.
-// - Fix Cumulative Layout Shift
-// - add a chatbot
-// - add more contact forms in the homepage
-// - Add a smaller contact form prompt on he side of the sales pitch, to catch undecided clients.
-// - Add hover effects to the nav menu and the chat bot
-// - Fix about section affecting the footer
+// - Add a chatbot
+// - Fix responsiveness
 // - Fix responsiveness of sign up html
 // - Flesh out blog
+// - Fix about section affecting the footer
+// - Fix Cumulative Layout Shift

@@ -183,45 +183,9 @@
                         src="./assets/images/pexels-theshuttervision-9984691_450.webp"
                         alt="Relevant visual"
                         class="pitch-image left"
-                        width="450"
+                        width="300"
                     />
                     <div class="pitch-content right">
-                        <p>
-                            Before founding Iron Wing Dispatching, our
-                            experience was earned firsthand behind the
-                            wheel—hauling freight across countless miles of open
-                            road. We know the long hours, the tight delivery
-                            windows, the frustration of deadhead miles, and the
-                            constant balancing act between running legal hours
-                            and pushing for better-paying freight. <br /><br />
-                            That understanding drives our mission to provide not
-                            just dispatching, but a true partnership. From
-                            identifying profitable loads tailored to your
-                            specific trailer type, to smoothing out
-                            communication with brokers, navigating compliance
-                            paperwork, and ensuring you’re never stranded
-                            without options—we cover every angle. <br /><br />
-                            Our 24/7 support, data-driven route optimization,
-                            and proactive logistics planning are all designed to
-                            reduce stress and maximize your bottom line. After
-                            all, when you've been in the driver’s seat, you know
-                            that efficiency, fairness, and a reliable support
-                            system can make all the difference between another
-                            long haul and a truly rewarding journey.
-                        </p>
-                        <a href="#pricing" class="primary-cta">
-                            Choose a Plan Below
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-            <section id="sales-pitch-2" class="sales-pitch">
-                <a href="#sales-pitch-2">
-                    <h1>We understand the Trucking Industry</h1>
-                </a>
-                <div class="container">
-                    <div class="pitch-content left">
                         <p>
                             We’re more than just a service provider — we’re your
                             trusted partner on the road. Our dispatchers work
@@ -249,6 +213,46 @@
                             </li>
                         </ul>
                         <a href="#pricing" class="primary-cta">
+                            Choose a Plan Below
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="sales-pitch-2" class="sales-pitch">
+                <a href="#sales-pitch-2">
+                    <h1>We understand the Trucking Industry</h1>
+                </a>
+                <div class="container">
+                    <div class="pitch-content left">
+                        <p>
+                            Before founding Iron Wing Dispatching, our
+                            experience was earned firsthand behind the
+                            wheel—hauling freight across countless miles of open
+                            road. We know the long hours, the tight delivery
+                            windows, the frustration of deadhead miles, and the
+                            constant balancing act between running legal hours
+                            and pushing for better-paying freight. <br /><br />
+                            That understanding drives our mission to provide not
+                            just dispatching, but a true partnership. From
+                            identifying profitable loads tailored to your
+                            specific trailer type, to smoothing out
+                            communication with brokers, navigating compliance
+                            paperwork, and ensuring you’re never stranded
+                            without options—we cover every angle. <br /><br />
+                            Our 24/7 support, data-driven route optimization,
+                            and proactive logistics planning are all designed to
+                            reduce stress and maximize your bottom line. After
+                            all, when you've been in the driver’s seat, you know
+                            that efficiency, fairness, and a reliable support
+                            system can make all the difference between another
+                            long haul and a truly rewarding journey.
+                        </p>
+                        <a
+                            href="javascript:void(0)"
+                            id="contact-trigger"
+                            class="primary-cta"
+                        >
                             Still have questions?
                         </a>
                     </div>
@@ -257,10 +261,39 @@
                         alt="A truck dispatcher negotiating freight rates with a broker"
                         class="pitch-image right"
                         width="300"
-                        height="300"
                     />
                 </div>
             </section>
+
+            <!-- Popup Markup -->
+            <div class="popup-overlay" id="popup-overlay">
+                <div class="popup-content" id="popup-content">
+                    <div class="popup-header">
+                        <h2>Contact Us</h2>
+                        <span class="popup-close" id="popup-close"
+                            >&times;</span
+                        >
+                    </div>
+                    <form class="popup-form">
+                        <label for="email">Email (required):</label>
+                        <input type="email" id="email" name="email" required />
+
+                        <label for="phone">Phone (optional):</label>
+                        <input type="tel" id="phone" name="phone" />
+
+                        <label for="message">Your Questions:</label>
+                        <textarea
+                            id="message"
+                            name="message"
+                            rows="5"
+                        ></textarea>
+
+                        <button type="submit" class="primary-cta">
+                            Submit
+                        </button>
+                    </form>
+                </div>
+            </div>
 
             <!-- Pricing section -->
             <section id="pricing" class="pricing">
@@ -277,7 +310,7 @@
                             <li>Basic Administrative Support</li>
                         </ul>
                         <a href="./sign-up.html">
-                            <button>Apply Now</button>
+                            <button class="primary-cta">Apply Now</button>
                         </a>
                     </div>
                     <div class="pricing-card">
@@ -294,7 +327,7 @@
                             <li>Lumper/Detention assistance</li>
                         </ul>
                         <a href="./sign-up.html">
-                            <button>Apply Now</button>
+                            <button class="primary-cta">Apply Now</button>
                         </a>
                     </div>
                     <div class="pricing-card">
@@ -312,7 +345,7 @@
                             <li>Compliance assistance</li>
                         </ul>
                         <a href="./sign-up.html">
-                            <button>Apply Now</button>
+                            <button class="primary-cta">Apply Now</button>
                         </a>
                     </div>
                 </div>

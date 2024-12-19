@@ -37,3 +37,27 @@ export function showServices() {
         }
     });
 }
+
+export function contactPopup() {
+    const contactTrigger = document.getElementById("contact-trigger");
+    const popupOverlay = document.getElementById("popup-overlay");
+    const popupContent = document.getElementById("popup-content");
+    const popupClose = document.getElementById("popup-close");
+
+    // Show the popup when contact link is clicked
+    contactTrigger.addEventListener("click", () => {
+        popupOverlay.style.display = "flex";
+    });
+
+    // Close the popup when clicking "x"
+    popupClose.addEventListener("click", () => {
+        popupOverlay.style.display = "none";
+    });
+
+    // Close the popup when clicking outside the popup content
+    popupOverlay.addEventListener("click", (e) => {
+        if (e.target === popupOverlay) {
+            popupOverlay.style.display = "none";
+        }
+    });
+}
