@@ -239,7 +239,7 @@
     content: "✔️";
     position: absolute;
     left: 0;
-    color: rgb(255, 215, 0);
+    color: rgb(8, 13, 23);
 }
 
 #sales-pitch-2 .container {
@@ -350,67 +350,115 @@
 
 .pricing .container {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
+    color: rgb(255, 255, 255);
+    background: rgb(8, 13, 23);
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.1);
+    margin: 0 0 64px;
+    padding: 24px;
+    border-radius: 28px;
 }
 
-/* Pricing card */
 .pricing-card {
     display: grid;
-    grid-template-rows: 50px 50px 50px auto 50px;
+    grid-template-rows: 50px 50px 50px 50px 50px auto;
     justify-content: center;
     align-items: start;
-    background-color: white;
-    border: 1px solid rgb(221, 221, 221);
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(
+        135deg,
+        rgb(8, 13, 23, 0.6) 0%,
+        rgb(192, 192, 192) 100%
+    );
+    background-color: transparent;
+    border-radius: 15px;
     padding: 20px;
     margin: 10px;
     height: 630px;
-    width: 280px;
+    width: 300px;
     text-align: center;
     transition: box-shadow 0.3s ease;
 }
 
-.pricing-card:hover {
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-}
-
-.pricing-card h2 {
+.pricing-card h3 {
     grid-row: 1;
     font-size: 1.5em;
     margin: 0 0 10px 0;
-    color: rgb(8, 13, 23);
 }
 
 .pricing-card p {
     grid-row: 2;
     font-size: 1em;
-    color: rgb(85, 85, 85);
     margin: 10px 0;
 }
 
 .pricing-card .price {
     grid-row: 3;
     font-size: 2em;
-    color: rgb(8, 13, 23);
-    margin: 10px 0;
-}
-
-.pricing-card ul {
-    grid-row: 4;
-    list-style: none;
-    padding: 0;
-    margin: 20px 0;
-}
-
-.pricing-card ul li {
-    margin: 8px 0;
 }
 
 .pricing-card a {
+    grid-row: 4;
+    cursor: inherit;
+    margin-top: 10px;
+}
+
+.pricing-card ul {
     grid-row: 5;
-    cursor: none;
+    list-style: none;
+    padding: 0;
+    margin: 30px 0;
+}
+
+.pricing-card ul li {
+    position: relative;
+    text-align: left;
+    margin-bottom: 0.7rem;
+    padding-left: 1.7rem;
+    cursor: pointer;
+}
+
+.pricing-card ul li::before {
+    content: "✔️";
+    position: absolute;
+    left: 0;
+    color: rgb(190, 190, 190);
+}
+
+.pricing-card ul li:hover::after {
+    content: attr(data-tooltip); /* Display tooltip text */
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgb(8, 13, 23, 0.9); /* Silver background */
+    padding: 0.5rem;
+    border-radius: 4px;
+    white-space: nowrap;
+    font-size: 0.9rem;
+    z-index: 10;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
+}
+
+.pricing-card ul li:hover::after {
+    opacity: 1;
+    transform: translateY(-50%) translateX(-5px);
+}
+
+/* Tooltip Arrow */
+.pricing-card ul li:hover::before {
+    content: "";
+    position: absolute;
+    left: 8px; /* Adjust to point to the left */
+    top: 50%;
+    transform: translateY(-50%);
+    border-width: 8px;
+    border-style: solid;
+    border-color: transparent transparent transparent rgba(192, 192, 192, 0.9); /* Silver arrow pointing left */
+    z-index: 10;
 }
 
 /* About Section */

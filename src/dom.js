@@ -1,3 +1,4 @@
+//doms.js handles all dom elements
 function hamburgerMenu() {
     const hamburger = document.querySelector(".hamburger");
     const navLinks = document.querySelector("nav");
