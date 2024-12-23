@@ -351,6 +351,7 @@
 .pricing .container {
     display: flex;
     justify-content: center;
+    align-items: center;
     color: rgb(255, 255, 255);
     background: rgb(8, 13, 23);
     box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.1);
@@ -575,6 +576,9 @@
         align-items: center;
         text-align: center;
     }
+    .pricing .container {
+        width: 760px;
+    }
     .about-text p {
         font-size: 1rem;
     }
@@ -590,5 +594,8 @@
     .popup-content {
         width: 95%;
         padding: 1rem;
+    }
+    .pricing .container {
+        flex-direction: column;
     }
 }
