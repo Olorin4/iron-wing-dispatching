@@ -4,7 +4,7 @@ import "../shared.css";
 import "./sign-up.css";
 import validator from "validator";
 
-export class FormValidator {
+class FormValidator {
     constructor(form) {
         this.form = form;
         this.inputs = form.querySelectorAll("input");
@@ -14,10 +14,17 @@ export class FormValidator {
     init() {
         this.form.addEventListener("submit", (event) => {
             event.preventDefault(); // Prevent form submission by default
+            const confirmationMessage = document.getElementById(
+                "confirmation-message"
+            );
             if (this.validateForm()) {
                 console.log("Form is valid!");
-                this.form.submit(); // Programmatically submit if valid
-            } else console.log("Form has errors.");
+                confirmationMessage.classList.remove("hidden");
+                this.submitForm();
+            } else {
+                console.log("Form has errors.");
+                confirmationMessage.classList.add("hidden");
+            }
         });
     }
 
@@ -66,6 +73,24 @@ export class FormValidator {
         errorElement.classList.remove("show-error");
         input.style.borderColor = "";
     }
+
+    submitForm() {
+        const formData = new FormData(this.form); // Gather form data
+        const confirmationMessage = document.getElementById(
+            "confirmation-message"
+        );
+        fetch("http://localhost:3000/submit-endpoint", {
+            method: "POST",
+            body: formData,
+        })
+            .then((response) => {
+                if (response.ok) {
+                    console.log("Form successfully submitted!");
+                    confirmationMessage.classList.remove("hidden");
+                } else console.error("Form submission failed.");
+            })
+            .catch((error) => console.error("Error submitting form:", error));
+    }
 }
 
 function pricingChoice() {
@@ -80,7 +105,7 @@ function pricingChoice() {
         planInput.value = chosenPlan;
     } else {
         planNameSpan.closest("legend").innerHTML =
-            `Please select a <a href="./index.html#pricing">Pricing Plan</a>.`;
+            `Please select a <a href="./index.html#pricing">Pricing Plan</a>`;
         planInput.value = "No plan selected";
     }
 }

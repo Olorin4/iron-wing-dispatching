@@ -96,4 +96,24 @@ function imageFadeIn() {
     pitchImages.forEach((image) => observer.observe(image));
 }
 
-export { hamburgerMenu, showServices, contactPopup, imageFadeIn };
+function registerPricingPlan() {
+    const ctaLinks = document.querySelectorAll("a[data-plan]");
+    ctaLinks.forEach((link) => {
+        link.addEventListener("click", (event) => {
+            const planName = link.getAttribute("data-plan");
+            if (planName) {
+                const href = link.getAttribute("href");
+                const updatedHref = `${href}?plan=${encodeURIComponent(planName)}`;
+                link.setAttribute("href", updatedHref);
+            }
+        });
+    });
+}
+
+export {
+    hamburgerMenu,
+    showServices,
+    contactPopup,
+    imageFadeIn,
+    registerPricingPlan,
+};

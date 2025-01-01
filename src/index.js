@@ -2,7 +2,13 @@ import "./normalize.css";
 import "./shared.css";
 import "./styles.css";
 import { onLCP, onINP, onCLS } from "web-vitals";
-import { hamburgerMenu, showServices, imageFadeIn, contactPopup } from "./dom";
+import {
+    hamburgerMenu,
+    showServices,
+    imageFadeIn,
+    contactPopup,
+    registerPricingPlan,
+} from "./dom";
 
 // Function to store metrics in localStorage
 export function logAndStoreMetric(name, value) {
@@ -10,20 +16,6 @@ export function logAndStoreMetric(name, value) {
     metrics[name] = value;
     localStorage.setItem("web-vitals", JSON.stringify(metrics));
     console.log(`${name}:`, value);
-}
-
-function registerPricingPlan() {
-    const ctaLinks = document.querySelectorAll("a[data-plan]");
-    ctaLinks.forEach((link) => {
-        link.addEventListener("click", (event) => {
-            const planName = link.getAttribute("data-plan");
-            if (planName) {
-                const href = link.getAttribute("href");
-                const updatedHref = `${href}?plan=${encodeURIComponent(planName)}`;
-                link.setAttribute("href", updatedHref);
-            }
-        });
-    });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -41,9 +33,8 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // TO DO:
-// - Add more styling  to the  pricing section.
 // - Fix responsiveness.
-// - Fix responsiveness of sign up html.
+// - Fix responsiveness of sign up html (error messages displace inputs).
 // - Flesh out blog.
 // - Create a small backend to catch data from the contact forms.
 // - Create 404.html.
