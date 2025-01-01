@@ -81,8 +81,8 @@ header .container {
 .contact-top {
     display: flex;
     align-items: center;
-    width: 170px;
-    padding-left: 15px;
+    width: 180px;
+    padding-left: 20px;
     color: rgb(255, 255, 255);
     user-select: text;
 }
@@ -220,6 +220,24 @@ header .container {
 /* Main */
 main {
     flex: 1;
+}
+
+.primary-cta {
+    display: inline-block;
+    background: linear-gradient(172deg, rgb(255, 200, 0), rgb(238, 228, 141));
+    color: rgb(8, 13, 23) !important;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: bold;
+    border: 3px outset rgb(8, 13, 23);
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.primary-cta:hover {
+    box-shadow: 0 0 20px rgba(231, 181, 2, 1);
+    transform: scale(1.05);
 }
 
 /* Footer */

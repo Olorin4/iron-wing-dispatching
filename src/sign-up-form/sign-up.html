@@ -14,46 +14,71 @@
                     <a href="./index.html">
                         <img
                             src="../assets/images/logo.webp"
+                            width="350"
+                            height="150"
                             alt="Iron Wing Dispatching logo"
                         />
                     </a>
                 </div>
-                <nav>
-                    <ul>
-                        <li><a href="index.html#about">About Us</a></li>
-                        <li><a href="index.html#services">Services</a></li>
-                        <li><a href="index.html#pricing">Pricing</a></li>
-                        <li><a href="./blog.html">Blog</a></li>
-
-                        <li>
-                            <a href="./sign-up.html">Contact</a>
-                        </li>
-                    </ul>
-                </nav>
+                <!-- Added a phone number and icon -->
+                <div class="menu-wrapper">
+                    <div class="contact-top">
+                        <img
+                            src="../assets/images/phone-call.svg"
+                            alt="Call a dispatcher now!"
+                            class="phone-icon"
+                        />
+                        <span class="phone-number">1-800-555-1234</span>
+                    </div>
+                    <button class="hamburger" aria-label="Toggle navigation">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <nav class="nav-links">
+                        <ul>
+                            <li><a href="index.html#about">About</a></li>
+                            <li><a href="index.html#services">Services</a></li>
+                            <li><a href="index.html#pricing">Pricing</a></li>
+                            <li><a href="./blog.html">Blog</a></li>
+                            <!-- Contact link in a shiny silver button -->
+                            <li>
+                                <a href="./sign-up.html" class="secondary-cta">
+                                    Contact
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
         </header>
 
         <!-- Main Section -->
         <main>
-            <section class="left-section">
+            <section class="hero">
                 <img
-                    class="image"
-                    src="../assets/images/pexels-photoscom-93398.jpg"
+                    src="../assets/images/pexels-photoscom-93398_1024.webp"
                     alt="A lone truck driving in the distance..."
                 />
-                <div class="logo-container">
-                    <div id="hero">
-                        <h3>
-                            <br />
-                            This is not a real online service! But deep down,
-                            you know you need something like this in your life
-                            to help you realize your deepest dreams. Sign up now
-                            to get you started.
-                        </h3>
-                        <br /><br />
-                        <h3>You <em>know</em> you want to.</h3>
-                    </div>
-                    <img class="logo" src="../assets/images/logo.webp" />
+                <div class="hero-text">
+                    <h3>
+                        <br />
+                        This is not a real online service! But deep down, you
+                        know you need something like this in your life to help
+                        you realize your deepest dreams. Sign up now to get you
+                        started.
+                    </h3>
+                    <br /><br /><br /><br />
+                    <h3>Let's do this!</h3>
+                </div>
+                <div class="logo-overlay">
+                    <img
+                        src="../assets/images/logo.webp"
+                        alt="Iron Wing Dispatching Services for Owner-Operators and small motor Carriers"
+                        width="350"
+                        height="150"
+                        loading="lazy"
+                    />
                 </div>
             </section>
 
@@ -61,7 +86,15 @@
                 <div class="form-container">
                     <form id="sign-up-form" novalidate>
                         <fieldset>
-                            <legend>Let's do this!</legend>
+                            <legend>
+                                You selected <span id="plan-name"></span>!
+                            </legend>
+                            <input
+                                type="hidden"
+                                id="plan-input"
+                                name="selected-plan"
+                                value="your plan"
+                            />
 
                             <div class="user-info">
                                 <div class="first-name">
@@ -118,6 +151,7 @@
                                         name="fleet-size"
                                         type="number"
                                         maxlength="4"
+                                        required
                                     />
                                     <span aria-live="polite"></span>
                                 </div>
@@ -129,7 +163,7 @@
                                         id="trailer-type"
                                         name="trailer-type"
                                         type="text"
-                                        maxlength="50"
+                                        maxlength="20"
                                         required
                                     />
                                     <span aria-live="polite"></span>
@@ -137,7 +171,9 @@
                             </div>
                         </fieldset>
 
-                        <button type="submit" id="submitButton">SUBMIT</button>
+                        <button type="submit" class="primary-cta">
+                            SUBMIT
+                        </button>
                     </form>
                 </div>
             </section>
@@ -145,8 +181,13 @@
 
         <!-- Footer Section -->
         <footer>
-            <div class="container">
+            <div class="container footer-content">
                 <p>&copy; 2025 Iron Wing Dispatching | All Rights Reserved</p>
+                <p>
+                    Email:
+                    <span class="footer-email">info@ironwingdispatch.com</span>
+                </p>
+                <p>Phone: <span class="footer-phone">1-800-555-1234</span></p>
                 <div class="social-icons">
                     <a href="#">Facebook</a>
                     <a href="#">Twitter</a>

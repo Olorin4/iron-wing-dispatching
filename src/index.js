@@ -12,6 +12,20 @@ export function logAndStoreMetric(name, value) {
     console.log(`${name}:`, value);
 }
 
+function registerPricingPlan() {
+    const ctaLinks = document.querySelectorAll("a[data-plan]");
+    ctaLinks.forEach((link) => {
+        link.addEventListener("click", (event) => {
+            const planName = link.getAttribute("data-plan");
+            if (planName) {
+                const href = link.getAttribute("href");
+                const updatedHref = `${href}?plan=${encodeURIComponent(planName)}`;
+                link.setAttribute("href", updatedHref);
+            }
+        });
+    });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     // Capture Web Vitals metrics
     console.log("Web Vitals script is running.");
@@ -23,6 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
     showServices();
     imageFadeIn();
     contactPopup();
+    registerPricingPlan();
 });
 
 // TO DO:

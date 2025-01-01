@@ -68,9 +68,27 @@ export class FormValidator {
     }
 }
 
+function pricingChoice() {
+    const planNameSpan = document.getElementById("plan-name");
+    const planInput = document.getElementById("plan-input");
+    // Extract the 'plan' parameter from the query string
+    const params = new URLSearchParams(window.location.search);
+    const chosenPlan = params.get("plan");
+    // Update the span and the hidden input
+    if (chosenPlan) {
+        planNameSpan.textContent = chosenPlan;
+        planInput.value = chosenPlan;
+    } else {
+        planNameSpan.closest("legend").innerHTML =
+            `Please select a <a href="./index.html#pricing">Pricing Plan</a>.`;
+        planInput.value = "No plan selected";
+    }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     console.log("Sign-Up Page JS Loaded");
     // Select the form and initialize the FormValidator
     const form = document.querySelector("#sign-up-form");
     new FormValidator(form);
+    pricingChoice();
 });
