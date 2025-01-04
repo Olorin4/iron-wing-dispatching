@@ -3,7 +3,7 @@
     position: relative;
     color: rgb(255, 255, 255);
     text-align: center;
-    min-height: 85vh;
+    min-height: 87vh;
     padding: 5rem 2rem;
     overflow: hidden;
 }
@@ -45,6 +45,10 @@
 .hero h2 {
     font-size: 1.5rem;
     margin: 1rem 0;
+}
+
+.hero .primary-cta {
+    margin: 15px;
 }
 
 /* Services Section */
@@ -601,10 +605,28 @@
 }
 
 @media (max-width: 425px) {
+    .sales-pitch {
+        padding: 0;
+        margin-top: 15px;
+    }
+    .sales-pitch .container {
+        margin: 25px 0;
+    }
+    .sales-pitch h1 {
+        font-size: 1.5rem;
+    }
+    .sales-pitch .container .primary-cta {
+        margin: auto;
+    }
     .pricing .container {
         min-width: 400px;
     }
     .pricing-card {
         width: 80%;
+    }
+    .logo-overlay {
+        top: 1rem;
+        left: 30%;
+        width: 250px;
     }
 }

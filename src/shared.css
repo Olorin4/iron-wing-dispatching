@@ -251,3 +251,9 @@ footer {
 .footer-content p {
     margin: 0.5rem 0;
 }
+
+@media (max-width: 425px) {
+    .break {
+        display: block; /* Forces the break to act as a line break */
+    }
+}

@@ -41,6 +41,9 @@ main {
 
 .hero-text {
     position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
     z-index: 2;
     margin-top: auto;
     line-height: 1.6;
@@ -98,10 +101,16 @@ fieldset {
 }
 
 legend {
+    text-align: center;
     padding-left: 20px;
     padding-top: 20px;
     font-weight: 700;
     font-size: 1.5rem;
+}
+
+legend a {
+    color: inherit !important;
+    text-decoration: underline !important;
 }
 
 input {
@@ -207,9 +216,10 @@ span.show-error {
 @media (max-width: 768px) {
     main {
         grid-template-columns: 1fr;
-        grid-template-rows: 1fr 1fr;
+        grid-template-rows: 600px 900px;
     }
     .hero {
+        grid-column: 1;
         grid-row: 2;
         width: 100vw;
     }
@@ -217,8 +227,12 @@ span.show-error {
         grid-column: 1;
         grid-row: 1;
         width: 100vw;
+        height: 60vh;
     }
-
+    .form-container {
+        height: 80%;
+        padding-top: 0;
+    }
     fieldset {
         display: flex;
         flex-direction: column;
@@ -234,7 +248,6 @@ span.show-error {
         margin: 0;
     }
     legend {
-        font-size: 1.35rem;
         padding: 0;
     }
     .user-info div {
@@ -246,5 +259,14 @@ span.show-error {
     .primary-cta {
         margin-top: 30px;
         width: 280px;
+    }
+}
+
+@media (max-width: 428px) {
+    .logo-overlay {
+        top: 1rem;
+        left: 10%;
+        width: 250px;
+        transform: translateX(0%);
     }
 }
