@@ -41,9 +41,8 @@ main {
 
 .hero-text {
     position: relative;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
+    width: 60%;
+    margin: auto;
     z-index: 2;
     margin-top: auto;
     line-height: 1.6;
@@ -57,9 +56,8 @@ h3 {
 
 .logo-overlay {
     position: relative;
-    top: 4rem;
-    left: 80%;
-    transform: translateX(-50%);
+    top: 2rem;
+    left: 35%;
     z-index: 2;
 }
 
@@ -113,15 +111,22 @@ legend a {
     text-decoration: underline !important;
 }
 
+.user-info {
+    display: flex;
+    margin: 25px;
+}
+
+label {
+    align-self: flex-start;
+    font-size: 0.58em;
+    font-weight: 700;
+    color: rgb(136, 132, 132);
+}
+
 input {
     border: 0.5px solid #e5e7eb;
     border-radius: 3px;
     height: 35px;
-}
-
-.user-info {
-    display: flex;
-    margin: 25px;
 }
 
 .first-name {
@@ -139,13 +144,6 @@ input {
     justify-content: center;
     align-items: center;
     margin-left: 20px;
-}
-
-label {
-    align-self: flex-start;
-    font-size: 0.58em;
-    font-weight: 700;
-    color: rgb(136, 132, 132);
 }
 
 .e-mail {
@@ -197,11 +195,12 @@ span.show-error {
     display: block;
     font-size: 0.6rem;
     color: red;
-    top: 35px;
-    left: -0px;
+    top: 33px;
+    left: 5px;
 }
 
-#confirmation-message.hidden {
+#confirmation-message.hidden,
+.primary-cta.hidden {
     display: none;
 }
 
@@ -213,21 +212,41 @@ span.show-error {
     text-align: center;
 }
 
+@media (max-width: 1024px) {
+    .hero-text {
+        margin: 0;
+        width: 100%;
+    }
+    .logo-overlay {
+        top: 1.5rem;
+        left: 25%;
+        width: 250px;
+    }
+}
 @media (max-width: 768px) {
     main {
         grid-template-columns: 1fr;
-        grid-template-rows: 600px 900px;
+        grid-template-rows: 600px 880px;
     }
     .hero {
         grid-column: 1;
         grid-row: 2;
         width: 100vw;
     }
+    .hero-text {
+        margin: 0;
+        width: 100%;
+    }
+    .logo-overlay {
+        top: 1.5rem;
+        left: 35%;
+        width: 250px;
+    }
     .right-section {
         grid-column: 1;
         grid-row: 1;
         width: 100vw;
-        height: 60vh;
+        height: 65vh;
     }
     .form-container {
         height: 80%;
@@ -263,6 +282,15 @@ span.show-error {
 }
 
 @media (max-width: 428px) {
+    .logo-overlay {
+        top: 1rem;
+        left: 25%;
+        width: 250px;
+        transform: translateX(0%);
+    }
+}
+
+@media (max-width: 350px) {
     .logo-overlay {
         top: 1rem;
         left: 10%;

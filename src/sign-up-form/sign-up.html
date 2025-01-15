@@ -87,7 +87,8 @@
                     <form id="sign-up-form" novalidate>
                         <fieldset>
                             <legend>
-                                You selected <span id="plan-name"></span>!
+                                You selected <span class="break"></span>
+                                <span id="plan-name"></span>!
                             </legend>
                             <input
                                 type="hidden"
@@ -104,10 +105,14 @@
                                         type="text"
                                         name="first-name"
                                         required
-                                        minlength="2"
+                                        autocomplete
+                                        minlength="3"
                                         maxlength="50"
                                     />
-                                    <span aria-live="polite"></span>
+                                    <span
+                                        class="error-message"
+                                        data-error-for="first-name"
+                                    ></span>
                                 </div>
                                 <div class="last-name">
                                     <label for="last-name">LAST NAME</label>
@@ -116,10 +121,14 @@
                                         type="text"
                                         name="last-name"
                                         required
-                                        minlength="2"
+                                        autocomplete
+                                        minlength="3"
                                         maxlength="50"
                                     />
-                                    <span aria-live="polite"></span>
+                                    <span
+                                        class="error-message"
+                                        data-error-for="last-name"
+                                    ></span>
                                 </div>
                             </div>
 
@@ -131,13 +140,20 @@
                                         type="e-mail"
                                         name="e-mail"
                                         required
+                                        autocomplete
                                     />
-                                    <span></span>
+                                    <span
+                                        class="error-message"
+                                        data-error-for="e-mail"
+                                    ></span>
                                 </div>
                                 <div class="tel">
                                     <label for="tel">TELEPHONE NUMBER</label>
                                     <input id="tel" type="tel" name="tel" />
-                                    <span></span>
+                                    <span
+                                        class="error-message"
+                                        data-error-for="tel"
+                                    ></span>
                                 </div>
                             </div>
 
@@ -152,8 +168,12 @@
                                         type="number"
                                         maxlength="4"
                                         required
+                                        autocomplete
                                     />
-                                    <span aria-live="polite"></span>
+                                    <span
+                                        class="error-message"
+                                        data-error-for="fleet-size"
+                                    ></span>
                                 </div>
                                 <div class="trailer-type">
                                     <label for="trailer-type"
@@ -165,8 +185,12 @@
                                         type="text"
                                         maxlength="20"
                                         required
+                                        autocomplete
                                     />
-                                    <span aria-live="polite"></span>
+                                    <span
+                                        class="error-message"
+                                        data-error-for="trailer-type"
+                                    ></span>
                                 </div>
                             </div>
                         </fieldset>
@@ -174,10 +198,10 @@
                         <button type="submit" class="primary-cta">
                             SIGN UP!
                         </button>
-                        <span id="confirmation-message" class="hidden">
-                            Thank you for signing up! We'll be in touch shortly.
-                        </span>
                     </form>
+                    <span id="confirmation-message" class="hidden">
+                        Thank you for signing up! We'll be in touch shortly.
+                    </span>
                 </div>
             </section>
         </main>

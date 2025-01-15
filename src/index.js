@@ -33,8 +33,8 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // TO DO:
-// - Fix responsiveness.
-// - Fix responsiveness of sign up html (error messages displace inputs).
+// - Fix sign-up html: error messages displace inputs.
+// - Fix responsiveness of logo-overlay in sign-up html
 // - Flesh out blog.
 // - Create a small backend to catch data from the contact forms.
 // - Create 404.html.

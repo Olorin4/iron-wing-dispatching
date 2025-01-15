@@ -168,6 +168,12 @@ header .container {
 }
 
 /* Responsive Nav */
+@media (max-width: 1024px) {
+    header .container {
+        min-width: 100%;
+    }
+}
+
 @media (max-width: 900px) {
     header .container {
         min-width: 90%;

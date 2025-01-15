@@ -5,17 +5,17 @@ import "./sign-up.css";
 import validator from "validator";
 
 function pricingChoice() {
-    const planNameSpan = document.getElementById("plan-name");
+    const planName = document.getElementById("plan-name");
     const planInput = document.getElementById("plan-input");
     // Extract the 'plan' parameter from the query string
     const params = new URLSearchParams(window.location.search);
     const chosenPlan = params.get("plan");
     // Update the span and the hidden input
     if (chosenPlan) {
-        planNameSpan.textContent = chosenPlan;
+        planName.textContent = chosenPlan;
         planInput.value = chosenPlan;
     } else {
-        planNameSpan.closest("legend").innerHTML =
+        planName.closest("legend").innerHTML =
             `Please select a<span class="break"></span> pricing plan <a href="./index.html#pricing">here</a>.`;
         planInput.value = "No plan selected";
     }
@@ -56,6 +56,22 @@ class FormValidator {
     validateField(input) {
         const value = input.value.trim();
         const type = input.type;
+        // Validate First Name
+        if (input.id === "first-name" && (value === "" || value.length < 3)) {
+            this.showError(input, "First name must be at least 3 characters.");
+            return false;
+        }
+        // Validate Last Name
+        if (input.id === "last-name" && (value === "" || value.length < 3)) {
+            this.showError(input, "Last name must be at least 3 characters.");
+            return false;
+        }
+        // Validate Email
+        if (type === "email" && !validator.isEmail(value)) {
+            this.showError(input, "Please enter a valid email address.");
+            return false;
+        }
+        // Validate Fleet Size
         if (
             input.id === "fleet-size" &&
             value !== "" &&
@@ -63,32 +79,42 @@ class FormValidator {
         ) {
             this.showError(input, "Please enter a valid number of trucks.");
             return false;
-        } else if (input.id === "trailer-type" && value === "") {
+        }
+        // Validate Trailer Type
+        if (input.id === "trailer-type" && value === "") {
             this.showError(input, "Please enter the type of trailer.");
             return false;
-        } else if (type === "email" && !validator.isEmail(value)) {
-            this.showError(input, "Please enter a valid email address.");
-            return false;
-        } else if (type === "text" && value === "") {
-            this.showError(input, "This field is required.");
-            return false;
         }
+
+        // Clear error if validation passes
         this.hideError(input);
         return true;
     }
 
     showError(input, message) {
-        const errorElement = input.nextElementSibling;
-        errorElement.textContent = message;
-        errorElement.classList.add("show-error");
-        input.style.borderColor = "red";
+        const errorElement = this.form.querySelector(
+            `.error-message[data-error-for="${input.id}"]`
+        );
+        if (errorElement) {
+            errorElement.textContent = message;
+            errorElement.classList.add("show-error");
+            input.style.borderColor = "red";
+        } else {
+            console.warn(`Error element not found for input: ${input.id}`);
+        }
     }
 
     hideError(input) {
-        const errorElement = input.nextElementSibling;
-        errorElement.textContent = "";
-        errorElement.classList.remove("show-error");
-        input.style.borderColor = "";
+        const errorElement = this.form.querySelector(
+            `.error-message[data-error-for="${input.id}"]`
+        );
+        if (errorElement) {
+            errorElement.textContent = "";
+            errorElement.classList.remove("show-error");
+            input.style.borderColor = "";
+        } else {
+            console.warn(`Error element not found for input: ${input.id}`);
+        }
     }
 
     submitForm() {
@@ -96,6 +122,7 @@ class FormValidator {
         const confirmationMessage = document.getElementById(
             "confirmation-message"
         );
+        const signUpButton = document.querySelector(".primary-cta");
         fetch("http://localhost:3000/submit-endpoint", {
             method: "POST",
             body: formData,
@@ -103,6 +130,7 @@ class FormValidator {
             .then((response) => {
                 if (response.ok) {
                     console.log("Form successfully submitted!");
+                    signUpButton.classList.add("hidden");
                     confirmationMessage.classList.remove("hidden");
                 } else console.error("Form submission failed.");
             })

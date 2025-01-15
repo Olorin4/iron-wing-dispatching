@@ -11,6 +11,8 @@ const config = {
     semi: true,
     singleQuote: false,
     quoteProps: "as-needed",
+    htmlWhitespaceSensitivity: "ignore", // Avoid collapsing white spaces
+    bracketSameLine: true,
     bracketSpacing: true,
 };
 
