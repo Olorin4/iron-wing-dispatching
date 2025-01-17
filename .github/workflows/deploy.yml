@@ -64,7 +64,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           script: |
-            echo "Copying files to server..."
+            echo "Copying files to server....."
             rm -rf /var/www/iron-wing-dispatching/dist
             mkdir -p /var/www/iron-wing-dispatching
             rsync -avz -e "ssh -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no" /home/runner/work/iron-wing-dispatching/iron-wing-dispatching/dist/ root@178.156.130.162:/var/www/iron-wing-dispatching/dist/
