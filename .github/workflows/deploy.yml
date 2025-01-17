@@ -36,5 +36,6 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           script: |
-            rm -rf /var/www/iron-wing-dispatching/*
-            scp -r dist/* root@178.156.130.162:/var/www/iron-wing-dispatching
+            rm -rf /var/www/iron-wing-dispatching/dist
+            mkdir -p /var/www/iron-wing-dispatching
+            rsync -avz ./dist/ /var/www/iron-wing-dispatching/dist/
