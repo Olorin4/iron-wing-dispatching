@@ -225,6 +225,18 @@ header .container {
     }
 }
 
+@media (prefers-color-scheme: dark) {
+    .hamburger span {
+        background: rgb(255, 255, 255); /* White for dark themes */
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    .hamburger span {
+        background: rgb(0, 0, 0); /* Black for light themes */
+    }
+}
+
 /* Main */
 main {
     flex: 1;
