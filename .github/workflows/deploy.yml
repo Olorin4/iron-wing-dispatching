@@ -21,6 +21,8 @@ jobs:
             echo "Error: dist folder not found. Did you forget to build the project?";
             exit 1;
           fi
+      - name: Debug Workspace
+        run: ls -la  ./dist
       
       # Step 3: Install dependencies and build the project
       - name: Install Dependencies
@@ -39,4 +41,4 @@ jobs:
           script: |
             rm -rf /var/www/iron-wing-dispatching/dist
             mkdir -p /var/www/iron-wing-dispatching
-            rsync -avz ./dist/ /var/www/iron-wing-dispatching/dist/
+            rsync -avz --progress ./dist/ /var/www/iron-wing-dispatching/dist/
