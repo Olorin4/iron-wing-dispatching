@@ -1,9 +1,4 @@
-.gitignore
-.prettierrc
-.prettie.config.mjs
-.esslintrc
-.eslint.config.mjs
-.package-lock.json
+
 
 # Logs
 logs
@@ -96,7 +91,6 @@ out
 
 # Nuxt.js build / generate output
 .nuxt
-dist
 
 # Gatsby files
 .cache/
