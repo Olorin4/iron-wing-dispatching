@@ -1,9 +1,9 @@
-name: Deploy to Hetzner Server
+name: Deploy to Server
 
 on:
   push:
     branches:
-      - master  # Trigger deployment when changes are pushed to the `main` branch
+      - master
 
 jobs:
   deploy:
@@ -14,21 +14,20 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      # Step 2: Ensure dist folder exists
+      # Step 2: Install dependencies and build the project
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build Project
+        run: npm run build
+
+      # Step 3: Verify dist folder exists
       - name: Verify dist folder
         run: |
           if [ ! -d "./dist" ]; then
             echo "Error: dist folder not found. Did you forget to build the project?";
             exit 1;
           fi
-      - name: Debug Workspace
-        run: ls -la  ./dist
-      
-      # Step 3: Install dependencies and build the project
-      - name: Install Dependencies
-        run: npm install
-      - name: Build Project
-        run: npm run build
 
       # Step 4: Deploy to the server
       - name: Deploy to Server
