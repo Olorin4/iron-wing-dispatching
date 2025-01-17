@@ -29,6 +29,9 @@ jobs:
             exit 1;
           fi
 
+      - name: Debug Workspace
+        run: ls -la
+
       # Step 4: Deploy to the server
       - name: Deploy to Server
         uses: appleboy/ssh-action@v0.1.7
