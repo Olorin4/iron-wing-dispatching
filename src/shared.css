@@ -231,12 +231,6 @@ header .container {
     }
 }
 
-@media (prefers-color-scheme: light) {
-    .hamburger span {
-        background: rgb(0, 0, 0); /* Black for light themes */
-    }
-}
-
 /* Main */
 main {
     flex: 1;
