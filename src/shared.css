@@ -79,7 +79,7 @@ header .container {
 }
 
 .contact-top {
-    display: flex;
+    display: none;
     align-items: center;
     width: 180px;
     padding-left: 20px;
