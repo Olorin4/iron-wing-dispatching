@@ -13,6 +13,7 @@ jobs:
       # Step 1: Checkout the repository
       - name: Checkout Code
         uses: actions/checkout@v3
+
       # Step 2: Ensure dist folder exists
       - name: Verify dist folder
         run: |
@@ -20,8 +21,14 @@ jobs:
             echo "Error: dist folder not found. Did you forget to build the project?";
             exit 1;
           fi
+      
+      # Step 3: Install dependencies and build the project
+      - name: Install Dependencies
+        run: npm install
+      - name: Build Project
+        run: npm run build
 
-      # Step 3: Deploy to the server
+      # Step 4: Deploy to the server
       - name: Deploy to Server
         uses: appleboy/ssh-action@v0.1.7
         with:
