@@ -47,4 +47,4 @@ jobs:
           script: |
             rm -rf /var/www/iron-wing-dispatching/dist
             mkdir -p /var/www/iron-wing-dispatching
-            rsync -avz -e ssh dist/ /var/www/iron-wing-dispatching/dist/
+            rsync -avz /home/runner/work/iron-wing-dispatching/iron-wing-dispatching/dist/ /var/www/iron-wing-dispatching/dist/
