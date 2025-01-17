@@ -5,7 +5,7 @@
 
 module.exports = {
     modulePaths: ["/shared/vendor/modules"],
-    moduleFileExtensions: ["js", "jsx"],
+    moduleFileExtensions: ["js", "jsx", "json", "node"],
     moduleDirectories: ["node_modules", "bower_components", "shared"],
     moduleNameMapper: {
         "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
@@ -14,6 +14,30 @@ module.exports = {
         "^react(.*)$": "<rootDir>/vendor/react-master$1",
         "^config$": "<rootDir>/configs/app-config.js",
     },
+    testEnvironment: "node", // Default test environment for backend
+    projects: [
+        {
+            displayName: "frontend",
+            testEnvironment: "jsdom",
+            testMatch: ["<rootDir>/frontend/**/*.test.js"], // Matches frontend test files
+            moduleNameMapper: {
+                "\\.(css|scss)$": "identity-obj-proxy", // Mock CSS modules in frontend
+            },
+        },
+        {
+            displayName: "backend",
+            testEnvironment: "node",
+            testMatch: ["<rootDir>/backend/**/*.test.js"], // Matches backend test files
+        },
+    ],
+    collectCoverage: true, // Enable coverage reporting
+    collectCoverageFrom: [
+        "frontend/**/*.{js,jsx}",
+        "backend/**/*.{js,jsx}",
+        "!**/node_modules/**",
+        "!**/dist/**",
+    ],
+    coverageDirectory: "<rootDir>/coverage", // Output directory for coverage reports
 };
 
 /** @type {import('jest').Config} */

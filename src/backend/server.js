@@ -2,6 +2,17 @@ require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const https = require("https");
+const fs = require("fs");
+
+const options = {
+    key: fs.readFileSync("key.pem"),
+    cert: fs.readFileSync("cert.pem"),
+};
+
+https.createServer(options, app).listen(3000, () => {
+    console.log("Secure server running at https://localhost:3000");
+});
 
 const app = express();
 const PORT = process.env.PORT || 3000;

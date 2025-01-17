@@ -1,3 +1,4 @@
+//webpack.common.js:
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
@@ -5,33 +6,33 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
     entry: {
-        index: "./src/index.js",
-        blog: "./src/blog/blog.js",
-        signup: "./src/sign-up-form/sign-up.js",
+        index: "./src/frontend/index.js",
+        blog: "./src/frontend/blog/blog.js",
+        signup: "./src/frontend/sign-up-form/sign-up.js",
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: "Angelic Dispatching",
-            template: path.resolve(__dirname, "./src/index.html"),
+            title: "Iron Wing Dispatching",
+            template: path.resolve(__dirname, "./src/frontend/index.html"),
             chunks: ["index"], // Include only the index JS & CSS
         }),
         new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, "./src/blog/blog.html"),
+            template: path.resolve(__dirname, "./src/frontend/blog/blog.html"),
             filename: "blog.html",
             chunks: ["blog"], // Include only the blog.js bundle
         }),
         new HtmlWebpackPlugin({
             template: path.resolve(
                 __dirname,
-                "./src/sign-up-form/sign-up.html"
+                "./src/frontend/sign-up-form/sign-up.html"
             ),
             filename: "sign-up.html",
             chunks: ["signup"], // Include only the sign-up.js bundle
         }),
         new CopyWebpackPlugin({
             patterns: [
-                { from: "src/assets/images", to: "assets/images" },
-                { from: "src/assets/fonts", to: "assets/fonts" },
+                { from: "src/frontend/assets/images", to: "assets/images" },
+                { from: "src/frontend/assets/fonts", to: "assets/fonts" },
             ],
         }),
         new MiniCssExtractPlugin({
@@ -71,6 +72,8 @@ module.exports = {
     resolve: {
         extensions: [".js", ".jsx"],
         alias: {
+            "@assets": path.resolve(__dirname, "./src/frontend/assets"),
+            "@shared": path.resolve(__dirname, "./src/frontend/shared"),
             config$: "./configs/app-config.js",
             react: "./vendor/react-master",
         },
