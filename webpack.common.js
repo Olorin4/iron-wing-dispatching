@@ -14,12 +14,12 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: "Iron Wing Dispatching",
             template: path.resolve(__dirname, "./src/frontend/index.html"),
-            chunks: ["index"], // Include only the index JS & CSS
+            chunks: ["index"],
         }),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, "./src/frontend/blog/blog.html"),
             filename: "blog.html",
-            chunks: ["blog"], // Include only the blog.js bundle
+            chunks: ["blog"],
         }),
         new HtmlWebpackPlugin({
             template: path.resolve(
@@ -27,7 +27,7 @@ module.exports = {
                 "./src/frontend/sign-up-form/sign-up.html"
             ),
             filename: "sign-up.html",
-            chunks: ["signup"], // Include only the sign-up.js bundle
+            chunks: ["signup"],
         }),
         new CopyWebpackPlugin({
             patterns: [
@@ -36,7 +36,7 @@ module.exports = {
             ],
         }),
         new MiniCssExtractPlugin({
-            filename: "css/[name].css", // Separate CSS files for each entry
+            filename: "css/[name].css",
         }),
     ],
     module: {

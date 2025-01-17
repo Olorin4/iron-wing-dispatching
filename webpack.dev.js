@@ -10,9 +10,13 @@ module.exports = merge(common, {
         static: "./dist",
         watchFiles: ["src/frontend/**/*"],
         historyApiFallback: true, // Enable serving for single-page apps
-        proxy: {
-            "/api": "http://localhost:3000", // Proxy API requests to backend
-        },
+        proxy: [
+            {
+                context: ["/api"], // Routes to proxy
+                target: "http://localhost:3000", // Your backend server
+                secure: false, // Disable SSL verification for local dev
+            },
+        ],
     },
     output: {
         filename: "[name].bundle.js",
