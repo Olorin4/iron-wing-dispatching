@@ -30,7 +30,11 @@ jobs:
           fi
 
       - name: Debug Workspace
-        run: ls -la
+        run: |
+          echo "Current working directory:"
+          pwd
+          echo "Workspace contents:"
+          ls -la
 
       # Step 4: Deploy to the server
       - name: Deploy to Server
@@ -43,4 +47,4 @@ jobs:
           script: |
             rm -rf /var/www/iron-wing-dispatching/dist
             mkdir -p /var/www/iron-wing-dispatching
-            rsync -avz ./dist/ /var/www/iron-wing-dispatching/dist/
+            rsync -avz dist/ /var/www/iron-wing-dispatching/dist/
