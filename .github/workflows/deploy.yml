@@ -13,25 +13,19 @@ jobs:
       # Step 1: Checkout the repository
       - name: Checkout Code
         uses: actions/checkout@v3
+      # Step 2: Ensure dist folder exists
+      - name: Verify dist folder
+        run: |
+          if [ ! -d "./dist" ]; then
+            echo "Error: dist folder not found. Did you forget to build the project?";
+            exit 1;
+          fi
 
-      # Step 2: Install Node.js and dependencies
-      - name: Install Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'  # Use the Node.js version required by your project
-
-      - name: Install Dependencies
-        run: npm install
-
-      # Step 3: Build the project
-      - name: Build the Project
-        run: npm run build
-
-      # Step 4: Deploy to the Hetzner server
+      # Step 3: Deploy to the server
       - name: Deploy to Server
         uses: appleboy/ssh-action@v0.1.7
         with:
-          host: 178.156.130.162  # Replace with your server's IP
+          host: your-server-ip
           username: root
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
