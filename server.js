@@ -1,21 +1,35 @@
+require("dotenv").config();
 const express = require("express");
-const app = express();
+const bodyParser = require("body-parser");
 const cors = require("cors");
 
-app.use(cors({ origin: "http://localhost:3000" }));
+const app = express();
+const PORT = process.env.PORT || 3000;
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-// Handle POST requests for form submission
-app.post("/submit-endpoint", (req, res) => {
-    console.log("Form data received:", req.body);
+app.post("/submit-form", (req, res) => {
+    const { firstName, lastName, email, tel, fleetSize, trailerType } =
+        req.body;
+
+    if (!firstName || !lastName || !email || !fleetSize || !trailerType) {
+        return res.status(400).send("All required fields must be filled.");
+    }
+
+    console.log("Form submitted:", req.body);
+
+    // Respond to the client
     res.status(200).send("Form submitted successfully!");
 });
 
-// Add a route for the root path
-app.get("/", (req, res) => {
-    res.send("Welcome to the Node.js Server!"); // Simple response for testing
+app.post("/contact", (req, res) => {
+    const { email, tel, enquiry } = req.body;
+    console.log(`Contact form submitted: ${email},${tel},${enquiry}`);
+    res.status(200).send("Enquiry received.");
 });
 
-app.listen(3000, () => console.log("Server running on port 3000"));
+app.listen(PORT, () =>
+    console.log(`Server running on http://localhost:${PORT}`)
+);
