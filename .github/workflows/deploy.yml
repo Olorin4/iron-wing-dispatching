@@ -46,4 +46,4 @@ jobs:
             echo "Copying files to server..."
             rm -rf /var/www/iron-wing-dispatching/dist
             mkdir -p /var/www/iron-wing-dispatching
-            rsync -avz /home/runner/work/iron-wing-dispatching/iron-wing-dispatching/dist/ root@your-server-ip:/var/www/iron-wing-dispatching/dist/
+            rsync -avz /home/runner/work/iron-wing-dispatching/iron-wing-dispatching/dist/ root@178.156.130.162:/var/www/iron-wing-dispatching/dist/
