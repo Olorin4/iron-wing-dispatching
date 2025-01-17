@@ -33,7 +33,16 @@ jobs:
           pwd
           echo "Workspace contents:"
           ls -la
-      # Step 4: Debug SSH connection
+
+      # Step 4: Set up SSH key
+      - name: Set up SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H 178.156.130.162 >> ~/.ssh/known_hosts
+
+      # Step 5: Debug SSH connection
       - name: Test SSH Connection
         uses: appleboy/ssh-action@v0.1.7
         with:
@@ -46,7 +55,7 @@ jobs:
             hostname
             ls -la /root
 
-      # Step 5: Deploy to the server
+      # Step 6: Deploy to the server
       - name: Deploy to Server
         uses: appleboy/ssh-action@v0.1.7
         with:
