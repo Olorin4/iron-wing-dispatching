@@ -21,13 +21,11 @@ jobs:
       - name: Build Project
         run: npm run build
 
-      # Step 3: Verify dist folder exists
-      - name: Verify dist folder
+       # Step 3: Debug dist folder
+      - name: Debug dist folder
         run: |
-          if [ ! -d "./dist" ]; then
-            echo "Error: dist folder not found. Did you forget to build the project?";
-            exit 1;
-          fi
+          echo "Contents of dist folder:"
+          ls -la /home/runner/work/iron-wing-dispatching/iron-wing-dispatching/dist || echo "dist folder does not exist!"
 
       - name: Debug Workspace
         run: |
@@ -45,6 +43,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           script: |
+            echo "Copying files to server..."
             rm -rf /var/www/iron-wing-dispatching/dist
             mkdir -p /var/www/iron-wing-dispatching
-            rsync -avz /home/runner/work/iron-wing-dispatching/iron-wing-dispatching/dist/ /var/www/iron-wing-dispatching/dist/
+            rsync -avz /home/runner/work/iron-wing-dispatching/iron-wing-dispatching/dist/ root@your-server-ip:/var/www/iron-wing-dispatching/dist/
