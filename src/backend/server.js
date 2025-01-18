@@ -31,7 +31,14 @@ app.post("/submit-form", (req, res) => {
     const { firstName, lastName, email, tel, fleetSize, trailerType } =
         req.body;
 
-    if (!firstName || !lastName || !email || !fleetSize || !trailerType) {
+    if (
+        !firstName ||
+        !lastName ||
+        !email ||
+        !tel ||
+        !fleetSize ||
+        !trailerType
+    ) {
         return res.status(400).send("All required fields must be filled.");
     }
 
