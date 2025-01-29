@@ -7,17 +7,16 @@ const https = require("https");
 const fs = require("fs");
 
 const options = {
-    key: fs.readFileSync("key.pem"),
-    cert: fs.readFileSync("cert.pem"),
+    key: fs.readFileSync(path.join(__dirname, "key.pem")),
+    cert: fs.readFileSync(path.join(__dirname, "cert.pem")),
 };
 
-https.createServer(options, app).listen(3000, () => {
-    console.log("Secure server running at https://localhost:3000");
-});
-
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 
+https.createServer(options, app).listen(PORT, () => {
+    console.log("Secure server running at https://localhost:PORT");
+});
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
