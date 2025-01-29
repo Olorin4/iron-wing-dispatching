@@ -8,7 +8,7 @@ module.exports = merge(common, {
     devtool: "inline-source-map",
     devServer: {
         static: "./dist",
-        watchFiles: ["src/frontend/**/*"],
+        watchFiles: ["src/**/*"],
         historyApiFallback: true, // Enable serving for single-page apps
         proxy: [
             {
