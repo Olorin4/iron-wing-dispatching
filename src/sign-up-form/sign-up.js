@@ -125,7 +125,14 @@ class FormValidator {
             fleetSize: document.getElementById("fleet-size").value,
             trailerType: document.getElementById("trailer-type").value,
         };
+
         const signUpButton = document.querySelector(".primary-cta");
+        const confirmationMessage = document.getElementById(
+            "confirmation-message"
+        );
+        // Disable the button to prevent multiple clicks
+        signUpButton.disabled = true;
+        confirmationMessage.innerText = "Submitting...";
 
         try {
             const response = await fetch(
@@ -137,16 +144,20 @@ class FormValidator {
                 }
             );
 
+            if (!response.ok)
+                throw new Error(`Server responded with ${response.status}`);
+
             const data = await response.json();
-            console.log("Response from API:", data);
+            console.log("Form successfully submitted!", data);
             signUpButton.classList.add("hidden");
-            document
-                .getElementById("confirmation-message")
-                .classList.remove("hidden");
+            confirmationMessage.classList.remove("hidden");
+            confirmationMessage.innerText =
+                "✅ Submission successful! We'll contact you soon.";
         } catch (error) {
             console.error("Error submitting form:", error);
-            document.getElementById("confirmation-message").innerText =
-                "Server error. Try again later.";
+            confirmationMessage.innerText = `⚠️ ${error.message || "Server error. Please try again later."}`;
+        } finally {
+            signUpButton.disabled = false;
         }
     }
 }
