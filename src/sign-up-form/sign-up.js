@@ -124,7 +124,7 @@ class FormValidator {
 
         try {
             const response = await fetch(
-                "http://5.161.229.218:3000/submit-form",
+                "https://api.iron-wing-dispatching.com/submit-form",
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
