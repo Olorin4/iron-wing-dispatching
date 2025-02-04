@@ -9,20 +9,38 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 const corsOptions = {
-    origin: "https://iron-wing-dispatching.com", // Replace with your actual frontend domain
+    origin: "https://iron-wing-dispatching.com",
     methods: "GET,POST,OPTIONS",
     allowedHeaders: "Content-Type,Authorization",
     credentials: true,
 };
 
+const transporter = nodemailer.createTransport({
+    host: process.env.EMAIL_HOST,
+    port: process.env.EMAIL_PORT,
+    secure: process.env.EMAIL_PORT == 465, // Use TLS if port 465
+    auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+    },
+    tls: { rejectUnauthorized: false },
+});
+
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
-app.post("/submit-form", (req, res) => {
+app.post("/submit-form", async (req, res) => {
     const { firstName, lastName, email, tel, fleetSize, trailerType } =
         req.body;
 
-    if (!firstName || !lastName || !email || !fleetSize || !trailerType) {
+    if (
+        !firstName ||
+        !lastName ||
+        !email ||
+        !tel ||
+        !fleetSize ||
+        !trailerType
+    ) {
         return res
             .status(400)
             .json({ error: "All required fields must be filled." });
@@ -32,29 +50,22 @@ app.post("/submit-form", (req, res) => {
 
     // Here, you could save the data to a database (e.g., MongoDB, PostgreSQL)
 
-    // Optionally, send an email confirmation
-    let transporter = nodemailer.createTransport({
-        service: "Gmail",
-        auth: {
-            user: process.env.EMAIL_USER, // Set in .env file
-            pass: process.env.EMAIL_PASS, // Set in .env file
-        },
-    });
-
-    let mailOptions = {
-        from: process.env.EMAIL_USER,
+    // Send Confirmation Email
+    const mailOptions = {
+        from: process.env.EMAIL_FROM,
         to: email,
-        subject: "Form Submission Received",
-        text: `Hi ${firstName},\n\nThank you for signing up! We will contact you soon.\n\nIron Wing Dispatching`,
+        subject: "Thank You for Signing Up!",
+        text: `Hello ${firstName},\n\nThank you for signing up with Iron Wing Dispatching. We will contact you shortly.\n\nBest,\nIron Wing Dispatching Team`,
     };
 
-    transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            console.log("Email Error:", error);
-        } else {
-            console.log("Email Sent:", info.response);
-        }
-    });
+    try {
+        await transporter.sendMail(mailOptions);
+        console.log("Email Sent Successfully!");
+        res.status(200).json({ message: "Form submitted successfully!" });
+    } catch (error) {
+        console.error("Error sending email:", error);
+        res.status(500).json({ error: "Failed to send email." });
+    }
 
     res.status(200).json({ message: "Form submitted successfully!" });
 });
