@@ -117,9 +117,14 @@ class FormValidator {
     }
 
     async submitForm() {
-        const formData = new FormData(this.form); // Gather form data
-        const jsonObject = {};
-        formData.forEach((value, key) => (jsonObject[key] = value));
+        const jsonObject = {
+            firstName: document.getElementById("first-name").value,
+            lastName: document.getElementById("last-name").value,
+            email: document.getElementById("email").value,
+            tel: document.getElementById("tel").value,
+            fleetSize: document.getElementById("fleet-size").value,
+            trailerType: document.getElementById("trailer-type").value,
+        };
         const signUpButton = document.querySelector(".primary-cta");
 
         try {
@@ -131,17 +136,13 @@ class FormValidator {
                     body: JSON.stringify(jsonObject),
                 }
             );
-            if (response.ok) {
-                console.log("Form successfully submitted!");
-                signUpButton.classList.add("hidden");
-                document
-                    .getElementById("confirmation-message")
-                    .classList.remove("hidden");
-            } else {
-                console.error("Form submission failed.");
-                document.getElementById("confirmation-message").innerText =
-                    "Submission failed. Please try again.";
-            }
+
+            const data = await response.json();
+            console.log("Response from API:", data);
+            signUpButton.classList.add("hidden");
+            document
+                .getElementById("confirmation-message")
+                .classList.remove("hidden");
         } catch (error) {
             console.error("Error submitting form:", error);
             document.getElementById("confirmation-message").innerText =
