@@ -85,7 +85,6 @@ class FormValidator {
             this.showError(input, "Please enter the type of trailer.");
             return false;
         }
-
         // Clear error if validation passes
         this.hideError(input);
         return true;
@@ -117,24 +116,31 @@ class FormValidator {
         }
     }
 
-    submitForm() {
+    async submitForm() {
         const formData = new FormData(this.form); // Gather form data
-        const confirmationMessage = document.getElementById(
-            "confirmation-message"
-        );
+        const jsonObject = {};
+        formData.forEach((value, key) => (jsonObject[key] = value));
         const signUpButton = document.querySelector(".primary-cta");
-        fetch("http://localhost:3000/submit-endpoint", {
-            method: "POST",
-            body: formData,
-        })
-            .then((response) => {
-                if (response.ok) {
-                    console.log("Form successfully submitted!");
-                    signUpButton.classList.add("hidden");
-                    confirmationMessage.classList.remove("hidden");
-                } else console.error("Form submission failed.");
-            })
-            .catch((error) => console.error("Error submitting form:", error));
+
+        try {
+            const response = await fetch(
+                "https://5.161.229.218:3000/submit-form",
+                {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(jsonObject),
+                }
+            );
+            if (response.ok) {
+                console.log("Form successfully submitted!");
+                signUpButton.classList.add("hidden");
+                document
+                    .getElementById("confirmation-message")
+                    .classList.remove("hidden");
+            } else console.error("Form submission failed.");
+        } catch (error) {
+            console.error("Error submitting form:", error);
+        }
     }
 }
 
