@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3000;
 
 const corsOptions = {
     origin: "https://iron-wing-dispatching.com",
-    methods: "GET,POST,OPTIONS",
+    methods: "GET,POST,PUT,DELETE,OPTIONS",
     allowedHeaders: "Content-Type,Authorization",
     credentials: true,
 };
@@ -66,8 +66,6 @@ app.post("/submit-form", async (req, res) => {
         console.error("Error sending email:", error);
         res.status(500).json({ error: "Failed to send email." });
     }
-
-    res.status(200).json({ message: "Form submitted successfully!" });
 });
 
 app.listen(PORT, () => {

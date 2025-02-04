@@ -137,9 +137,15 @@ class FormValidator {
                 document
                     .getElementById("confirmation-message")
                     .classList.remove("hidden");
-            } else console.error("Form submission failed.");
+            } else {
+                console.error("Form submission failed.");
+                document.getElementById("confirmation-message").innerText =
+                    "Submission failed. Please try again.";
+            }
         } catch (error) {
             console.error("Error submitting form:", error);
+            document.getElementById("confirmation-message").innerText =
+                "Server error. Try again later.";
         }
     }
 }
