@@ -85,6 +85,14 @@ class FormValidator {
             this.showError(input, "Please enter the type of trailer.");
             return false;
         }
+        // Validate Plan Selection
+        if (
+            input.id === "plan-input" &&
+            (value === "" || value === "No plan selected")
+        ) {
+            this.showError(input, "Please select a pricing plan.");
+            return false;
+        }
         // Clear error if validation passes
         this.hideError(input);
         return true;
