@@ -7,9 +7,16 @@ import validator from "validator";
 function pricingChoice() {
     const planName = document.getElementById("plan-name");
     const planInput = document.getElementById("plan-input");
+
+    if (!planInput) {
+        console.error("❌ Error: Element with ID 'plan-input' not found.");
+        return;
+    }
+
     // Extract the 'plan' parameter from the query string
     const params = new URLSearchParams(window.location.search);
     const chosenPlan = params.get("plan");
+
     // Update the span and the hidden input
     if (chosenPlan) {
         planName.textContent = chosenPlan;
@@ -19,6 +26,8 @@ function pricingChoice() {
             `Please select a<span class="break"></span> pricing plan <a href="./index.html#pricing">here</a>.`;
         planInput.value = "No plan selected";
     }
+
+    console.log("✅ Plan set to:", planInput.value);
 }
 
 class FormValidator {
@@ -142,6 +151,7 @@ class FormValidator {
         // Disable the button to prevent multiple clicks
         signUpButton.disabled = true;
         confirmationMessage.innerText = "Submitting...";
+        console.log("📩 Submitting Form Data:", jsonObject);
 
         try {
             const response = await fetch(
