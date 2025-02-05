@@ -124,6 +124,7 @@ class FormValidator {
             tel: document.getElementById("tel").value,
             fleetSize: document.getElementById("fleet-size").value,
             trailerType: document.getElementById("trailer-type").value,
+            plan: document.getElementById("plan-input").value,
         };
 
         const signUpButton = document.querySelector(".primary-cta");
