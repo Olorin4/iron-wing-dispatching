@@ -18,6 +18,55 @@ export function logAndStoreMetric(name, value) {
     console.log(`${name}:`, value);
 }
 
+function captureQuestion() {
+    const contactForm = document.querySelector(".popup-form");
+
+    if (contactForm) {
+        contactForm.addEventListener("submit", async function (event) {
+            event.preventDefault();
+
+            const email = document.getElementById("email").value;
+            const phone = document.getElementById("phone").value;
+            const message = document.getElementById("message").value;
+
+            if (!email.trim() || !message.trim()) {
+                alert("Please provide at least an email and a question.");
+                return;
+            }
+
+            const jsonObject = {
+                email: email,
+                phone: phone,
+                message: message,
+            };
+
+            console.log("📩 Submitting Contact Form:", jsonObject);
+
+            try {
+                const response = await fetch(
+                    "https://api.iron-wing-dispatching.com/contact-form",
+                    {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(jsonObject),
+                    }
+                );
+
+                if (!response.ok)
+                    throw new Error(`Server responded with ${response.status}`);
+
+                const data = await response.json();
+                console.log("✅ Contact form successfully submitted!", data);
+                alert("Thank you! Your message has been sent successfully.");
+                contactForm.reset();
+            } catch (error) {
+                console.error("❌ Error submitting contact form:", error);
+                alert("Error submitting form. Please try again later.");
+            }
+        });
+    }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     // Capture Web Vitals metrics
     console.log("Web Vitals script is running.");
@@ -30,6 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
     imageFadeIn();
     contactPopup();
     registerPricingPlan();
+    captureQuestion();
 });
 
 // TO DO:
