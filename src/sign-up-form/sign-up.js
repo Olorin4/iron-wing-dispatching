@@ -138,7 +138,7 @@ class FormValidator {
             firstName: document.getElementById("first-name").value,
             lastName: document.getElementById("last-name").value,
             email: document.getElementById("e-mail").value,
-            tel: document.getElementById("tel").value,
+            phone: document.getElementById("tel").value,
             fleetSize: document.getElementById("fleet-size").value,
             trailerType: document.getElementById("trailer-type").value,
             plan: document.getElementById("plan-input").value,
