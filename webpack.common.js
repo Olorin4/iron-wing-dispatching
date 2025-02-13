@@ -33,6 +33,7 @@ module.exports = {
             patterns: [
                 { from: "src/assets/images", to: "assets/images" },
                 { from: "src/assets/fonts", to: "assets/fonts" },
+                { from: "src/sitemap.xml", to: "sitemap.xml" },
             ],
         }),
         new MiniCssExtractPlugin({
