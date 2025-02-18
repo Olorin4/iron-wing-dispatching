@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48px" height="48px">
+    <rect width="48" height="48" fill="#2867b2"/>
+    <g>
+        <!-- Left rectangle (LinkedIn profile section) -->
+        <rect x="10" y="16" width="8" height="20" fill="#fff"/>
+
+        <!-- Circle for profile icon -->
+        <circle cx="14" cy="10" r="4" fill="#fff"/>
+
+        <!-- Right part of the LinkedIn logo with improved spacing -->
+        <path fill="#fff" d="M22 16h6v2c1-2 4-3 6-3 6 0 8 4 8 9v12h-8V25c0-3-1-5-4-5s-4 2-4 5v11h-8V16z"/>
+        
+        <!-- Separate "i" with better spacing -->
+        <rect x="32" y="16" width="2.5" height="20" fill="#fff"/>
+    </g>
+</svg>
+

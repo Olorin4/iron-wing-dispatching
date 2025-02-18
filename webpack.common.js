@@ -9,6 +9,7 @@ module.exports = {
         index: "./src/index.js",
         blog: "./src/blog/blog.js",
         signup: "./src/sign-up-form/sign-up.js",
+        privacy: "./src/privacy-policy/privacy-policy.js",
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -28,6 +29,14 @@ module.exports = {
             ),
             filename: "sign-up.html",
             chunks: ["signup"],
+        }),
+        new HtmlWebpackPlugin({
+            template: path.resolve(
+                __dirname,
+                "./src/privacy-policy/privacy-policy.html"
+            ),
+            filename: "privacy-policy.html",
+            chunks: ["privacy"],
         }),
         new CopyWebpackPlugin({
             patterns: [
