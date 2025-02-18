@@ -6,4 +6,4 @@ Disallow:
 User-agent: *
 Disallow: /backend/
 
-#Sitemap: https://ironwingdispatching.com/sitemap.xml
+Sitemap: https://ironwingdispatching.com/sitemap.xml
