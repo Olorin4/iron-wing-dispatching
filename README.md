@@ -7,10 +7,9 @@ A single-page (plus sign-up and blog) web application designed for a fictional t
 2. [Current Features](#current-features)  
 3. [Tech Stack](#tech-stack)  
 4. [Project Structure](#project-structure)  
-5. [Installation & Usage](#installation--usage)  
-6. [Roadmap / Planned Upgrades](#roadmap--planned-upgrades)  
-7. [Lessons Learned](#lessons-learned)  
-8. [Contact](#contact)  
+5. [Roadmap / Planned Upgrades](#roadmap--planned-upgrades)  
+6. [Lessons Learned](#lessons-learned)  
+7. [Contact](#contact)  
 
 ---
 
@@ -47,24 +46,24 @@ The site is designed as if it were a real-world dispatch service for owner-opera
 
 ## Project Structure
 ```
-├── index.html          
-├── blog.html           
-├── sign-up.html        
-├── styles.css          
-├── shared.css          
-├── blog.css            
-├── sign-up.css         
-├── normalize.css       
-├── index.js            
-├── blog.js             
-├── sign-up.js          
-├── dom.js              
-├── server.js           
-├── package.json        
-└── README.md           
+├── index.html          # Main landing page (Home)
+├── blog.html           # Blog page
+├── sign-up.html        # Sign-up / Contact form page
+├── styles.css          # Primary styling for the home page
+├── shared.css          # Shared resets and common styles across pages
+├── blog.css            # Blog-specific styling
+├── sign-up.css         # Sign-up form styling
+├── normalize.css       # CSS reset
+├── index.js            # Front-end JS for Home (handles web vitals, etc.)
+├── blog.js             # JS for the Blog page
+├── sign-up.js          # JS for Sign-up form validation
+├── dom.js              # DOM helper functions (menu toggles, etc.)
+├── server.js           # Basic Node/Express server
+├── package.json
+└── README.md           # Documentation (You are here!)
+       
 ```
 
----
 
 ## Roadmap / Planned Upgrades
 
