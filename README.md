@@ -64,7 +64,7 @@ The site is designed as if it were a real-world dispatch service for owner-opera
 ## Contact
 - **Author**: Nick Kalas 
 - **Email**: nick.kalas@proton.me  
-- **LinkedIn**: [https://www.linkedin.com/in/nick-kalas-599822303/] 
+- **LinkedIn**: https://www.linkedin.com/in/nick-kalas-599822303/
 
 Feel free to reach out with any questions or suggestions!
 
