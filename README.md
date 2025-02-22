@@ -1,22 +1,71 @@
-ANGELIC DISPATCHING WEBSITE
+# Iron Wing Dispatching
 
-**Description**:
-A basic static website for my dispatching company.
+A single-page (plus sign-up and blog) web application designed for a fictional trucking dispatch service, **Iron Wing Dispatching**. It demonstrates front-end development, basic form handling, and a simple back-end server with Node.js and Express.
 
-Plan for Upgrades: As I progress through The Odin Project:
+## Table of Contents
+1. [Overview](#overview)  
+2. [Current Features](#current-features)  
+3. [Tech Stack](#tech-stack)  
+4. [Roadmap / Planned Upgrades](#roadmap--planned-upgrades)  
+5. [Lessons Learned](#lessons-learned)  
+6. [Contact](#contact)  
 
--   Use React to make the site dynamic (e.g., load data dynamically without page refresh).
--   Use Node.js and databases to create a backend for client portals or load management.
+---
 
-MVP Launch (January 2025):
+## Overview
+Iron Wing Dispatching is a conceptual project aimed at showcasing my abilities in:
+- Responsive front-end web design (HTML, CSS, and vanilla JavaScript).
+- Basic Node.js/Express server set-up.
+- Simple form validation and submission flow.
+- Code organization and maintainability.
 
-Use basic HTML/CSS to design a simple, professional site.
-Host the site using GitHub Pages, Netlify, or Vercel for free.
-Use placeholders for complex features I'll implement later (e.g., "Client Login - Coming Soon").
-Upgrade as I Learn:
+The site is designed as if it were a real-world dispatch service for owner-operators and small motor carriers. It includes pages for services, pricing, blog posts, and a sign-up form. All styling is custom (no CSS frameworks), providing a good demonstration of my front-end skills.
 
-After the React course, revamp the site with modern frontend techniques.
-After Node.js and Databases, add backend features like load tracking or a client portal.
-Iterate and Improve:
+---
 
-Treat the website as a continuous project, adding functionality as my skills grow and as my business needs evolve.
+## Current Features
+
+1. **Responsive Landing Page**  
+2. **Services Section**  
+3. **Pricing Section**  
+4. **About Section**  
+5. **Contact/Sign-up Form**  
+6. **Blog Page**  
+7. **Node.js/Express Server**  
+8. **Web Vitals Integration**
+
+---
+
+## Tech Stack
+- **Front-end**: HTML5, CSS3, JavaScript (vanilla)  
+- **Back-end**: Node.js & Express  
+- **Tools / Libraries**: `validator`, `web-vitals`
+
+---
+
+## Roadmap / Planned Upgrades
+
+1. **Expanded Blog**  
+2. **Backend Enhancements**  
+3. **Chatbot Feature**  
+4. **CLS Improvements**  
+5. **Footer Revamp**  
+
+---
+
+## Lessons Learned
+- Modular CSS/JS organization.
+- Client-side validation.
+- Web Vitals for performance insights.
+- Simple Node/Express server setups.
+
+---
+
+## Contact
+- **Author**: Nick Kalas 
+- **Email**: nick.kalas@proton.me  
+- **LinkedIn**: https://www.linkedin.com/in/nick-kalas-599822303/
+
+Feel free to reach out with any questions or suggestions!
+
+---
