@@ -154,14 +154,15 @@ class FormValidator {
         console.log("📩 Submitting Form Data:", jsonObject);
 
         try {
-            const response = await fetch(
-                "https://api.iron-wing-dispatching.com/submit-form",
-                {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(jsonObject),
-                }
-            );
+            const baseUrl =
+                document
+                    .querySelector('meta[name="api-base-url"]')
+                    .getAttribute("content") || "http://localhost:3000";
+            const response = await fetch(`${baseUrl}/sign-up-forms`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(jsonObject),
+            });
 
             if (!response.ok)
                 throw new Error(`Server responded with ${response.status}`);
