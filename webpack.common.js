@@ -15,6 +15,11 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: "Iron Wing Dispatching",
             template: path.resolve(__dirname, "./src/index.html"),
+            // Pass the ENV variable to your HTML template
+            templateParameters: {
+                API_BASE_URL:
+                    process.env.API_BASE_URL || "http://localhost:3000",
+            },
             chunks: ["index"],
         }),
         new HtmlWebpackPlugin({

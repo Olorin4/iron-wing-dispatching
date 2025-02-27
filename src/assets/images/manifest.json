@@ -1,0 +1,20 @@
+{
+    "logo": "./src/assets/images/favicon-32x32.png",
+    "mode": "webapp",
+    "devMode": "webapp",
+    "inject": true,
+    "publicPath": "/",
+    "favicons": {
+        "appName": "Iron Wing Dispatching",
+        "appShortName": "Iron Wing",
+        "appDescription": "Iron Wing Dispatching Services",
+        "developerName": "Your Name",
+        "developerURL": null,
+        "background": "#ffffff",
+        "theme_color": "#080d17",
+        "icons": {
+            "coast": false,
+            "yandex": false
+        }
+    }
+}
