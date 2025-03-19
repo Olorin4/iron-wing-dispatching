@@ -44,7 +44,7 @@ function captureQuestion() {
 
             try {
                 const response = await fetch(
-                    "https://api.iron-wing-dispatching.com/contact-submissions",
+                    "https://api.iron-wing-dispatching.com/contact-forms",
                     {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
