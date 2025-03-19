@@ -59,6 +59,15 @@ function captureQuestion() {
                 console.log("✅ Contact form successfully submitted!", data);
                 alert("Thank you! Your message has been sent successfully.");
                 contactForm.reset();
+
+                // Push event to GTM
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({
+                    event: "form_submission_contact",
+                    form_id: "popup-form",
+                    form_url: window.location.href,
+                });
+                console.log("📊 GTM Event Pushed: form_submission_contact");
             } catch (error) {
                 console.error("❌ Error submitting contact form:", error);
                 alert("Error submitting form. Please try again later.");
