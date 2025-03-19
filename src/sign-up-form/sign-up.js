@@ -178,7 +178,6 @@ class FormValidator {
             window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
                 event: "form_submission",
-                form_id: "sign-up-form",
                 form_url: window.location.href,
             });
             console.log("📊 GTM Event Pushed: form_submission");
