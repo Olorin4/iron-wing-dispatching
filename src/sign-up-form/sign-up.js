@@ -168,10 +168,20 @@ class FormValidator {
 
             const data = await response.json();
             console.log("Form successfully submitted!", data);
+
             signUpButton.classList.add("hidden");
             confirmationMessage.classList.remove("hidden");
             confirmationMessage.innerText =
                 "✅ Submission successful! We'll contact you soon.";
+
+            // Push event to GTM
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                event: "form_submission",
+                form_id: "sign-up-form",
+                form_url: window.location.href,
+            });
+            console.log("📊 GTM Event Pushed: form_submission");
         } catch (error) {
             console.error("Error submitting form:", error);
             confirmationMessage.innerText = `⚠️ ${error.message || "Server error. Please try again later."}`;
