@@ -142,6 +142,8 @@ class FormValidator {
             fleetSize: document.getElementById("fleet-size").value,
             trailerType: document.getElementById("trailer-type").value,
             plan: document.getElementById("plan-input").value,
+            // Placeholder for reCAPTCHA token (to be added when enabled)
+            // recaptchaToken: token,
         };
 
         const signUpButton = document.querySelector(".primary-cta");
