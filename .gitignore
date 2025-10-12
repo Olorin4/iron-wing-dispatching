@@ -1,5 +1,9 @@
 .env*
 .vscode
+.qodo
+iron-wing-dispatching.code-workspace
+critique.md
+implementation-plan.md
 
 # Logs
 logs
