@@ -118,44 +118,64 @@ document.addEventListener("DOMContentLoaded", () => {
  *  m4: '500+'
  * })
  */
-function populateMetrics(data){
-  const map = { m1: 'm1', m2: 'm2', m3: 'm3', m4: 'm4' };
-  for(const key in map){
-    const el = document.getElementById(map[key]);
-    if(!el) continue;
-    el.textContent = data[key] ?? '—';
-  }
+function populateMetrics(data) {
+    const map = { m1: "m1", m2: "m2", m3: "m3", m4: "m4" };
+    for (const key in map) {
+        const el = document.getElementById(map[key]);
+        if (!el) continue;
+        el.textContent = data[key] ?? "—";
+    }
 }
+
 /* small numeric count-up helper (optional)
    pass numbers for a smooth increment effect */
-function countUp(id, endValue, suffix=''){
-  const el = document.getElementById(id);
-  if(!el) return;
-  const isNumeric = typeof endValue === 'number';
-  if(!isNumeric){ el.textContent = endValue; return; }
-  const duration = 900;
-  const frameRate = 30;
-  const totalFrames = Math.round(duration / (1000/frameRate));
-  let frame = 0;
-  const start = 0;
-  const step = (endValue - start) / totalFrames;
-  const t = setInterval(()=>{
-    frame++;
-    const value = Math.round(start + step*frame);
-    el.textContent = value.toLocaleString() + suffix;
-    if(frame>=totalFrames){ clearInterval(t); el.textContent = endValue.toLocaleString() + suffix; }
-  }, 1000/frameRate);
+function countUp(id, endValue, suffix = "") {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const isNumeric = typeof endValue === "number";
+    if (!isNumeric) {
+        el.textContent = endValue;
+        return;
+    }
+    const duration = 900;
+    const frameRate = 30;
+    const totalFrames = Math.round(duration / (1000 / frameRate));
+    let frame = 0;
+    const start = 0;
+    const step = (endValue - start) / totalFrames;
+    const t = setInterval(() => {
+        frame++;
+        const value = Math.round(start + step * frame);
+        el.textContent = value.toLocaleString() + suffix;
+        if (frame >= totalFrames) {
+            clearInterval(t);
+            el.textContent = endValue.toLocaleString() + suffix;
+        }
+    }, 1000 / frameRate);
 }
 
 /* Example usage: replace with your real stats */
-document.addEventListener('DOMContentLoaded', ()=>{
-  populateMetrics({
-    m1: '$2.2 per mile',
-    m2: '1,752',
-    m3: '11,358',
-    m4: '24'
-  });
-  // optional count-up of numeric ones:
-  // countUp('m2', 3450); countUp('m3', 85000);
+document.addEventListener("DOMContentLoaded", () => {
+    // Initial values for countUp
+    const initialMetrics = {
+        m1: "$2.2 per mile",
+        m2: 0, // Start from 0 for animation
+        m3: 0, // Start from 0 for animation
+        m4: 0, // Start from 0 for animation
+    };
+    populateMetrics(initialMetrics);
+
+    // Final values for countUp animation
+    const finalMetrics = {
+        m1: "$2.2 per mile", // Not a number, so no animation
+        m2: 1752,
+        m3: 11358,
+        m4: 24,
+    };
+
+    // Trigger countUp for numeric metrics
+    countUp("m2", finalMetrics.m2);
+    countUp("m3", finalMetrics.m3);
+    countUp("m4", finalMetrics.m4);
 });
 
