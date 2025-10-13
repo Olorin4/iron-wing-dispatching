@@ -1,8 +1,10 @@
 import '../normalize.css';
 import '../shared.css';
 import './blog.css';
+import { handleNewsletterSignup } from "../newsletter";
 
 document.addEventListener('DOMContentLoaded', function() {
+    handleNewsletterSignup();
     // Get all read more buttons
     const readMoreButtons = document.querySelectorAll('.read-more-btn');
     
