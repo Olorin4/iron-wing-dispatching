@@ -159,3 +159,54 @@ document.addEventListener("DOMContentLoaded", () => {
 // - Add a chatbot.
 // - Use a privacy policy generator (e.g., Termly)
 // - Fix Cumulative Layout Shift.
+
+/**
+ * populateMetrics({m1,m2,m3,m4})
+ * Example:
+ * populateMetrics({
+ *  m1: '12T Monthly Tokens',
+ *  m2: '4.2M+',
+ *  m3: '60+',
+ *  m4: '500+'
+ * })
+ */
+function populateMetrics(data){
+  const map = { m1: 'm1', m2: 'm2', m3: 'm3', m4: 'm4' };
+  for(const key in map){
+    const el = document.getElementById(map[key]);
+    if(!el) continue;
+    el.textContent = data[key] ?? '—';
+  }
+}
+/* small numeric count-up helper (optional)
+   pass numbers for a smooth increment effect */
+function countUp(id, endValue, suffix=''){
+  const el = document.getElementById(id);
+  if(!el) return;
+  const isNumeric = typeof endValue === 'number';
+  if(!isNumeric){ el.textContent = endValue; return; }
+  const duration = 900;
+  const frameRate = 30;
+  const totalFrames = Math.round(duration / (1000/frameRate));
+  let frame = 0;
+  const start = 0;
+  const step = (endValue - start) / totalFrames;
+  const t = setInterval(()=>{
+    frame++;
+    const value = Math.round(start + step*frame);
+    el.textContent = value.toLocaleString() + suffix;
+    if(frame>=totalFrames){ clearInterval(t); el.textContent = endValue.toLocaleString() + suffix; }
+  }, 1000/frameRate);
+}
+
+/* Example usage: replace with your real stats */
+document.addEventListener('DOMContentLoaded', ()=>{
+  populateMetrics({
+    m1: '$2.2 per mile',
+    m2: '1,752',
+    m3: '11,358',
+    m4: '24'
+  });
+  // optional count-up of numeric ones:
+  // countUp('m2', 3450); countUp('m3', 85000);
+});

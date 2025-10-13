@@ -20,7 +20,7 @@ module.exports = {
                 API_BASE_URL:
                     process.env.API_BASE_URL || "http://localhost:3000",
             },
-            chunks: ["index"],
+            chunks: ["index"], // Only include index chunk for index.html
         }),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, "./src/blog/blog.html"),
