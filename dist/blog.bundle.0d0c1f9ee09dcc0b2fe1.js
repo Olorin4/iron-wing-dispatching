@@ -1,0 +1,2 @@
+(self.webpackChunkIron_Wing_Dispatching=self.webpackChunkIron_Wing_Dispatching||[]).push([[19],{9836:()=>{document.addEventListener("DOMContentLoaded",(function(){document.querySelectorAll(".read-more-btn").forEach((e=>{e.addEventListener("click",(function(){const e=this.closest("article").querySelector(".article-content");e.classList.toggle("expanded"),e.classList.contains("expanded")?this.textContent="Read Less":this.textContent="Read More"}))}))}))}},e=>{e(e.s=9836)}]);
+//# sourceMappingURL=blog.bundle.0d0c1f9ee09dcc0b2fe1.js.map
