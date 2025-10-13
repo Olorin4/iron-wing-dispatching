@@ -210,3 +210,4 @@ document.addEventListener('DOMContentLoaded', ()=>{
   // optional count-up of numeric ones:
   // countUp('m2', 3450); countUp('m3', 85000);
 });
+
