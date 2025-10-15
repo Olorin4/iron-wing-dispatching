@@ -629,7 +629,8 @@
     }
 }
 
-/* Testimonials Section */
+/* Testimonials Section: Styles for the client testimonials section. Commented out as per user request. */
+/*
 .testimonials {
     position: relative;
     color: rgb(255, 255, 255);
@@ -665,9 +666,9 @@
 .testimonials h1 {
     font-size: 2.5rem;
     margin-bottom: 3rem;
-    color: #FFD700; /* Gold color for better visibility */
+    color: #FFD700;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8),
-                 0 0 10px rgba(255, 215, 0, 0.3); /* Glow effect */
+                 0 0 10px rgba(255, 215, 0, 0.3);
 }
 
 .testimonials-grid {
@@ -710,11 +711,11 @@
 .testimonial-author {
     font-weight: bold;
     color: rgb(255, 200, 0);
-    font-size: 1.1rem; 
+    font-size: 1.1rem;
     margin: auto;
 }
 
-/* Responsive adjustments for testimonials */
+
 @media (max-width: 1024px) {
     .testimonials-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -746,8 +747,10 @@
         padding: 1.5rem;
     }
 }
+*/
 
-
+/* Metrics Card Styles: These styles define the appearance of the metric cards. Commented out as per user request. */
+/*
 :root{
   --card-bg: #0b2440;
   --card-accent: linear-gradient(90deg,#ffd54a,#ffb347);
@@ -773,12 +776,12 @@
   padding:1rem;
   display:flex;
   flex-direction:column;
-  align-items:center; /* Center items horizontally within the card */
+  align-items:center;
   justify-content:center;
   box-shadow:0 6px 18px rgba(3,10,25,0.35);
   position:relative;
   overflow:hidden;
-  text-align:center; /* Center text within the card */
+  text-align:center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -816,3 +819,4 @@
   .metrics-grid{grid-template-columns:1fr}
   .metric-number{font-size:1.8rem}
 }
+*/

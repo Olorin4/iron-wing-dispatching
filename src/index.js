@@ -108,6 +108,10 @@ document.addEventListener("DOMContentLoaded", () => {
 // - Use a privacy policy generator (e.g., Termly)
 // - Fix Cumulative Layout Shift.
 
+/*
+// The following functions and their calls are related to the metric cards section.
+// They have been commented out as per user request to disable metric card functionality.
+
 /**
  * populateMetrics({m1,m2,m3,m4})
  * Example:
@@ -118,6 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
  *  m4: '500+'
  * })
  */
+/*
 function populateMetrics(data) {
     const map = { m1: "m1", m2: "m2", m3: "m3", m4: "m4" };
     for (const key in map) {
@@ -126,9 +131,11 @@ function populateMetrics(data) {
         el.textContent = data[key] ?? "—";
     }
 }
+*/
 
 /* small numeric count-up helper (optional)
    pass numbers for a smooth increment effect */
+/*
 function countUp(id, endValue, suffix = "") {
     const el = document.getElementById(id);
     if (!el) return;
@@ -153,8 +160,10 @@ function countUp(id, endValue, suffix = "") {
         }
     }, 1000 / frameRate);
 }
+*/
 
 /* Example usage: replace with your real stats */
+/*
 document.addEventListener("DOMContentLoaded", () => {
     // Initial values for countUp
     const initialMetrics = {
@@ -178,4 +187,5 @@ document.addEventListener("DOMContentLoaded", () => {
     countUp("m3", finalMetrics.m3);
     countUp("m4", finalMetrics.m4);
 });
+*/
 
