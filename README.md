@@ -1,6 +1,6 @@
 # Iron Wing Dispatching
 
-A single-page (plus sign-up and blog) web application designed for a fictional trucking dispatch service, **Iron Wing Dispatching**. It demonstrates front-end development, basic form handling, and a simple back-end server with Node.js and Express.
+A single-page (plus sign-up and blog) web application designed **Iron Wing Dispatching**, a US-based truck dispatching agecy. It demonstrates front-end development, basic form handling, and a simple back-end server with Node.js and Express.
 
 ## Table of Contents
 1. [Overview](#overview)  
@@ -64,7 +64,7 @@ The site is designed as if it were a real-world dispatch service for owner-opera
 ## Contact
 - **Author**: Nick Kalas 
 - **Email**: nick.kalas@proton.me  
-- **LinkedIn**: https://www.linkedin.com/in/nick-kalas-599822303/
+- **LinkedIn**: https://www.linkedin.com/in/nick-kalas-93753841b/
 
 Feel free to reach out with any questions or suggestions!
 
