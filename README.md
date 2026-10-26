@@ -3,23 +3,10 @@
 A single-page (plus sign-up and blog) web application designed **Iron Wing Dispatching**, a US-based truck dispatching agecy. It demonstrates front-end development, basic form handling, and a simple back-end server with Node.js and Express.
 
 ## Table of Contents
-1. [Overview](#overview)  
-2. [Current Features](#current-features)  
-3. [Tech Stack](#tech-stack)  
-4. [Roadmap / Planned Upgrades](#roadmap--planned-upgrades)  
-5. [Lessons Learned](#lessons-learned)  
-6. [Contact](#contact)  
-
----
-
-## Overview
-Iron Wing Dispatching is a conceptual project aimed at showcasing my abilities in:
-- Responsive front-end web design (HTML, CSS, and vanilla JavaScript).
-- Basic Node.js/Express server set-up.
-- Simple form validation and submission flow.
-- Code organization and maintainability.
-
-The site is designed as if it were a real-world dispatch service for owner-operators and small motor carriers. It includes pages for services, pricing, blog posts, and a sign-up form. All styling is custom (no CSS frameworks), providing a good demonstration of my front-end skills.
+1. [Current Features](#current-features)  
+2. [Tech Stack](#tech-stack)  
+3. [Lessons Learned](#lessons-learned)  
+4. [Contact](#contact)  
 
 ---
 
@@ -43,15 +30,6 @@ The site is designed as if it were a real-world dispatch service for owner-opera
 
 ---
 
-## Roadmap / Planned Upgrades
-
-1. **Expanded Blog**  
-2. **Backend Enhancements**  
-3. **Chatbot Feature**  
-4. **CLS Improvements**  
-5. **Footer Revamp**  
-
----
 
 ## Lessons Learned
 - Modular CSS/JS organization.
