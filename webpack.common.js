@@ -1,5 +1,6 @@
 //webpack.common.js:
 const path = require("path");
+const fs = require("fs");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -69,7 +70,28 @@ module.exports = {
             },
             {
                 test: /\.html$/,
-                use: ["html-loader"],
+                use: [
+                    {
+                        loader: "html-loader",
+                        options: {
+                            preprocessor: (content, loaderContext) => {
+                                const marker = "<!-- shared-footer -->";
+                                if (!content.includes(marker)) return content;
+
+                                const footerPath = path.resolve(
+                                    __dirname,
+                                    "src/shared/footer.html"
+                                );
+                                loaderContext.addDependency(footerPath);
+
+                                return content.replace(
+                                    marker,
+                                    () => fs.readFileSync(footerPath, "utf8")
+                                );
+                            },
+                        },
+                    },
+                ],
             },
             {
                 test: /\.(woff|woff2|eot|ttf|otf)$/i,
