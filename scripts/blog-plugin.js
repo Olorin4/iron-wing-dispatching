@@ -139,12 +139,10 @@ class BlogPlugin {
                             .replace(marker, () => content)
                             .replace(/<h1>Blog<\/h1>/, "");
                         page = page
+                            .replace("<head>", '<head><base href="/">')
                             .replace(/<title>.*?<\/title>/i, "")
                             .replace(/<meta name="description"[^>]*>/i, "")
-                            .replace(
-                                "</head>",
-                                `<base href="/">${meta(a)}${feedLink}</head>`
-                            );
+                            .replace("</head>", `${meta(a)}${feedLink}</head>`);
                         compilation.emitAsset(
                             `blog/${a.slug}.html`,
                             new compiler.webpack.sources.RawSource(page)
