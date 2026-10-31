@@ -14,8 +14,8 @@ description: >-
     understanding the most common pitfalls and staying proactive about
     documentation, inspections, and renewals, you can avoid costly fines and
     downtime while protecting your operating authority for the long haul.
-image: /assets/images/pexels-photoscom-93398_1024.webp
-imageAlt: Truck on the road
+image: /assets/images/carlos-del-cura-4ju-6qZHNPY-unsplash.webp
+imageAlt: An aerial view of trucks parked in a lot
 ---
 
 Every driver knows that compliance can be a headache—but ignoring it can end a business overnight. Between FMCSA regulations, IFTA reporting, drug testing, and insurance renewals, the paperwork never stops. Still, staying compliant is what keeps your wheels turning legally and your reputation clean. Many violations are completely preventable with the right systems in place. By understanding the most common pitfalls and staying proactive about documentation, inspections, and renewals, you can avoid costly fines and downtime while protecting your operating authority for the long haul.

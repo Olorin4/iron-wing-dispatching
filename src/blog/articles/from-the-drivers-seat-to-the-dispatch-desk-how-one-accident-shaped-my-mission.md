@@ -11,8 +11,8 @@ description: >-
     among drivers. Before I began helping truckers succeed at Iron Wing
     Dispatching, I lived that life myself, turning wheels and tracking miles like
     the rest.
-image: /assets/images/pexels-photoscom-93398_1024.webp
-imageAlt: Truck on the road
+image: /assets/images/josiah-farrow-ucuOscdCaO4-unsplash_1200.webp
+imageAlt: A semi truck driving on a highway at dusk
 ---
 
 Having spent a good stretch of my life on the road, I know trucking is more than just a career—it's a lifestyle. The long hours, changing landscapes, and responsibility of hauling freight across the country create a unique bond among drivers. Before I began helping truckers succeed at Iron Wing Dispatching, I lived that life myself, turning wheels and tracking miles like the rest.

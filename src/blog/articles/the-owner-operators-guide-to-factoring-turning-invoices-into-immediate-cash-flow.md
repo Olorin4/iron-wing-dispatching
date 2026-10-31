@@ -15,8 +15,8 @@ description: >-
     a factoring company, get most of the money upfront, and keep your business
     moving. When used wisely, factoring can stabilize cash flow, reduce stress,
     and give you the flexibility to focus on growth instead of collections.
-image: /assets/images/pexels-photoscom-93398_1024.webp
-imageAlt: Truck on the road
+image: /assets/images/pexels-olha-ruskykh-7504858_1200.webp
+imageAlt: A person wearing a headset working at a laptop
 ---
 
 For many truckers, the hardest part of running a business isn’t finding freight—it’s waiting to get paid. Freight bills often take 30 to 90 days to clear, and that delay can cripple your ability to cover fuel, repairs, and daily expenses. Factoring has become one of the most practical financial tools in the industry because it gives carriers fast access to their own money without taking on debt. Instead of chasing payments, you sell your invoices to a factoring company, get most of the money upfront, and keep your business moving. When used wisely, factoring can stabilize cash flow, reduce stress, and give you the flexibility to focus on growth instead of collections.

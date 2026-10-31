@@ -12,8 +12,8 @@ description: >-
     transform those early challenges into long-term success. Whether you’re
     looking to run your first load or scale into a small fleet, understanding the
     business side of trucking is what separates surviving from thriving.
-image: /assets/images/pexels-photoscom-93398_1024.webp
-imageAlt: Truck on the road
+image: /assets/images/caleb-ruiter-EmEQ6kK_5P0-unsplash_1200.webp
+imageAlt: A tractor-trailer on the road at sunset
 ---
 
 Starting your journey as an owner-operator is one of the most rewarding—and challenging—steps in the trucking world. It’s not just about getting behind the wheel and finding loads; it’s about building a business from the ground up. Between federal regulations, startup costs, and unpredictable markets, the early stages can feel overwhelming. Yet with the right foundation—clear goals, proper licensing, financial discipline, and smart partnerships—you can transform those early challenges into long-term success. Whether you’re looking to run your first load or scale into a small fleet, understanding the business side of trucking is what separates surviving from thriving.

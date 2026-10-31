@@ -12,7 +12,7 @@ description: >-
     makes planning easier than ever, but success still comes down to one skill:
     understanding how markets move and staying a step ahead of them.
 image: /assets/images/pexels-photoscom-93398_1024.webp
-imageAlt: Truck on the road
+imageAlt: A semi truck traveling through the mountains
 ---
 
 In trucking, experience teaches one simple truth: not all miles pay the same. You can drive hard all week and still come up short if your routes aren’t planned with strategy in mind. Smart route planning is what separates a busy driver from a profitable one. It’s a balance of data, timing, and instinct—knowing when to move, where to position yourself, and which loads will keep you earning instead of burning fuel for free. Today’s technology makes planning easier than ever, but success still comes down to one skill: understanding how markets move and staying a step ahead of them.
