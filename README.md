@@ -1,5 +1,7 @@
 # Iron Wing Dispatching
 
+The source code belongs to Iron Wing Logistics LLC and is shared with its permission.
+
 A single-page (plus sign-up and blog) web application designed **Iron Wing Dispatching**, a US-based truck dispatching agecy. It demonstrates front-end development, basic form handling, and a simple back-end server with Node.js and Express.
 
 ## Table of Contents
