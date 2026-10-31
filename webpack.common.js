@@ -4,6 +4,7 @@ const fs = require("fs");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const BlogPlugin = require("./scripts/blog-plugin");
 
 module.exports = {
     entry: {
@@ -54,6 +55,7 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: "css/[name].css",
         }),
+        new BlogPlugin(),
     ],
     module: {
         rules: [

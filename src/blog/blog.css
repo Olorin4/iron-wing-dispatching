@@ -138,3 +138,15 @@ article blockquote {
   max-height: 2000px; /* Adjust this value based on your content length */
   transition: max-height 0.5s ease-in;
 }
+
+.blog .featured-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 1.5rem 0;
+}
+
+.blog article h2 a {
+  color: #08347c;
+}
