@@ -6,7 +6,6 @@ A single-page (plus sign-up and blog) web application designed **Iron Wing Dispa
 1. [Current Features](#current-features)  
 2. [Tech Stack](#tech-stack)  
 3. [Lessons Learned](#lessons-learned)  
-4. [Contact](#contact)  
 
 ---
 
@@ -36,14 +35,5 @@ A single-page (plus sign-up and blog) web application designed **Iron Wing Dispa
 - Client-side validation.
 - Web Vitals for performance insights.
 - Simple Node/Express server setups.
-
----
-
-## Contact
-- **Author**: Nick Kalas 
-- **Email**: nick.kalas@proton.me  
-- **LinkedIn**: https://www.linkedin.com/in/nick-kalas-93753841b/
-
-Feel free to reach out with any questions or suggestions!
 
 ---
