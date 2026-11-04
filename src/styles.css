@@ -421,12 +421,6 @@
     line-height: 1.1;
 }
 
-.pricing-card .price-example {
-    font-size: 0.9em;
-    margin: 4px 0 12px;
-    opacity: 0.85;
-}
-
 .pricing-card a {
     cursor: inherit;
     margin-top: 10px;
