@@ -1,9 +1,5 @@
 // sign-up.js contains form validation
-import "../normalize.css";
-import "../shared.css";
-import "./sign-up.css";
 import validator from "validator";
-import { handleNewsletterSignup } from "../newsletter";
 
 function pricingChoice() {
     const planName = document.getElementById("plan-name");
@@ -199,5 +195,4 @@ document.addEventListener("DOMContentLoaded", () => {
     // Select the form and initialize the FormValidator
     const form = document.querySelector("#sign-up-form");
     new FormValidator(form);
-    handleNewsletterSignup();
 });

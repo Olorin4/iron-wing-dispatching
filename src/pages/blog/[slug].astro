@@ -1,0 +1,76 @@
+---
+import { render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import "../../normalize.css";
+import "../../shared.css";
+import "../../blog/blog.css";
+import {
+    loadArticles,
+    formatDate,
+    articleUrl,
+    siteUrl,
+} from "../../lib/articles.js";
+
+export async function getStaticPaths() {
+    const articles = await loadArticles();
+    return articles.map((article) => ({
+        params: { slug: article.slug },
+        props: { article },
+    }));
+}
+
+const { article } = Astro.props;
+const { Content } = await render(article.entry);
+const url = articleUrl(article);
+const image = siteUrl + article.image;
+---
+
+<BaseLayout
+    title={`${article.title} | Iron Wing Dispatching`}
+    description={article.description}
+    canonical={url}
+>
+    <Fragment slot="head">
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content={article.title} />
+        <meta property="og:description" content={article.description} />
+        <meta property="og:url" content={url} />
+        <meta property="og:image" content={image} />
+        <meta property="og:image:alt" content={article.imageAlt} />
+        <meta
+            property="article:published_time"
+            content={`${article.date}T00:00:00Z`}
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={article.title} />
+        <meta name="twitter:description" content={article.description} />
+        <meta name="twitter:image" content={image} />
+        <link
+            rel="alternate"
+            type="application/rss+xml"
+            title="Iron Wing Dispatching Blog"
+            href={`${siteUrl}/rss.xml`}
+        />
+    </Fragment>
+    <main>
+        <section class="blog">
+            <div class="container">
+                <article>
+                    <h1>{article.title}</h1>
+                    <div class="article-meta">
+                        <time datetime={article.date}>
+                            {formatDate(article)}
+                        </time>
+                    </div>
+                    <img
+                        class="featured-image"
+                        src={article.image}
+                        alt={article.imageAlt}
+                    />
+                    <div class="article-body"><Content /></div>
+                    <p><a href="/blog.html">Back to blog</a></p>
+                </article>
+            </div>
+        </section>
+    </main>
+</BaseLayout>

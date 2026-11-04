@@ -1,9 +1,0 @@
-# Allow all crawlers to access the entire frontend
-User-agent: *
-Disallow:
-
-# Block crawlers from accessing backend files
-User-agent: *
-Disallow: /backend/
-
-Sitemap: https://ironwingdispatching.com/sitemap.xml

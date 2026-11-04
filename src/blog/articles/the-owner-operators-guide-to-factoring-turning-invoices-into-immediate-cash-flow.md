@@ -59,4 +59,4 @@ At **Iron Wing Dispatching** , our **Premium Plans** include **factoring assista
 
 Our goal is to keep your operation running smoothly while protecting your bottom line. Whether you're new to factoring or looking to optimize your current setup, we'll help you find the right fit.
 
-**Don't wait on slow brokers.** Turn your invoices into cash within a day— [start your growth journey with Iron Wing Dispatching today.](../sign-up-form/sign-up.html)
+**Don't wait on slow brokers.** Turn your invoices into cash within a day— [start your growth journey with Iron Wing Dispatching today.](/sign-up.html)

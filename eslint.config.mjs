@@ -1,9 +1,9 @@
 import globals from "globals";
 import pluginJs from "@eslint/js";
 import eslintPluginPrettier from "eslint-plugin-prettier/recommended";
-import jestPlugin from "eslint-plugin-jest";
 
 export default [
+    { ignores: ["dist/**", ".astro/**", "node_modules/**"] },
     {
         // Global language options
         languageOptions: {
@@ -43,19 +43,6 @@ export default [
         rules: {
             "no-console": "off", // Allow console logs in backend
             "global-require": "error", // Enforce `require` at top level
-        },
-    },
-    // Jest-specific configuration
-    {
-        files: ["tests/**/*"], // Matches Jest test files
-        plugins: {
-            jest: jestPlugin,
-        },
-        languageOptions: {
-            globals: jestPlugin.environments.globals, // Jest globals
-        },
-        rules: {
-            ...jestPlugin.configs.recommended.rules, // Apply recommended Jest rules
         },
     },
 ];

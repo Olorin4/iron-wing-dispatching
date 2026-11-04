@@ -1,0 +1,162 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import "../normalize.css";
+import "../shared.css";
+import "../sign-up-form/sign-up.css";
+---
+
+<BaseLayout
+    title="Sign-up! - Iron Wing Dispatching"
+    description="Apply for truck dispatching from Iron Wing Dispatching. Tell us about your fleet and we will be in touch shortly."
+>
+<main>
+            <section class="hero">
+                <img
+                    src="/assets/images/pexels-photoscom-93398_1024.webp"
+                    alt="A lone truck driving in the distance..." />
+                <div class="hero-text">
+                    <h3>
+                        <br />
+                        Iron Wing Dispatching is here to transform the way you
+                        do business. Our experienced team handles the heavy
+                        lifting, so you can stay focused on the road and what
+                        matters most.
+                    </h3>
+                    <br />
+                    <br />
+                    <br />
+                    <h3>Sign up now and let us keep your wheels turning!</h3>
+                </div>
+                <div class="logo-overlay">
+                    <img
+                        src="/assets/images/logo.webp"
+                        alt="Iron Wing Dispatching Services for Owner-Operators and small motor Carriers"
+                        width="350"
+                        height="150"
+                        loading="lazy" />
+                </div>
+            </section>
+
+            <section class="right-section">
+                <div class="form-container">
+                    <form id="sign-up-form" novalidate>
+                        <fieldset>
+                            <legend>
+                                You selected the
+                                <span class="break"></span>
+                                <span id="plan-name"></span>
+                                !
+                            </legend>
+                            <input
+                                type="hidden"
+                                id="plan-input"
+                                name="selected-plan"
+                                value="your plan" />
+
+                            <div class="user-info">
+                                <div class="first-name">
+                                    <label for="first-name">FIRST NAME</label>
+                                    <input
+                                        id="first-name"
+                                        type="text"
+                                        name="first-name"
+                                        required
+                                        autocomplete
+                                        minlength="3"
+                                        maxlength="50" />
+                                    <span
+                                        class="error-message"
+                                        data-error-for="first-name"></span>
+                                </div>
+                                <div class="last-name">
+                                    <label for="last-name">LAST NAME</label>
+                                    <input
+                                        id="last-name"
+                                        type="text"
+                                        name="last-name"
+                                        required
+                                        autocomplete
+                                        minlength="3"
+                                        maxlength="50" />
+                                    <span
+                                        class="error-message"
+                                        data-error-for="last-name"></span>
+                                </div>
+                            </div>
+
+                            <div class="user-info">
+                                <div class="e-mail">
+                                    <label for="e-mail">E-MAIL</label>
+                                    <input
+                                        id="e-mail"
+                                        type="e-mail"
+                                        name="e-mail"
+                                        required
+                                        autocomplete />
+                                    <span
+                                        class="error-message"
+                                        data-error-for="e-mail"></span>
+                                </div>
+                                <div class="tel">
+                                    <label for="tel">TELEPHONE NUMBER</label>
+                                    <input id="tel" type="tel" name="tel" />
+                                    <span
+                                        class="error-message"
+                                        data-error-for="tel"></span>
+                                </div>
+                            </div>
+
+                            <div class="user-info">
+                                <div class="fleet-size">
+                                    <label for="fleet-size">
+                                        NUMBER OF TRUCKS
+                                    </label>
+                                    <input
+                                        id="fleet-size"
+                                        name="fleet-size"
+                                        type="number"
+                                        min="1"
+                                        maxlength="4"
+                                        required
+                                        autocomplete />
+                                    <span
+                                        class="error-message"
+                                        data-error-for="fleet-size"></span>
+                                </div>
+                                <div class="trailer-type">
+                                    <label for="trailer-type">
+                                        TYPE OF TRAILER
+                                    </label>
+                                    <input
+                                        id="trailer-type"
+                                        name="trailer-type"
+                                        type="text"
+                                        maxlength="20"
+                                        required
+                                        autocomplete />
+                                    <span
+                                        class="error-message"
+                                        data-error-for="trailer-type"></span>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <p class="signup-note">
+                            We will contact you shortly to go over your setup.
+                            It helps to have your MC authority, insurance
+                            certificate and W-9 ready.
+                        </p>
+                        <button type="submit" class="primary-cta">
+                            SIGN UP!
+                        </button>
+                    </form>
+                    <span id="confirmation-message" class="hidden">
+                        Thank you for signing up! We'll be in touch shortly.
+                    </span>
+                </div>
+            </section>
+        </main>
+    <script>
+        import "../sign-up-form/sign-up.js";
+    </script>
+</BaseLayout>

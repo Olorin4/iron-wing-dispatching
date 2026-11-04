@@ -2,7 +2,7 @@
 
 The source code belongs to Iron Wing Logistics LLC and is shared with its permission.
 
-A single-page (plus sign-up and blog) web application designed **Iron Wing Dispatching**, a US-based truck dispatching agecy. It demonstrates front-end development, basic form handling, and a simple back-end server with Node.js and Express.
+The website of **Iron Wing Dispatching**, a US-based truck dispatching agency: a landing page plus sign-up, blog, privacy policy and terms pages. It is a static site built with [Astro](https://astro.build). Forms post to the separate `iwd-backend` API.
 
 ## Table of Contents
 
@@ -20,16 +20,31 @@ A single-page (plus sign-up and blog) web application designed **Iron Wing Dispa
 4. **About Section**
 5. **Contact/Sign-up Form**
 6. **Blog Page**
-7. **Node.js/Express Server**
+7. **Terms and Privacy Pages**
 8. **Web Vitals Integration**
 
 ---
 
 ## Tech Stack
 
--   **Front-end**: HTML5, CSS3, JavaScript (vanilla)
--   **Back-end**: Node.js & Express
--   **Tools / Libraries**: `validator`, `web-vitals`
+-   **Framework**: Astro 6 (static output), vanilla JavaScript, plain CSS
+-   **Libraries**: `validator`, `web-vitals`
+-   **Hosting**: Cloudflare, which builds automatically on every push to GitHub
+-   **Node.js**: 22.12 or later (`.node-version` pins 22 for the Cloudflare build)
+
+---
+
+## Commands
+
+```sh
+npm install
+npm run dev      # local dev server
+npm run build    # production build into dist/
+npm run preview  # serve the production build locally
+```
+
+Images and fonts live in `src/assets` and are published unchanged at `/assets/...`.
+Page URLs keep the `.html` form, such as `/blog.html` and `/sign-up.html`.
 
 ---
 
@@ -51,9 +66,15 @@ Put the featured image in `src/assets/images/` and set `image` to its public
 path, such as `/assets/images/example.webp`. Use a PNG, JPEG, or WebP image.
 The text after the front matter is the article body.
 
-Run `npm run build` (Node.js 18 or later). The build creates `blog.html`, a
-permanent page at `/blog/<slug>.html`, `/rss.xml`, article metadata, and sitemap
-entries. Keep a published slug unchanged to preserve its URL. Public article
-and image URLs use `https://iron-wing-dispatching.com` by default; set `SITE_URL`
-to the public origin when building for another host. Publish the generated
-`dist` directory to make the pages, feed, and image URLs publicly accessible.
+The Outreach app writes articles in exactly this format, builds the site with
+`npm run build`, and checks `dist/blog/<slug>.html`. Keep the front-matter
+fields, the `src/blog/articles` folder, the `src/assets/images` folder, the
+`dist` output directory, and the `article-body` class unchanged, or update
+Outreach's site adapter at the same time.
+
+Run `npm run build` (Node.js 22.12 or later). The build creates `blog.html`, a
+permanent page at `/blog/<slug>.html`, `/rss.xml`, and sitemap entries. A
+missing field, a duplicate slug, or a missing image fails the build. Keep a
+published slug unchanged to preserve its URL. Public article and image URLs use
+`https://iron-wing-dispatching.com` by default; set `SITE_URL` to the public
+origin when building for another host.

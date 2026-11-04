@@ -1,15 +1,10 @@
-import "./normalize.css";
-import "./shared.css";
-import "./styles.css";
 import { onLCP, onINP, onCLS } from "web-vitals";
 import {
-    hamburgerMenu,
     showServices,
     imageFadeIn,
     contactPopup,
     registerPricingPlan,
 } from "./dom";
-import { handleNewsletterSignup } from "./newsletter";
 
 // Function to store metrics in localStorage
 export function logAndStoreMetric(name, value) {
@@ -86,14 +81,12 @@ document.addEventListener("DOMContentLoaded", () => {
     onLCP((metric) => logAndStoreMetric("LCP", metric.value));
     onINP((metric) => logAndStoreMetric("INP", metric.value));
 
-    hamburgerMenu();
     showServices();
     imageFadeIn();
     contactPopup();
     registerPricingPlan();
     captureQuestion();
 
-    handleNewsletterSignup();
 });
 
 // TO DO:
