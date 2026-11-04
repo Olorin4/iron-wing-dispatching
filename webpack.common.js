@@ -12,6 +12,7 @@ module.exports = {
         blog: "./src/blog/blog.js",
         signup: "./src/sign-up-form/sign-up.js",
         privacy: "./src/privacy-policy/privacy-policy.js",
+        terms: "./src/terms/terms.js",
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -44,6 +45,11 @@ module.exports = {
             ),
             filename: "privacy-policy.html",
             chunks: ["privacy"],
+        }),
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, "./src/terms/terms.html"),
+            filename: "terms.html",
+            chunks: ["terms"],
         }),
         new CopyWebpackPlugin({
             patterns: [

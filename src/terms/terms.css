@@ -1,0 +1,12 @@
+.terms blockquote {
+    margin: 1rem 0;
+    padding: 0.75rem 1rem;
+    border-left: 4px solid #bbb;
+    background: #f5f5f5;
+    color: #333;
+    font-style: italic;
+}
+
+.terms a {
+    color: rgb(8, 52, 124);
+}
