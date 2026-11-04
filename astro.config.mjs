@@ -1,5 +1,5 @@
 import { defineConfig } from "astro/config";
-import { unified } from "@astrojs/markdown-remark";
+import { satteri } from "@astrojs/markdown-satteri";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -65,8 +65,11 @@ export default defineConfig({
     // Keep the existing URLs: /blog.html, /blog/<slug>.html, /sign-up.html ...
     build: { format: "file", inlineStylesheets: "never" },
     trailingSlash: "ignore",
+    // Astro 7 defaults to JSX whitespace rules, which drop spaces around inline
+    // tags in hand-written HTML. Keep the lossless behavior of earlier versions.
+    compressHTML: true,
     devToolbar: { enabled: false },
-    // Render Markdown the way the previous generator did: no typographic quotes.
-    markdown: { processor: unified({ smartypants: false }) },
+    // Render Markdown the way the previous generator did: straight quotes.
+    markdown: { processor: satteri({ features: { smartPunctuation: false } }) },
     integrations: [publishAssets()],
 });
