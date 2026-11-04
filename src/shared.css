@@ -281,3 +281,13 @@ footer {
         display: block; /* Forces the break to act as a line break */
     }
 }
+
+/* Header phone link */
+.nav-links a.header-phone {
+    white-space: nowrap;
+    font-weight: 600;
+}
+
+.footer-phone {
+    color: inherit;
+}

@@ -298,3 +298,9 @@ span.show-error {
         transform: translateX(0%);
     }
 }
+
+.signup-note {
+    font-size: 0.9rem;
+    margin: 1rem 0;
+    text-align: center;
+}

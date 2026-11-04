@@ -1,1 +1,0 @@
-document.addEventListener("DOMContentLoaded",(function(){document.querySelectorAll(".read-more-btn").forEach((e=>{e.addEventListener("click",(function(){const e=this.closest("article").querySelector(".article-content");e.classList.toggle("expanded"),e.classList.contains("expanded")?this.textContent="Read Less":this.textContent="Read More"}))}))}));

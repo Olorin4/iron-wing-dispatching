@@ -86,9 +86,13 @@ module.exports = {
                                 );
                                 loaderContext.addDependency(footerPath);
 
-                                return content.replace(
-                                    marker,
-                                    () => fs.readFileSync(footerPath, "utf8")
+                                return content.replace(marker, () =>
+                                    fs
+                                        .readFileSync(footerPath, "utf8")
+                                        .replace(
+                                            "{{YEAR}}",
+                                            String(new Date().getFullYear())
+                                        )
                                 );
                             },
                         },

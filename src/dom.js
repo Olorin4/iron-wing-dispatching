@@ -40,16 +40,23 @@ function showServices() {
 }
 
 function contactPopup() {
-    const contactTrigger = document.getElementById("contact-trigger");
+    const contactTriggers = document.querySelectorAll("[data-contact-trigger]");
     const popupOverlay = document.getElementById("popup-overlay");
     const popupContent = document.getElementById("popup-content");
     const popupClose = document.getElementById("popup-close");
+    if (!popupOverlay || !popupContent || !popupClose) return;
 
-    // Show the popup when contact link is clicked
-    contactTrigger.addEventListener("click", () => {
-        popupOverlay.style.display = "flex";
-        const emailField = popupContent.querySelector("#email");
-        emailField.focus();
+    // Show the popup when any contact link is clicked
+    contactTriggers.forEach((trigger) => {
+        trigger.addEventListener("click", (event) => {
+            event.preventDefault();
+            document
+                .querySelector(".nav-links.active")
+                ?.classList.remove("active");
+            popupOverlay.style.display = "flex";
+            const emailField = popupContent.querySelector("#email");
+            emailField.focus();
+        });
     });
 
     // Close the popup when clicking "x"
