@@ -1,4 +1,4 @@
-import { defineConfig } from "astro/config";
+import { defineConfig, envField } from "astro/config";
 import { satteri } from "@astrojs/markdown-satteri";
 import fs from "node:fs";
 import path from "node:path";
@@ -72,4 +72,22 @@ export default defineConfig({
     // Render Markdown the way the previous generator did: straight quotes.
     markdown: { processor: satteri({ features: { smartPunctuation: false } }) },
     integrations: [publishAssets()],
+    // PostHog (project "Iron Wing Dispatching"). Read from .env locally and from
+    // the Cloudflare build variables in production. The token only sends events,
+    // and every visitor's browser receives it, so it is public by design. Without
+    // it the site builds and runs normally and analytics are off (src/analytics.js).
+    env: {
+        schema: {
+            POSTHOG_PROJECT_TOKEN: envField.string({
+                context: "client",
+                access: "public",
+                optional: true,
+            }),
+            POSTHOG_HOST: envField.string({
+                context: "client",
+                access: "public",
+                default: "https://us.i.posthog.com",
+            }),
+        },
+    },
 });

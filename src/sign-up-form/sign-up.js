@@ -6,6 +6,7 @@ import {
     getTurnstileToken,
     resetTurnstile,
 } from "../turnstile.js";
+import { identifyVisitor, track, trackError } from "../analytics.js";
 
 function pricingChoice() {
     const planName = document.getElementById("plan-name");
@@ -61,11 +62,13 @@ class FormValidator {
     }
 
     validateForm() {
-        let isValid = true;
+        const invalidFields = [];
         this.inputs.forEach((input) => {
-            if (!this.validateField(input)) isValid = false;
+            if (!this.validateField(input)) invalidFields.push(input.id);
         });
-        return isValid;
+        if (invalidFields.length > 0)
+            track("sign_up_form_invalid", { invalid_fields: invalidFields });
+        return invalidFields.length === 0;
     }
 
     validateField(input) {
@@ -191,8 +194,30 @@ class FormValidator {
                 form_url: window.location.href,
             });
             console.log("📊 GTM Event Pushed: form_submission");
+
+            identifyVisitor(jsonObject.email, {
+                first_name: jsonObject.firstName,
+                last_name: jsonObject.lastName,
+                fleet_size: jsonObject.fleetSize,
+                trailer_type: jsonObject.trailerType,
+                plan: jsonObject.plan,
+            });
+            track("sign_up_form_submitted", {
+                plan: jsonObject.plan,
+                fleet_size: Number(jsonObject.fleetSize) || null,
+                trailer_type: jsonObject.trailerType,
+                has_phone: Boolean(jsonObject.phone.trim()),
+            });
         } catch (error) {
             console.error("Error submitting form:", error);
+            const reason =
+                error instanceof TurnstileError
+                    ? "turnstile"
+                    : error.message === TURNSTILE_PENDING_MESSAGE
+                      ? "turnstile_pending"
+                      : "server";
+            track("sign_up_form_failed", { reason, plan: jsonObject.plan });
+            if (reason === "server") trackError(error, { form: "sign_up" });
             confirmationMessage.innerText = `⚠️ ${error.message || "Server error. Please try again later."}`;
         } finally {
             resetTurnstile(this.form);

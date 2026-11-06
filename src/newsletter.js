@@ -4,6 +4,7 @@ import {
     getTurnstileToken,
     resetTurnstile,
 } from "./turnstile.js";
+import { identifyVisitor, track, trackError } from "./analytics.js";
 
 export function handleNewsletterSignup() {
     const newsletterForm = document.getElementById("newsletter-form");
@@ -47,7 +48,9 @@ export function handleNewsletterSignup() {
 
                 const data = await response.json();
                 console.log("✅ Newsletter signup successful!", data);
-                alert("Thank you for subscribing! Check your email for confirmation.");
+                alert(
+                    "Thank you for subscribing! Check your email for confirmation."
+                );
                 newsletterForm.reset();
 
                 // Push event to GTM
@@ -58,8 +61,16 @@ export function handleNewsletterSignup() {
                     form_url: window.location.href,
                 });
                 console.log("📊 GTM Event Pushed: newsletter_subscription");
+
+                identifyVisitor(email);
+                track("newsletter_subscribed", { form_id: "newsletter-form" });
             } catch (error) {
                 console.error("❌ Error submitting newsletter signup:", error);
+                const reason =
+                    error instanceof TurnstileError ? "turnstile" : "server";
+                track("newsletter_subscription_failed", { reason });
+                if (reason === "server")
+                    trackError(error, { form: "newsletter" });
                 alert(
                     error instanceof TurnstileError
                         ? error.message

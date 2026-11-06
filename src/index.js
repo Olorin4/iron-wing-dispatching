@@ -11,6 +11,7 @@ import {
     getTurnstileToken,
     resetTurnstile,
 } from "./turnstile.js";
+import { identifyVisitor, track, trackError } from "./analytics.js";
 
 // Function to store metrics in localStorage
 export function logAndStoreMetric(name, value) {
@@ -77,8 +78,18 @@ function captureQuestion() {
                     form_url: window.location.href,
                 });
                 console.log("📊 GTM Event Pushed: form_submission_contact");
+
+                identifyVisitor(email);
+                track("contact_form_submitted", {
+                    form_id: "popup-form",
+                    has_phone: Boolean(phone.trim()),
+                });
             } catch (error) {
                 console.error("❌ Error submitting contact form:", error);
+                const reason =
+                    error instanceof TurnstileError ? "turnstile" : "server";
+                track("contact_form_failed", { reason });
+                if (reason === "server") trackError(error, { form: "contact" });
                 alert(
                     error instanceof TurnstileError
                         ? error.message
@@ -103,7 +114,6 @@ document.addEventListener("DOMContentLoaded", () => {
     contactPopup();
     registerPricingPlan();
     captureQuestion();
-
 });
 
 // TO DO:
@@ -198,4 +208,3 @@ document.addEventListener("DOMContentLoaded", () => {
     countUp("m4", finalMetrics.m4);
 });
 */
-

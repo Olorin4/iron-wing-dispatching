@@ -1,4 +1,6 @@
 //doms.js handles all dom elements
+import { track } from "./analytics.js";
+
 function hamburgerMenu() {
     const hamburger = document.querySelector(".hamburger");
     const navLinks = document.querySelector("nav");
@@ -56,6 +58,9 @@ function contactPopup() {
             popupOverlay.style.display = "flex";
             const emailField = popupContent.querySelector("#email");
             emailField.focus();
+            track("contact_popup_opened", {
+                trigger_text: trigger.textContent.trim().slice(0, 60),
+            });
         });
     });
 
@@ -112,6 +117,7 @@ function registerPricingPlan() {
                 const href = link.getAttribute("href");
                 const updatedHref = `${href}?plan=${encodeURIComponent(planName)}`;
                 link.setAttribute("href", updatedHref);
+                track("pricing_plan_selected", { plan: planName });
             }
         });
     });
