@@ -9,6 +9,47 @@ import { POSTHOG_HOST, POSTHOG_PROJECT_TOKEN } from "astro:env/client";
 
 const enabled = Boolean(POSTHOG_PROJECT_TOKEN);
 
+// Outreach emails link here with `ref=<12 chars of base32>`. The ref is kept as
+// an `outreach_ref` event property and then removed from the address bar, so
+// a copied or shared URL does not carry one person's ref.
+const OUTREACH_REF = /^[a-z2-7]{12}$/;
+
+/** Removes only `ref` from the address bar, keeping other params and the hash. */
+function stripRefFromUrl() {
+    const url = new URL(location.href);
+    if (!url.searchParams.has("ref")) return;
+    url.searchParams.delete("ref");
+    history.replaceState(history.state, "", url);
+}
+
+/** Registers a valid ref, then drops `ref` from the URL once $pageview is captured. */
+function keepOutreachRef() {
+    const params = new URLSearchParams(location.search);
+    if (!params.has("ref")) return;
+    const ref = params.get("ref");
+    // Registering sets an event property only; it does not create a person profile.
+    if (OUTREACH_REF.test(ref)) posthog.register({ outreach_ref: ref });
+
+    // posthog-js captures the first $pageview on a timer after init, reading the
+    // URL at that moment, so the URL has to stay as it is until then.
+    let done = false;
+    let stopListening = () => {};
+    const strip = () => {
+        if (done) return;
+        done = true;
+        stopListening();
+        stripRefFromUrl();
+    };
+    stopListening = posthog.on("eventCaptured", (data) => {
+        if (data?.event === "$pageview") setTimeout(strip);
+    });
+    // The $pageview is not captured for bots, so do not wait for it forever. A
+    // hidden tab (prerender) defers the $pageview until it becomes visible.
+    setTimeout(() => {
+        if (document.visibilityState === "visible") strip();
+    }, 2000);
+}
+
 if (enabled) {
     posthog.init(POSTHOG_PROJECT_TOKEN, {
         api_host: POSTHOG_HOST,
@@ -18,6 +59,7 @@ if (enabled) {
         // Only visitors who submit a form get a person profile.
         person_profiles: "identified_only",
     });
+    keepOutreachRef();
     // Lets local test traffic be filtered out of the live numbers.
     posthog.register({
         deployment_environment: import.meta.env.DEV
@@ -37,11 +79,19 @@ export function track(event, properties = {}) {
 
 /**
  * Links this browser's visits to the person who submitted a form. The forms
- * have no account ID, so the lowercased email is the identity.
+ * have no account ID, so the lowercased email is the identity. A registered
+ * outreach ref also becomes the person's `first_outreach_ref`.
  */
 export function identifyVisitor(email, properties = {}) {
     const id = email.trim().toLowerCase();
-    if (enabled && id) posthog.identify(id, { email: id, ...properties });
+    if (!enabled || !id) return;
+    // $set_once keeps the first ref that reached this person.
+    const ref = posthog.get_property("outreach_ref");
+    posthog.identify(
+        id,
+        { email: id, ...properties },
+        ref ? { first_outreach_ref: ref } : undefined
+    );
 }
 
 /** Sends an unexpected error to PostHog error tracking. */
