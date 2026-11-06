@@ -8,7 +8,10 @@
 #
 # Args:
 #   --name <worker-name>   Base name; appends a hash suffix if taken
-#   --deploy-dir <path>    Where to extract the template. Default: /tmp/turnstile-siteverify-deploy
+#   --deploy-dir <path>    Where to copy the template. Default: a fresh private temp
+#                          directory (mktemp -d, mode 0700) that is removed on exit.
+#                          An explicit path must not be a symlink and, if it already
+#                          exists, must be owned by the current user.
 #
 # Outputs JSON. Exit 0 on success, non-zero on failure.
 #   ok:            {"status":"ok","worker_url":"<url>","worker_name":"<name>"}
@@ -20,7 +23,7 @@
 set -uo pipefail
 
 NAME="${WORKER_NAME:-turnstile-siteverify}"
-DEPLOY_DIR="/tmp/turnstile-siteverify-deploy"
+DEPLOY_DIR=""
 while [[ $# -gt 0 ]]; do
   case $1 in
     --name)       NAME="$2"; shift 2 ;;
@@ -34,11 +37,26 @@ done
 
 deploy_log=$(mktemp)
 
+# Never deploy from a predictable, world-writable path: another local user could
+# pre-create it and plant files (e.g. a wrangler.toml) that wrangler then runs.
+if [ -z "$DEPLOY_DIR" ]; then
+  DEPLOY_DIR=$(mktemp -d) || { echo "worker-deploy: cannot create temp dir" >&2; exit 1; }
+  trap 'rm -rf "$DEPLOY_DIR"' EXIT
+else
+  if [ -L "$DEPLOY_DIR" ] || { [ -e "$DEPLOY_DIR" ] && [ ! -O "$DEPLOY_DIR" ]; }; then
+    echo "worker-deploy: --deploy-dir $DEPLOY_DIR is a symlink or not owned by you; refusing to use it." >&2
+    echo "{\"status\":\"error\",\"reason\":\"unsafe_deploy_dir\"}"
+    exit 1
+  fi
+  mkdir -p "$DEPLOY_DIR" && chmod 700 "$DEPLOY_DIR" || exit 1
+fi
+
 deploy() {
   local target_name="$1"
-  rm -rf "$DEPLOY_DIR"
   # Upstream degit path no longer exists; use the template bundled with this skill.
-  cp -r "$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)/templates/worker" "$DEPLOY_DIR"
+  # Copy into the (already safe) directory; this also makes the name-conflict
+  # retry start from a clean copy of the template files.
+  cp -r "$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)/templates/worker/." "$DEPLOY_DIR/"
   # Capture both streams. Wrangler prints the success URL and version ID on
   # stdout; progress indicators on stderr. Capturing only stderr loses the URL.
   (cd "$DEPLOY_DIR" && npx wrangler deploy --name "$target_name") >"$deploy_log" 2>&1
