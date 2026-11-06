@@ -3,6 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import "../normalize.css";
 import "../shared.css";
 import "../sign-up-form/sign-up.css";
+import { TURNSTILE_SITEKEY } from "../turnstile.js";
 ---
 
 <BaseLayout
@@ -146,6 +147,11 @@ import "../sign-up-form/sign-up.css";
                             It helps to have your MC authority, insurance
                             certificate and W-9 ready.
                         </p>
+                        <div
+                            class="cf-turnstile"
+                            data-sitekey={TURNSTILE_SITEKEY}
+                            data-action="turnstile-spin-v1">
+                        </div>
                         <button type="submit" class="primary-cta">
                             SIGN UP!
                         </button>

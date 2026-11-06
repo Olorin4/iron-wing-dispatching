@@ -1,5 +1,11 @@
 // sign-up.js contains form validation
 import validator from "validator";
+import {
+    TURNSTILE_PENDING_MESSAGE,
+    TurnstileError,
+    getTurnstileToken,
+    resetTurnstile,
+} from "../turnstile.js";
 
 function pricingChoice() {
     const planName = document.getElementById("plan-name");
@@ -30,7 +36,10 @@ function pricingChoice() {
 class FormValidator {
     constructor(form) {
         this.form = form;
-        this.inputs = form.querySelectorAll("input");
+        // Exclude the hidden token field Turnstile injects into the form
+        this.inputs = form.querySelectorAll(
+            'input:not([name="cf-turnstile-response"])'
+        );
         this.init();
     }
 
@@ -139,8 +148,6 @@ class FormValidator {
             fleetSize: document.getElementById("fleet-size").value,
             trailerType: document.getElementById("trailer-type").value,
             plan: document.getElementById("plan-input").value,
-            // Placeholder for reCAPTCHA token (to be added when enabled)
-            // recaptchaToken: token,
         };
 
         const signUpButton = document.querySelector(".primary-cta");
@@ -153,15 +160,19 @@ class FormValidator {
         console.log("📩 Submitting Form Data:", jsonObject);
 
         try {
+            const turnstileToken = getTurnstileToken(this.form);
+            if (!turnstileToken) throw new Error(TURNSTILE_PENDING_MESSAGE);
+
             const response = await fetch(
                 "https://api.iron-wing-dispatching.com/sign-up-forms",
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(jsonObject),
+                    body: JSON.stringify({ ...jsonObject, turnstileToken }),
                 }
             );
 
+            if (response.status === 403) throw new TurnstileError();
             if (!response.ok)
                 throw new Error(`Server responded with ${response.status}`);
 
@@ -184,6 +195,7 @@ class FormValidator {
             console.error("Error submitting form:", error);
             confirmationMessage.innerText = `⚠️ ${error.message || "Server error. Please try again later."}`;
         } finally {
+            resetTurnstile(this.form);
             signUpButton.disabled = false;
         }
     }

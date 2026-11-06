@@ -5,6 +5,12 @@ import {
     contactPopup,
     registerPricingPlan,
 } from "./dom";
+import {
+    TURNSTILE_PENDING_MESSAGE,
+    TurnstileError,
+    getTurnstileToken,
+    resetTurnstile,
+} from "./turnstile.js";
 
 // Function to store metrics in localStorage
 export function logAndStoreMetric(name, value) {
@@ -30,12 +36,16 @@ function captureQuestion() {
                 return;
             }
 
+            const turnstileToken = getTurnstileToken(contactForm);
+            if (!turnstileToken) {
+                alert(TURNSTILE_PENDING_MESSAGE);
+                return;
+            }
+
             const jsonObject = {
                 email: email,
                 phone: phone,
                 message: message,
-                // Placeholder for reCAPTCHA token (to be added when enabled)
-                // recaptchaToken: token,
             };
 
             console.log("📩 Submitting Contact Form:", jsonObject);
@@ -46,10 +56,11 @@ function captureQuestion() {
                     {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify(jsonObject),
+                        body: JSON.stringify({ ...jsonObject, turnstileToken }),
                     }
                 );
 
+                if (response.status === 403) throw new TurnstileError();
                 if (!response.ok)
                     throw new Error(`Server responded with ${response.status}`);
 
@@ -68,7 +79,13 @@ function captureQuestion() {
                 console.log("📊 GTM Event Pushed: form_submission_contact");
             } catch (error) {
                 console.error("❌ Error submitting contact form:", error);
-                alert("Error submitting form. Please try again later.");
+                alert(
+                    error instanceof TurnstileError
+                        ? error.message
+                        : "Error submitting form. Please try again later."
+                );
+            } finally {
+                resetTurnstile(contactForm);
             }
         });
     }

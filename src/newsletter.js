@@ -1,3 +1,10 @@
+import {
+    TURNSTILE_PENDING_MESSAGE,
+    TurnstileError,
+    getTurnstileToken,
+    resetTurnstile,
+} from "./turnstile.js";
+
 export function handleNewsletterSignup() {
     const newsletterForm = document.getElementById("newsletter-form");
     if (newsletterForm) {
@@ -11,11 +18,15 @@ export function handleNewsletterSignup() {
                 return;
             }
 
+            const turnstileToken = getTurnstileToken(newsletterForm);
+            if (!turnstileToken) {
+                alert(TURNSTILE_PENDING_MESSAGE);
+                return;
+            }
+
             const jsonObject = {
                 email: email,
                 type: "newsletter",
-                // Placeholder for reCAPTCHA token
-                // recaptchaToken: token,
             };
 
             console.log("📩 Submitting Newsletter Signup:", jsonObject);
@@ -26,10 +37,11 @@ export function handleNewsletterSignup() {
                     {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify(jsonObject),
+                        body: JSON.stringify({ ...jsonObject, turnstileToken }),
                     }
                 );
 
+                if (response.status === 403) throw new TurnstileError();
                 if (!response.ok)
                     throw new Error(`Server responded with ${response.status}`);
 
@@ -48,7 +60,13 @@ export function handleNewsletterSignup() {
                 console.log("📊 GTM Event Pushed: newsletter_subscription");
             } catch (error) {
                 console.error("❌ Error submitting newsletter signup:", error);
-                alert("Error subscribing. Please try again later.");
+                alert(
+                    error instanceof TurnstileError
+                        ? error.message
+                        : "Error subscribing. Please try again later."
+                );
+            } finally {
+                resetTurnstile(newsletterForm);
             }
         });
     }

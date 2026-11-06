@@ -1,3 +1,7 @@
+---
+import { TURNSTILE_SITEKEY } from "../turnstile.js";
+---
+
 <footer>
     <div class="container footer-content">
         <div class="privacy-policy-link">
@@ -32,6 +36,12 @@
                     name="email"
                     placeholder="Your email"
                     required />
+                <div
+                    class="cf-turnstile"
+                    data-sitekey={TURNSTILE_SITEKEY}
+                    data-action="turnstile-spin-v1"
+                    data-appearance="interaction-only">
+                </div>
                 <button type="submit" class="secondary-cta">Subscribe</button>
             </form>
         </div>

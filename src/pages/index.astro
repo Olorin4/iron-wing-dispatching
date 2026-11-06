@@ -3,6 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import "../normalize.css";
 import "../shared.css";
 import "../styles.css";
+import { TURNSTILE_SITEKEY } from "../turnstile.js";
 
 const site = Astro.site.origin;
 const title =
@@ -359,6 +360,12 @@ const structuredData = {
                             id="message"
                             name="message"
                             rows="5"></textarea>
+
+                        <div
+                            class="cf-turnstile"
+                            data-sitekey={TURNSTILE_SITEKEY}
+                            data-action="turnstile-spin-v1">
+                        </div>
 
                         <button type="submit" class="primary-cta">
                             Submit

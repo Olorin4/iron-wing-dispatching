@@ -47,6 +47,12 @@ const { title, description, canonical, contactPopup = false } = Astro.props;
         <title>{title}</title>
         {description && <meta name="description" content={description} />}
         {canonical && <link rel="canonical" href={canonical} />}
+        <!-- Cloudflare Turnstile (bot protection for the forms) -->
+        <script
+            is:inline
+            src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+            async
+            defer></script>
         <slot name="head" />
     </head>
 
