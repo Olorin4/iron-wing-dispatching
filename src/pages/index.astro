@@ -54,13 +54,19 @@ const structuredData = {
             set:html={JSON.stringify(structuredData)}
         />
         <!-- Hero A/B test (PostHog flag homepage-hero-message, see src/heroExperiment.js).
-             Hide only the hero heading and subheading until the flag answers, at most 1 s,
+             Hide only the hero heading, subheading and button until the flag answers, at most 1 s,
              so visitors never see one message swap to the other. Crawlers are never hidden
              and always get today's text. -->
         <style is:inline>
             .hero-ab-pending .hero-text h1,
-            .hero-ab-pending .hero-text h2 {
+            .hero-ab-pending .hero-text h2,
+            .hero-ab-pending #hero-cta {
                 visibility: hidden;
+            }
+            /* .primary-cta has `transition: all`, which would animate the reveal
+               too; keep only the hover effects animated so the button shows at once. */
+            #hero-cta {
+                transition-property: box-shadow, transform;
             }
         </style>
         <script is:inline>
@@ -115,7 +121,11 @@ const structuredData = {
                         We find and negotiate your loads, deal with the brokers and
                         handle the paperwork — you just drive. Cancel anytime.
                     </template>
-                    <a href="#pricing" class="primary-cta">
+                    <a
+                        href="#pricing"
+                        class="primary-cta"
+                        id="hero-cta"
+                        data-test-text="Get Started">
                         See Dispatching Rates
                     </a>
                 </div>

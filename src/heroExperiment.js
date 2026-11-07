@@ -1,7 +1,7 @@
 // Homepage hero A/B test, PostHog experiment "Homepage hero message" (flag
 // `homepage-hero-message`, variants `control` / `test`, bucketed by device).
 //
-// An inline script in index.astro hides the hero heading and subheading while
+// An inline script in index.astro hides the hero heading, subheading and button while
 // the flag loads and reveals them after 1 s whatever happens. If the flag
 // answers in time, the visitor sees their variant. If it answers late, or
 // PostHog is blocked or off, the visitor keeps today's text and the flag is
@@ -17,11 +17,15 @@ function reveal() {
 function showTestVariant() {
     const title = document.getElementById("hero-title");
     const subtitle = document.getElementById("hero-subtitle");
+    const cta = document.getElementById("hero-cta");
     const titleTemplate = document.getElementById("hero-test-title");
     const subtitleTemplate = document.getElementById("hero-test-subtitle");
-    if (!title || !subtitle || !titleTemplate || !subtitleTemplate) return;
+    if (!title || !subtitle || !cta || !titleTemplate || !subtitleTemplate)
+        return;
     title.replaceChildren(titleTemplate.content.cloneNode(true));
     subtitle.replaceChildren(subtitleTemplate.content.cloneNode(true));
+    // Same destination (#pricing), different label.
+    cta.textContent = cta.dataset.testText;
 }
 
 export function runHeroExperiment() {
