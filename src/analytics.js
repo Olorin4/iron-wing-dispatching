@@ -60,7 +60,7 @@ if (enabled) {
         person_profiles: "identified_only",
         // The hero A/B test gives up waiting after 2.5 s anyway; a longer
         // request timeout (default 3 s) lets slow flag answers still arrive,
-        // so `hero_ab_fallback` records how late they were.
+        // so `hero_ab_flags_late` records how late they were.
         feature_flag_request_timeout_ms: 10000,
     });
     keepOutreachRef();
