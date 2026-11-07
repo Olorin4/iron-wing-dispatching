@@ -17,6 +17,11 @@ import {
     track,
     trackError,
 } from "./analytics.js";
+import { runHeroExperiment } from "./heroExperiment.js";
+
+// Module scripts run after the page is parsed, so the hero is already in the
+// DOM. Start at once rather than on DOMContentLoaded to keep the hidden time short.
+runHeroExperiment();
 
 // Function to store metrics in localStorage
 export function logAndStoreMetric(name, value) {

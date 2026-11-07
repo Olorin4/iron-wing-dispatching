@@ -118,6 +118,31 @@ export function attributionFields() {
     return fields;
 }
 
+/**
+ * Calls `callback` once PostHog's feature flags are loaded, with a function that
+ * reads one flag's variant. Reading a flag is what records the experiment
+ * exposure, so callers read it only when they will actually show that variant.
+ * With analytics off the callback runs at once with a reader that returns
+ * undefined (everyone gets the default experience).
+ */
+export function whenFeatureFlagsReady(callback) {
+    const noFlags = () => undefined;
+    if (!enabled) return callback(noFlags);
+    let called = false;
+    try {
+        posthog.onFeatureFlags(() => {
+            if (called) return;
+            called = true;
+            callback((key) => posthog.getFeatureFlag(key));
+        });
+    } catch {
+        if (!called) {
+            called = true;
+            callback(noFlags);
+        }
+    }
+}
+
 /** Sends an unexpected error to PostHog error tracking. */
 export function trackError(error, properties = {}) {
     if (enabled) posthog.captureException(error, properties);

@@ -53,6 +53,28 @@ const structuredData = {
             type="application/ld+json"
             set:html={JSON.stringify(structuredData)}
         />
+        <!-- Hero A/B test (PostHog flag homepage-hero-message, see src/heroExperiment.js).
+             Hide only the hero heading and subheading until the flag answers, at most 1 s,
+             so visitors never see one message swap to the other. Crawlers are never hidden
+             and always get today's text. -->
+        <style is:inline>
+            .hero-ab-pending .hero-text h1,
+            .hero-ab-pending .hero-text h2 {
+                visibility: hidden;
+            }
+        </style>
+        <script is:inline>
+            (function () {
+                if (/bot|crawl|spider|slurp|preview|lighthouse/i.test(navigator.userAgent)) return;
+                var root = document.documentElement;
+                root.classList.add("hero-ab-pending");
+                setTimeout(function () {
+                    if (!root.classList.contains("hero-ab-pending")) return;
+                    window.__heroAbTimedOut = true;
+                    root.classList.remove("hero-ab-pending");
+                }, 1000);
+            })();
+        </script>
     </Fragment>
 <main>
             <!-- Hero Section -->
@@ -70,17 +92,29 @@ const structuredData = {
                     alt="OTR owner-operator driving his truck hauling a load with a dry van trailer"
                     class="hero-image" />
                 <div class="hero-text">
-                    <h1>
+                    <h1 id="hero-title">
                         Iron Wing Dispatching
                         <br />
                         By Truckers,
                         <span class="break"></span>
                         For Truckers.
                     </h1>
-                    <h2>
+                    <h2 id="hero-subtitle">
                         We know your challenges and deliver solutions that keep
                         you moving.
                     </h2>
+                    <!-- Variant "test" of the hero A/B test; inert unless the flag picks it. -->
+                    <template id="hero-test-title">
+                        Better Loads.
+                        <span class="break"></span>
+                        Less Paperwork.
+                        <span class="break"></span>
+                        From 5%.
+                    </template>
+                    <template id="hero-test-subtitle">
+                        We find and negotiate your loads, deal with the brokers and
+                        handle the paperwork — you just drive. Cancel anytime.
+                    </template>
                     <a href="#pricing" class="primary-cta">
                         See Dispatching Rates
                     </a>
