@@ -50,6 +50,20 @@ function keepOutreachRef() {
     }, 2000);
 }
 
+// Opening any page with `?internal=1` marks this browser as the team's own, so
+// the project's test-account filter (and the A/B test) leaves its visits out;
+// `?internal=0` removes the mark. The mark is a PostHog super property, kept in
+// PostHog's own cookie, and the parameter is removed from the address bar.
+function markInternalTraffic() {
+    const url = new URL(location.href);
+    const value = url.searchParams.get("internal");
+    if (value === "1") posthog.register({ internal_traffic: true });
+    else if (value === "0") posthog.unregister("internal_traffic");
+    else return;
+    url.searchParams.delete("internal");
+    history.replaceState(history.state, "", url);
+}
+
 if (enabled) {
     posthog.init(POSTHOG_PROJECT_TOKEN, {
         api_host: POSTHOG_HOST,
@@ -62,8 +76,18 @@ if (enabled) {
         // request timeout (default 3 s) lets slow flag answers still arrive,
         // so `hero_ab_flags_late` records how late they were.
         feature_flag_request_timeout_ms: 10000,
+        // Click and scroll heatmaps (the PostHog toolbar shows them on the page).
+        enable_heatmaps: true,
+        // Session replay, when it is on in the PostHog project settings. Every
+        // form field and its typed text are masked; recordings show the page
+        // and the clicks, never what a visitor enters.
+        session_recording: {
+            maskAllInputs: true,
+            maskTextSelector: "input, textarea, select, [data-ph-mask]",
+        },
     });
     keepOutreachRef();
+    markInternalTraffic();
     // Lets local test traffic be filtered out of the live numbers.
     posthog.register({
         deployment_environment: import.meta.env.DEV
