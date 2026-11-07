@@ -54,7 +54,7 @@ const structuredData = {
             set:html={JSON.stringify(structuredData)}
         />
         <!-- Hero A/B test (PostHog flag homepage-hero-message, see src/heroExperiment.js).
-             Hide only the hero heading, subheading and button until the flag answers, at most 1 s,
+             Hide only the hero heading, subheading and button until the flag answers, at most 2.5 s,
              so visitors never see one message swap to the other. Crawlers are never hidden
              and always get today's text. -->
         <style is:inline>
@@ -73,12 +73,15 @@ const structuredData = {
             (function () {
                 if (/bot|crawl|spider|slurp|preview|lighthouse/i.test(navigator.userAgent)) return;
                 var root = document.documentElement;
+                // Read by src/heroExperiment.js: when the wait started and how long it may last.
+                window.__heroAbStart = performance.now();
+                window.__heroAbCutoffMs = 2500;
                 root.classList.add("hero-ab-pending");
                 setTimeout(function () {
                     if (!root.classList.contains("hero-ab-pending")) return;
                     window.__heroAbTimedOut = true;
                     root.classList.remove("hero-ab-pending");
-                }, 1000);
+                }, window.__heroAbCutoffMs);
             })();
         </script>
     </Fragment>

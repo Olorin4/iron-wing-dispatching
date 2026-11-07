@@ -58,6 +58,10 @@ if (enabled) {
         defaults: "2026-05-30",
         // Only visitors who submit a form get a person profile.
         person_profiles: "identified_only",
+        // The hero A/B test gives up waiting after 2.5 s anyway; a longer
+        // request timeout (default 3 s) lets slow flag answers still arrive,
+        // so `hero_ab_fallback` records how late they were.
+        feature_flag_request_timeout_ms: 10000,
     });
     keepOutreachRef();
     // Lets local test traffic be filtered out of the live numbers.
