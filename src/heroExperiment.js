@@ -11,6 +11,8 @@
 //   enrolled: `reason` "timeout" (no flag by the cutoff) or "no_flag" (the
 //   flag request failed outright), and
 // - `hero_ab_flags_late` if the flag still arrives after a timeout (how late).
+// `hero_cta_clicked` records each click on the hero button, the experiment's
+// primary metric: sign-ups are too rare at this traffic to compare variants.
 import { track, whenFeatureFlagsReady } from "./analytics.js";
 
 const FLAG = "homepage-hero-message";
@@ -37,7 +39,24 @@ function elapsedMs() {
     return Math.round(performance.now() - window.__heroAbStart);
 }
 
+// Which hero the visitor saw: "test" or "control" once enrolled, "fallback"
+// when they kept today's text unenrolled (timeout or no flag).
+let shownVariant = null;
+
+function trackHeroClicks() {
+    const cta = document.getElementById("hero-cta");
+    if (!cta) return;
+    cta.addEventListener("click", () => {
+        track("hero_cta_clicked", {
+            flag: FLAG,
+            hero_variant: shownVariant ?? "fallback",
+            label: cta.textContent.trim(),
+        });
+    });
+}
+
 export function runHeroExperiment() {
+    trackHeroClicks();
     // Crawlers are never hidden and never enrolled (see index.astro): the
     // inline script returns before it records a start time for them.
     if (typeof window.__heroAbStart !== "number") return;
@@ -73,6 +92,8 @@ export function runHeroExperiment() {
                 return;
             }
             const variant = getVariant(FLAG);
+            if (variant === "test" || variant === "control")
+                shownVariant = variant;
             if (variant === "test") showTestVariant();
             else if (variant !== "control") {
                 // The flag request failed fast (blocked or errored), so
