@@ -11,7 +11,12 @@ import {
     getTurnstileToken,
     resetTurnstile,
 } from "./turnstile.js";
-import { identifyVisitor, track, trackError } from "./analytics.js";
+import {
+    attributionFields,
+    identifyVisitor,
+    track,
+    trackError,
+} from "./analytics.js";
 
 // Function to store metrics in localStorage
 export function logAndStoreMetric(name, value) {
@@ -57,7 +62,11 @@ function captureQuestion() {
                     {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ ...jsonObject, turnstileToken }),
+                        body: JSON.stringify({
+                            ...jsonObject,
+                            turnstileToken,
+                            ...attributionFields(),
+                        }),
                     }
                 );
 

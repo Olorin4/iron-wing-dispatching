@@ -94,6 +94,30 @@ export function identifyVisitor(email, properties = {}) {
     );
 }
 
+/**
+ * The two values the API stores with a form submission so a lead can be tied
+ * back to the outreach email and the PostHog visitor: `outreachRef` (the
+ * registered `ref`, or null) and `posthogDistinctId`. Both are null with
+ * analytics off. Never throws, so a PostHog problem cannot block a form.
+ */
+export function attributionFields() {
+    const fields = { outreachRef: null, posthogDistinctId: null };
+    if (!enabled) return fields;
+    try {
+        const ref = posthog.get_property("outreach_ref");
+        if (typeof ref === "string") fields.outreachRef = ref;
+    } catch {
+        // Leave outreachRef null.
+    }
+    try {
+        const id = posthog.get_distinct_id();
+        if (typeof id === "string" && id) fields.posthogDistinctId = id;
+    } catch {
+        // Leave posthogDistinctId null.
+    }
+    return fields;
+}
+
 /** Sends an unexpected error to PostHog error tracking. */
 export function trackError(error, properties = {}) {
     if (enabled) posthog.captureException(error, properties);

@@ -6,7 +6,12 @@ import {
     getTurnstileToken,
     resetTurnstile,
 } from "../turnstile.js";
-import { identifyVisitor, track, trackError } from "../analytics.js";
+import {
+    attributionFields,
+    identifyVisitor,
+    track,
+    trackError,
+} from "../analytics.js";
 
 function pricingChoice() {
     const planName = document.getElementById("plan-name");
@@ -171,7 +176,11 @@ class FormValidator {
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ ...jsonObject, turnstileToken }),
+                    body: JSON.stringify({
+                        ...jsonObject,
+                        turnstileToken,
+                        ...attributionFields(),
+                    }),
                 }
             );
 
