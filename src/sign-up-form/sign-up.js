@@ -78,7 +78,6 @@ class FormValidator {
 
     validateField(input) {
         const value = input.value.trim();
-        const type = input.type;
         // Validate First Name
         if (input.id === "first-name" && (value === "" || value.length < 3)) {
             this.showError(input, "First name must be at least 3 characters.");
@@ -89,17 +88,15 @@ class FormValidator {
             this.showError(input, "Last name must be at least 3 characters.");
             return false;
         }
-        // Validate Email
-        if (type === "email" && !validator.isEmail(value)) {
+        // Validate Email. Keyed on the field, not its type attribute: a
+        // mistyped type once switched this check off without any error.
+        if (input.id === "e-mail" && !validator.isEmail(value)) {
             this.showError(input, "Please enter a valid email address.");
             return false;
         }
-        // Validate Fleet Size
-        if (
-            input.id === "fleet-size" &&
-            value !== "" &&
-            !validator.isInt(value, { min: 1 })
-        ) {
+        // Validate Fleet Size. Required: an empty value fails too, which
+        // also covers letters, since a number input reports them as empty.
+        if (input.id === "fleet-size" && !validator.isInt(value, { min: 1 })) {
             this.showError(input, "Please enter a valid number of trucks.");
             return false;
         }
