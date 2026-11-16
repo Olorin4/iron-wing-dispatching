@@ -18,7 +18,10 @@ const structuredData = {
         "Truck dispatch service for owner-operators and small motor carriers: load sourcing, rate negotiation, route optimization and administrative support.",
     telephone: "+1-817-865-3016",
     email: "info@iron-wing-dispatching.com",
-    areaServed: "US",
+    areaServed: [
+        { "@type": "Country", name: "United States" },
+        { "@type": "Country", name: "Canada" },
+    ],
     priceRange: "5%-10% of load rate",
     sameAs: [
         "https://www.facebook.com/people/Iron-Wing-Dispatching/61596218484100/",
@@ -315,7 +318,7 @@ const structuredData = {
                         Show More Services
                         <img
                             src="/assets/images/chevron-down.svg"
-                            alt="Shoe more dispatching services" />
+                            alt="Show more dispatching services" />
                     </a>
                 </div>
             </section>
@@ -343,8 +346,8 @@ const structuredData = {
                             tirelessly to secure the best loads, optimize
                             routes, and handle logistics so you can focus on
                             driving and growing your business. Whether you drive
-                            a dry van, flatbed, reefer or car hauler, we have
-                            your back.
+                            a dry van, flatbed or reefer, or run power only, we
+                            have your back.
                         </p>
                         <ul>
                             <li>
@@ -527,8 +530,23 @@ const structuredData = {
                         </p>
                     </details>
                     <details>
-                        <summary>Which trailer types do you dispatch?</summary>
-                        <p>Dry van, flatbed, reefer and car hauler.</p>
+                        <summary>Which equipment do you dispatch?</summary>
+                        <p>Dry van, flatbed, reefer and power only.</p>
+                    </details>
+                    <details>
+                        <summary>Where do you dispatch?</summary>
+                        <p>
+                            Across the lower 48 states, and cross-border to
+                            Canada.
+                        </p>
+                    </details>
+                    <details>
+                        <summary>Do you work with new MC authorities?</summary>
+                        <p>
+                            Yes, from day one, with no minimum authority age.
+                            Be aware that some brokers limit how much they book
+                            with a new authority at first.
+                        </p>
                     </details>
                     <details>
                         <summary>What happens after I apply?</summary>

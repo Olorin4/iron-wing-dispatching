@@ -44,7 +44,7 @@ class FormValidator {
         this.form = form;
         // Exclude the hidden token field Turnstile injects into the form
         this.inputs = form.querySelectorAll(
-            'input:not([name="cf-turnstile-response"])'
+            'input:not([name="cf-turnstile-response"]), select'
         );
         this.init();
     }
@@ -105,7 +105,7 @@ class FormValidator {
         }
         // Validate Trailer Type
         if (input.id === "trailer-type" && value === "") {
-            this.showError(input, "Please enter the type of trailer.");
+            this.showError(input, "Please choose the type of trailer.");
             return false;
         }
         // Validate Plan Selection

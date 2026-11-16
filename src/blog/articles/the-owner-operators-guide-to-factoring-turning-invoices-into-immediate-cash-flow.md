@@ -55,8 +55,8 @@ Many successful owner-operators use factoring strategically during high-expense 
 
 ## How We Can Help
 
-At **Iron Wing Dispatching** , our **Premium Plans** include **factoring assistance** . We handle submission, documentation, and coordination directly with factoring partners—so you get paid faster and stay focused on the road.
+At **Iron Wing Dispatching** , our **Full-Service Plan** includes **factoring assistance** . We handle submission, documentation, and coordination with your factoring company—so your paperwork goes in complete and you stay focused on the road. The factoring company is the one that pays you; we are not a factoring company and do not advance funds.
 
 Our goal is to keep your operation running smoothly while protecting your bottom line. Whether you're new to factoring or looking to optimize your current setup, we'll help you find the right fit.
 
-**Don't wait on slow brokers.** Turn your invoices into cash within a day— [start your growth journey with Iron Wing Dispatching today.](/sign-up.html)
+**Don't wait on slow brokers.** Let us handle the factoring paperwork— [start your growth journey with Iron Wing Dispatching today.](/sign-up.html)

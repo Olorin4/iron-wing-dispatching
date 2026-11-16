@@ -128,13 +128,17 @@ import { TURNSTILE_SITEKEY } from "../turnstile.js";
                                     <label for="trailer-type">
                                         TYPE OF TRAILER
                                     </label>
-                                    <input
+                                    <select
                                         id="trailer-type"
                                         name="trailer-type"
-                                        type="text"
-                                        maxlength="20"
-                                        required
-                                        autocomplete />
+                                        required>
+                                        <option value="">Select…</option>
+                                        <option value="Dry van">Dry van</option>
+                                        <option value="Flatbed">Flatbed</option>
+                                        <option value="Reefer">Reefer</option>
+                                        <option value="Power only">Power only</option>
+                                        <option value="Other">Other</option>
+                                    </select>
                                     <span
                                         class="error-message"
                                         data-error-for="trailer-type"></span>
