@@ -2,71 +2,98 @@
 import { TURNSTILE_SITEKEY } from "../turnstile.js";
 ---
 
-<footer>
-    <div class="container footer-content">
-        <div class="privacy-policy-link">
-            <a href="/privacy-policy.html">
-                &copy; {new Date().getFullYear()} Iron Wing Dispatching | Our Privacy Policy
-            </a>
-            |
-            <a href="/terms.html">Terms and Conditions</a>
+<footer class="site-footer">
+    <div class="footer-content">
+        <div class="footer-columns">
+            <div>
+                <h2>Contact</h2>
+                <ul class="footer-links">
+                    <li>
+                        <a href="tel:+18178653016">
+                            <img
+                                src="/assets/images/phone-call.svg"
+                                alt=""
+                                width="18"
+                                height="18"
+                                loading="lazy" />
+                            (817) 865-3016
+                        </a>
+                    </li>
+                    <li>
+                        <a href="mailto:info@iron-wing-dispatching.com">
+                            info@iron-wing-dispatching.com
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <h2>Follow us</h2>
+                <ul class="footer-links footer-social">
+                    <li>
+                        <a href="https://www.facebook.com/people/Iron-Wing-Dispatching/61596218484100/">
+                            <img
+                                src="/assets/images/facebook_32.png"
+                                alt=""
+                                width="20"
+                                height="20"
+                                loading="lazy" />
+                            <span>Facebook</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/company/145383398/">
+                            <img
+                                src="/assets/images/linkedin_32.png"
+                                alt=""
+                                width="20"
+                                height="20"
+                                loading="lazy" />
+                            <span>LinkedIn</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/iron.wing.dispatching/">
+                            <img
+                                src="/assets/images/instagram.svg"
+                                alt=""
+                                width="20"
+                                height="20"
+                                loading="lazy" />
+                            <span>Instagram</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer-newsletter">
+                <h2>Get Trucking Tips &amp; Updates</h2>
+                <form id="newsletter-form">
+                    <input
+                        type="email"
+                        id="newsletter-email"
+                        name="email"
+                        aria-label="Email address"
+                        placeholder="Email address"
+                        autocomplete="email"
+                        required />
+                    <button type="submit" class="secondary-cta">Subscribe</button>
+                    <div
+                        class="cf-turnstile"
+                        data-sitekey={TURNSTILE_SITEKEY}
+                        data-action="turnstile-spin-v1"
+                        data-appearance="interaction-only">
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="contact-bottom">
-            <img
-                src="/assets/images/phone-call.svg"
-                alt="Call a dispatcher now!"
-                class="phone-icon"
-                loading="lazy" />
-            <a href="tel:+18178653016" class="phone-number">(817) 865-3016</a>
-        </div>
-        <p>
-            <a
-                class="footer-email"
-                href="mailto:info@iron-wing-dispatching.com">
-                Email: info@iron-wing-dispatching.com
-            </a>
-        </p>
-        <!-- Newsletter Signup -->
-        <div class="newsletter-signup">
-            <p>Get Trucking Tips & Updates</p>
-            <form id="newsletter-form">
-                <input
-                    type="email"
-                    id="newsletter-email"
-                    name="email"
-                    placeholder="Your email"
-                    required />
-                <div
-                    class="cf-turnstile"
-                    data-sitekey={TURNSTILE_SITEKEY}
-                    data-action="turnstile-spin-v1"
-                    data-appearance="interaction-only">
-                </div>
-                <button type="submit" class="secondary-cta">Subscribe</button>
-            </form>
-        </div>
-        <div class="social-icons">
-            <a
-                href="https://www.facebook.com/people/Iron-Wing-Dispatching/61596218484100/">
-                <img
-                    src="/assets/images/facebook_32.png"
-                    alt="Iron Wing Dispatching Facebook page"
-                    loading="lazy" />
-            </a>
-            <a href="https://www.linkedin.com/company/145383398/">
-                <img
-                    src="/assets/images/linkedin_32.png"
-                    alt="Iron Wing Dispatching LinkedIn page"
-                    loading="lazy" />
-            </a>
-            <a href="https://www.instagram.com/iron.wing.dispatching/">
-                <img
-                    src="/assets/images/instagram.svg"
-                    alt="Iron Wing Dispatching Instagram page"
-                    width="32"
-                    height="32"
-                    loading="lazy" />
-            </a>
+
+        <div class="footer-bottom">
+            <small>&copy; {new Date().getFullYear()} Iron Wing Dispatching</small>
+            <nav aria-label="Legal">
+                <a href="/privacy-policy.html">Privacy Policy</a>
+                <a href="/terms.html">Terms and Conditions</a>
+            </nav>
         </div>
     </div>
 </footer>
