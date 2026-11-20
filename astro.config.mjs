@@ -78,6 +78,11 @@ export default defineConfig({
     // it the site builds and runs normally and analytics are off (src/analytics.js).
     env: {
         schema: {
+            HERO_EXPERIMENT_ENABLED: envField.boolean({
+                context: "server",
+                access: "public",
+                default: true,
+            }),
             POSTHOG_PROJECT_TOKEN: envField.string({
                 context: "client",
                 access: "public",

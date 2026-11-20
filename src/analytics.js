@@ -6,6 +6,7 @@
 // analytics off. Google Tag Manager runs alongside and is not affected.
 import posthog from "posthog-js";
 import { POSTHOG_HOST, POSTHOG_PROJECT_TOKEN } from "astro:env/client";
+import { HERO_FLAG } from "./heroAssignment.js";
 
 const enabled = Boolean(POSTHOG_PROJECT_TOKEN);
 
@@ -65,6 +66,8 @@ function markInternalTraffic() {
 }
 
 if (enabled) {
+    const hero = window.__heroAssignment;
+    let initialDeviceId = hero?.newDeviceId;
     posthog.init(POSTHOG_PROJECT_TOKEN, {
         api_host: POSTHOG_HOST,
         // The PostHog app, for links such as the toolbar, when api_host is a proxy.
@@ -72,10 +75,17 @@ if (enabled) {
         defaults: "2026-05-30",
         // Only visitors who submit a form get a person profile.
         person_profiles: "identified_only",
-        // The hero A/B test gives up waiting after 2.5 s anyway; a longer
-        // request timeout (default 3 s) lets slow flag answers still arrive,
-        // so `hero_ab_flags_late` records how late they were.
-        feature_flag_request_timeout_ms: 10000,
+        // Keep the SDK's device and exposure aligned with what the page rendered.
+        ...(hero && {
+            bootstrap: { featureFlags: { [HERO_FLAG]: hero.variant } },
+        }),
+        ...(initialDeviceId && {
+            get_device_id: (generatedId) => {
+                const deviceId = initialDeviceId ?? generatedId;
+                initialDeviceId = undefined;
+                return deviceId;
+            },
+        }),
         // Click and scroll heatmaps (the PostHog toolbar shows them on the page).
         enable_heatmaps: true,
         // Session replay, when it is on in the PostHog project settings. Every
@@ -146,28 +156,14 @@ export function attributionFields() {
     return fields;
 }
 
-/**
- * Calls `callback` once PostHog's feature flags are loaded, with a function that
- * reads one flag's variant. Reading a flag is what records the experiment
- * exposure, so callers read it only when they will actually show that variant.
- * With analytics off the callback runs at once with a reader that returns
- * undefined (everyone gets the default experience).
- */
-export function whenFeatureFlagsReady(callback) {
-    const noFlags = () => undefined;
-    if (!enabled) return callback(noFlags);
-    let called = false;
-    try {
-        posthog.onFeatureFlags(() => {
-            if (called) return;
-            called = true;
-            callback((key) => posthog.getFeatureFlag(key));
-        });
-    } catch {
-        if (!called) {
-            called = true;
-            callback(noFlags);
-        }
+/** Let the SDK record an exposure to the hero that was actually rendered. */
+export function trackHeroExposure(variant) {
+    if (
+        enabled &&
+        !posthog.get_property("internal_traffic") &&
+        posthog.getFeatureFlag(HERO_FLAG, { send_event: false }) === variant
+    ) {
+        posthog.getFeatureFlag(HERO_FLAG);
     }
 }
 

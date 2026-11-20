@@ -3,7 +3,21 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import "../normalize.css";
 import "../shared.css";
 import "../styles.css";
+import { POSTHOG_PROJECT_TOKEN } from "astro:env/client";
+import { HERO_EXPERIMENT_ENABLED } from "astro:env/server";
+import sha1Source from "js-sha1/build/sha1.min.js?raw";
 import { TURNSTILE_SITEKEY } from "../turnstile.js";
+import { assignHero, HERO_FLAG } from "../heroAssignment.js";
+
+const heroAssignmentScript = HERO_EXPERIMENT_ENABLED && POSTHOG_PROJECT_TOKEN && `(() => {
+    const module = { exports: {} };
+    ${sha1Source}
+    (${assignHero.toString()})(
+        ${JSON.stringify("ph_" + POSTHOG_PROJECT_TOKEN + "_posthog")},
+        ${JSON.stringify(HERO_FLAG)},
+        module.exports
+    );
+})();`;
 
 const site = Astro.site.origin;
 const title =
@@ -56,37 +70,14 @@ const structuredData = {
             type="application/ld+json"
             set:html={JSON.stringify(structuredData)}
         />
-        <!-- Hero A/B test (PostHog flag homepage-hero-message, see src/heroExperiment.js).
-             Hide only the hero heading, subheading and button until the flag answers, at most 2.5 s,
-             so visitors never see one message swap to the other. Crawlers are never hidden
-             and always get today's text. -->
+        <!-- Select the hero before rendering either variant. -->
         <style is:inline>
-            .hero-ab-pending .hero-text h1,
-            .hero-ab-pending .hero-text h2,
-            .hero-ab-pending #hero-cta {
-                visibility: hidden;
-            }
-            /* .primary-cta has `transition: all`, which would animate the reveal
-               too; keep only the hover effects animated so the button shows at once. */
-            #hero-cta {
-                transition-property: box-shadow, transform;
+            html:not([data-hero-variant="test"]) .hero-test,
+            html[data-hero-variant="test"] .hero-control {
+                display: none;
             }
         </style>
-        <script is:inline>
-            (function () {
-                if (/bot|crawl|spider|slurp|preview|lighthouse/i.test(navigator.userAgent)) return;
-                var root = document.documentElement;
-                // Read by src/heroExperiment.js: when the wait started and how long it may last.
-                window.__heroAbStart = performance.now();
-                window.__heroAbCutoffMs = 2500;
-                root.classList.add("hero-ab-pending");
-                setTimeout(function () {
-                    if (!root.classList.contains("hero-ab-pending")) return;
-                    window.__heroAbTimedOut = true;
-                    root.classList.remove("hero-ab-pending");
-                }, window.__heroAbCutoffMs);
-            })();
-        </script>
+        {heroAssignmentScript && <script is:inline set:html={heroAssignmentScript} />}
     </Fragment>
 <main>
             <!-- Hero Section -->
@@ -105,34 +96,34 @@ const structuredData = {
                     class="hero-image" />
                 <div class="hero-text">
                     <h1 id="hero-title">
-                        Iron Wing Dispatching
-                        <br />
-                        By Truckers,
-                        <span class="break"></span>
-                        For Truckers.
+                        <span class="hero-control">
+                            Iron Wing Dispatching
+                            <br />
+                            By Truckers,
+                            <span class="break"></span>
+                            For Truckers.
+                        </span>
+                        <span class="hero-test">
+                            Better Loads.
+                            <span class="break"></span>
+                            Less Paperwork.
+                            <span class="break"></span>
+                            From 5%.
+                        </span>
                     </h1>
                     <h2 id="hero-subtitle">
-                        We know your challenges and deliver solutions that keep
-                        you moving.
+                        <span class="hero-control">
+                            We know your challenges and deliver solutions that keep
+                            you moving.
+                        </span>
+                        <span class="hero-test">
+                            We find and negotiate your loads, deal with the brokers and
+                            handle the paperwork — you just drive. Cancel anytime.
+                        </span>
                     </h2>
-                    <!-- Variant "test" of the hero A/B test; inert unless the flag picks it. -->
-                    <template id="hero-test-title">
-                        Better Loads.
-                        <span class="break"></span>
-                        Less Paperwork.
-                        <span class="break"></span>
-                        From 5%.
-                    </template>
-                    <template id="hero-test-subtitle">
-                        We find and negotiate your loads, deal with the brokers and
-                        handle the paperwork — you just drive. Cancel anytime.
-                    </template>
-                    <a
-                        href="#pricing"
-                        class="primary-cta"
-                        id="hero-cta"
-                        data-test-text="Get Started">
-                        See Dispatching Rates
+                    <a href="#pricing" class="primary-cta" id="hero-cta">
+                        <span class="hero-control">See Dispatching Rates</span>
+                        <span class="hero-test">Get Started</span>
                     </a>
                 </div>
                 <!-- Metrics cards: This section displays key business metrics. Commented out as per user request. -->
