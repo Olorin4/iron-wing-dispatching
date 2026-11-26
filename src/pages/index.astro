@@ -6,7 +6,7 @@ import "../styles.css";
 import { POSTHOG_PROJECT_TOKEN } from "astro:env/client";
 import { HERO_EXPERIMENT_ENABLED } from "astro:env/server";
 import sha1Source from "js-sha1/build/sha1.min.js?raw";
-import { TURNSTILE_SITEKEY } from "../turnstile.js";
+import QuestionPopup from "../components/QuestionPopup.astro";
 import { assignHero, HERO_FLAG } from "../heroAssignment.js";
 
 const heroAssignmentScript = HERO_EXPERIMENT_ENABLED && POSTHOG_PROJECT_TOKEN && `(() => {
@@ -36,7 +36,7 @@ const structuredData = {
         { "@type": "Country", name: "United States" },
         { "@type": "Country", name: "Canada" },
     ],
-    priceRange: "5%-10% of load rate",
+    priceRange: "5%–10% of the rate confirmation total",
     sameAs: [
         "https://www.facebook.com/people/Iron-Wing-Dispatching/61596218484100/",
         "https://www.linkedin.com/company/145383398/",
@@ -96,62 +96,63 @@ const structuredData = {
                     class="hero-image" />
                 <div class="hero-text">
                     <h1 id="hero-title">
-                        <span class="hero-control">
-                            Iron Wing Dispatching
-                            <br />
-                            By Truckers,
-                            <span class="break"></span>
-                            For Truckers.
-                        </span>
-                        <span class="hero-test">
-                            Better Loads.
-                            <span class="break"></span>
-                            Less Paperwork.
-                            <span class="break"></span>
-                            From 5%.
-                        </span>
+                        <span class="hero-control">Better Loads. Less Paperwork. From 5%.</span>
+                        <span class="hero-test">Keep driving. We’ll find your next load.</span>
                     </h1>
                     <h2 id="hero-subtitle">
-                        <span class="hero-control">
-                            We know your challenges and deliver solutions that keep
-                            you moving.
-                        </span>
-                        <span class="hero-test">
-                            We find and negotiate your loads, deal with the brokers and
-                            handle the paperwork — you just drive. Cancel anytime.
-                        </span>
+                        <span class="hero-control">We find and negotiate your loads, deal with the brokers and handle the paperwork so you can drive. Dispatch starts at 5% of the rate confirmation total. Cancel anytime.</span>
+                        <span class="hero-test">Tell us where you want to run. Your dispatcher finds loads that fit your truck and schedule, negotiates the rate, and handles the booking. Dispatch starts at 5% of the rate confirmation total. Cancel anytime.</span>
                     </h2>
-                    <a href="#pricing" class="primary-cta" id="hero-cta">
-                        <span class="hero-control">See Dispatching Rates</span>
-                        <span class="hero-test">Get Started</span>
-                    </a>
+                    <div class="hero-actions">
+                        <a href="#pricing" class="primary-cta" id="hero-cta">See dispatching rates</a>
+                        <a href="/sign-up.html" class="hero-question" data-contact-trigger data-placement="hero">Ask a dispatcher</a>
+                    </div>
                 </div>
-                <!-- Metrics cards: This section displays key business metrics. Commented out as per user request. -->
-                <!--
-                <section class="metrics-grid" aria-label="Key metrics">
-                  <div class="metric-card">
-                    <div class="metric-number" id="m1">—</div>
-                    <div class="metric-label">Avg Load Rate</div>
-                  </div>
-                  <div class="metric-card">
-                    <div class="metric-number" id="m2">—</div>
-                    <div class="metric-label">Total Loads Booked</div>
-                  </div>
-                  <div class="metric-card">
-                    <div class="metric-number" id="m3">—</div>
-                    <div class="metric-label">Avg Miles / Month / Driver</div>
-                  </div>
-                  <div class="metric-card">
-                    <div class="metric-number" id="m4">—</div>
-                    <div class="metric-label">Active Partners</div>
-                  </div>
-                </section>
-                -->
+            </section>
+
+            <section id="pricing" class="pricing">
+                <h2>Pricing</h2>
+                <p class="pricing-intro">
+                    We charge a percentage of the agreed rate confirmation total on each load we book.
+                    Fuel and other charges already included in that total count once.
+                    We email an itemized weekly statement. <a href="/terms.html">Read the payment terms</a>.
+                </p>
+                <div class="container">
+                    <div class="pricing-card">
+                        <h3>Dispatch Essentials</h3>
+                        <p class="plan-tagline">We find, negotiate and book freight. You handle billing.</p>
+                        <div class="price">5%</div>
+                        <p>$120 on a $2,400 confirmation, including $400 in fuel.</p>
+                        <a class="primary-cta" href="/sign-up.html?plan=ESSENTIAL" data-plan="ESSENTIAL">Apply for Essentials</a>
+                        <ul>
+                            <li>Load sourcing and rate negotiation</li>
+                            <li>Routing around your equipment, lanes and schedule</li>
+                            <li>Carrier packets and basic broker paperwork</li>
+                            <li>Business-hours support</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-card featured">
+                        <h3>Dispatch + Back Office</h3>
+                        <p class="plan-tagline">We dispatch your truck and handle your invoicing and factoring submissions.</p>
+                        <div class="price">10%</div>
+                        <p>$240 on the same $2,400 confirmation, including $400 in fuel.</p>
+                        <a class="primary-cta" href="/sign-up.html?plan=FULL_SERVICE" data-plan="FULL_SERVICE">Apply for Back Office</a>
+                        <ul>
+                            <li>Everything in Dispatch Essentials</li>
+                            <li>Dedicated dispatcher and priority 24/7 support</li>
+                            <li>Invoicing and factoring submissions</li>
+                            <li>Detention and lumper claims and compliance assistance</li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="fleet-note">
+                    Running three or more trucks? <a href="/sign-up.html?plan=FLEET" data-plan="FLEET">Request a fleet quote</a> for either service.
+                </p>
             </section>
 
             <!-- Services Section -->
             <section id="services" class="services">
-                <a href="#services"><h1>Our Services</h1></a>
+                <a href="#services"><h1>What your dispatcher handles</h1></a>
                 <div class="service-cards">
                     <!-- First 3 cards always visible -->
                     <!-- Card 1: Load Sourcing -->
@@ -161,11 +162,9 @@ const structuredData = {
                                 src="/assets/images/truck.svg"
                                 alt="A truck" />
                         </div>
-                        <h3>Load Sourcing</h3>
+                        <h3>Find the next load</h3>
                         <p>
-                            We search for high-paying loads that match your
-                            preferences and negotiate the best possible freight
-                            rates.
+                            We look at your equipment, where you unload and when you are ready. Then we find a load that fits and negotiate with the broker.
                         </p>
                     </div>
                     <!-- Card 2: Route Optimization -->
@@ -175,10 +174,9 @@ const structuredData = {
                                 src="/assets/images/trending-up.svg"
                                 alt="Optimize routing" />
                         </div>
-                        <h3>Route Optimization</h3>
+                        <h3>Count the empty miles</h3>
                         <p>
-                            We plan the most efficient routes to maximize fuel
-                            savings and minimize downtime and deadheading.
+                            For example, $1,525 over 600 total miles pays $2.54 per mile. $1,450 over 520 total miles pays $2.79 per mile. Your dispatcher compares both trips, including the miles you run empty.
                         </p>
                     </div>
                     <!-- Card 3: Administrative Support -->
@@ -188,10 +186,9 @@ const structuredData = {
                                 src="/assets/images/clipboard.svg"
                                 alt="paperwork" />
                         </div>
-                        <h3>Administrative Support</h3>
+                        <h3>Handle the broker paperwork</h3>
                         <p>
-                            We handle carrier setup paperwork, BoLs, Rate
-                            Confirmations, invoices, IFTA reports, etc.
+                            We handle carrier packets and rate confirmations. Dispatch + Back Office also handles invoices and factoring submissions.
                         </p>
                     </div>
                 </div>
@@ -222,8 +219,7 @@ const structuredData = {
                             </div>
                             <h3>Factoring Assistance</h3>
                             <p>
-                                We submit paperwork to factoring companies to
-                                ensure quick payment processing.
+                                Dispatch + Back Office submits your paperwork to your factoring company.
                             </p>
                         </div>
                         <!-- Card 6: Compliance Management -->
@@ -246,8 +242,7 @@ const structuredData = {
                             </div>
                             <h3>Compliance Management</h3>
                             <p>
-                                We keep all your documents and certifications
-                                up-to-date.
+                                Dispatch + Back Office helps keep your carrier documents and certifications current.
                             </p>
                         </div>
                         <!-- Card 7: 24/7 Support -->
@@ -259,8 +254,7 @@ const structuredData = {
                             </div>
                             <h3>24/7 Support</h3>
                             <p>
-                                We offer round-the-clock assistance to resolve
-                                issues anytime, anywhere.
+                                Dispatch + Back Office includes priority 24/7 support. Essentials includes business-hours support.
                             </p>
                         </div>
                         <!-- Card 8: Lumper/Detention -->
@@ -284,8 +278,7 @@ const structuredData = {
                             </div>
                             <h3>Lumper/Detention</h3>
                             <p>
-                                We assist you in claiming lumper and detention
-                                fees.
+                                Dispatch + Back Office helps you submit lumper and detention claims.
                             </p>
                         </div>
                         <!-- Card 9: Dedicated Lanes -->
@@ -315,191 +308,7 @@ const structuredData = {
             </section>
 
             <!-- Sales Pitch Section -->
-            <section id="sales-pitch-1" class="sales-pitch">
-                <a href="#sales-pitch-1">
-                    <h1>
-                        Why Choose
-                        <span class="break"></span>
-                        Iron Wing Dispatching?
-                    </h1>
-                </a>
-                <div class="container">
-                    <img
-                        src="/assets/images/pexels-theshuttervision-9984691_320.webp"
-                        alt="A trucker unloading his cargo at a receiver"
-                        class="pitch-image left"
-                        width="310"
-                        loading="lazy" />
-                    <div class="pitch-content right">
-                        <p>
-                            We’re more than just a service provider — we’re your
-                            trusted partner on the road. Our dispatchers work
-                            tirelessly to secure the best loads, optimize
-                            routes, and handle logistics so you can focus on
-                            driving and growing your business. Whether you drive
-                            a dry van, flatbed or reefer, or run power only, we
-                            have your back.
-                        </p>
-                        <ul>
-                            <li>
-                                <strong>Industry Expertise:</strong>
-                                Managed by a former trucker who
-                                understands your challenges.
-                            </li>
-                            <li>
-                                <strong>24/7 Support:</strong>
-                                Enjoy driving your truck, knowing that we're
-                                always a phone call away.
-                            </li>
-                            <li>
-                                <strong>Maximized Earnings:</strong>
-                                Strategic load selection to keep your wheels
-                                turning profitably.
-                            </li>
-                            <li>
-                                <strong>Personalized experience:</strong>
-                                We’re committed to providing a hands-on,
-                                personalized experience. When you work with us,
-                                you’ll always know who’s on the other end of the
-                                line.
-                            </li>
-                            <li>
-                                <strong>Cancel anytime:</strong>
-                                If you’re not satisfied with our service,
-                                there’s no obligation to continue. We’re
-                                confident that our work will speak for itself.
-                            </li>
-                        </ul>
-                        <a href="#pricing" class="primary-cta">
-                            Choose a Plan Below
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Popup Markup -->
-            <div class="popup-overlay" id="popup-overlay">
-                <div class="popup-content" id="popup-content">
-                    <div class="popup-header">
-                        <h2>Contact Us</h2>
-                        <span
-                            class="popup-close"
-                            id="popup-close"
-                            aria-label="Close menu">
-                            &times;
-                        </span>
-                    </div>
-                    <form class="popup-form">
-                        <label for="email">Email (required):</label>
-                        <input type="email" id="email" name="email" required />
-
-                        <label for="phone">Phone (optional):</label>
-                        <input type="tel" id="phone" name="phone" />
-
-                        <label for="message">Your Questions:</label>
-                        <textarea
-                            id="message"
-                            name="message"
-                            rows="5"></textarea>
-
-                        <div
-                            class="cf-turnstile"
-                            data-sitekey={TURNSTILE_SITEKEY}
-                            data-action="turnstile-spin-v1">
-                        </div>
-
-                        <button type="submit" class="primary-cta">
-                            Submit
-                        </button>
-                    </form>
-                </div>
-            </div>
-
-            <!-- Pricing section -->
-            <section id="pricing" class="pricing">
-                <a href="#pricing"><h1>Pricing</h1></a>
-                <p class="pricing-intro">
-                    One simple percentage of the linehaul rate on each load we book for you. No
-                    term commitment, cancel anytime.
-                </p>
-                <div class="container">
-                    <div class="pricing-card">
-                        <h3>Essential Plan</h3>
-                        <p class="plan-tagline">
-                            Great loads for owner-operators who handle the rest.
-                        </p>
-                        <div class="price">5%</div>
-                        <a href="/sign-up.html" data-plan="Essential Plan (5%)">
-                            <button class="primary-cta">Apply Now</button>
-                        </a>
-                        <ul>
-                            <li>
-                                <strong>Load Sourcing</strong>
-                                <span>We find loads tailored to your preferences and negotiate competitive rates.</span>
-                            </li>
-                            <li>
-                                <strong>Route Optimization</strong>
-                                <span>We plan efficient routes to maximize your profits and minimize downtime.</span>
-                            </li>
-                            <li>
-                                <strong>Business-hours support</strong>
-                                <span>Personalized support during standard business hours for any questions or issues.</span>
-                            </li>
-                            <li>
-                                <strong>Basic administrative support</strong>
-                                <span>We manage essential paperwork, including carrier packets, BoLs, PoDs and rate confirmations.</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="pricing-card featured">
-                        <span class="plan-badge">Hands-off</span>
-                        <h3>Full-Service Plan</h3>
-                        <p class="plan-tagline">
-                            We run the back office so you can run the miles.
-                        </p>
-                        <div class="price">10%</div>
-                        <a
-                            href="/sign-up.html"
-                            data-plan="Full-Service Plan (10%)">
-                            <button class="primary-cta">Apply Now</button>
-                        </a>
-                        <ul>
-                            <li>
-                                <strong>Everything in Essential</strong>
-                                <span>Load sourcing, rate negotiation and route optimization.</span>
-                            </li>
-                            <li>
-                                <strong>Priority 24/7 support</strong>
-                                <span>Round-the-clock access for urgent issues and roadside assistance.</span>
-                            </li>
-                            <li>
-                                <strong>Dedicated dispatcher</strong>
-                                <span>Work with one dispatcher who knows your lanes, your trailer and your goals.</span>
-                            </li>
-                            <li>
-                                <strong>Full administrative support</strong>
-                                <span>Carrier packets, BoLs, PoDs, rate confirmations, invoices, receipts and IFTA reports.</span>
-                            </li>
-                            <li>
-                                <strong>Factoring assistance</strong>
-                                <span>We submit paperwork to factoring companies for faster payments.</span>
-                            </li>
-                            <li>
-                                <strong>Lumper and detention claims</strong>
-                                <span>We help you claim lumper and detention fees without the hassle.</span>
-                            </li>
-                            <li>
-                                <strong>Compliance assistance</strong>
-                                <span>Certifications and documents kept current so you are never caught off guard.</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <p class="fleet-note">
-                    Running 3 or more trucks? Ask us about fleet pricing.
-                    <a href="/sign-up.html" data-contact-trigger>Contact us</a>
-                </p>
-            </section>
+            <QuestionPopup />
 
             <!-- FAQ Section -->
             <section id="faq" class="faq">
@@ -508,9 +317,7 @@ const structuredData = {
                     <details>
                         <summary>What does the percentage apply to?</summary>
                         <p>
-                            The fee is a percentage of the linehaul rate on each
-                            load we book for you. Fuel surcharge is not
-                            included.
+                            For new agreements, the fee applies to the agreed rate confirmation total. A $2,400 confirmation that includes $400 in fuel has the same fee as a flat $2,400 confirmation. Existing signed agreements keep their original terms.
                         </p>
                     </details>
                     <details>
@@ -574,38 +381,7 @@ const structuredData = {
                 </div>
             </section>
 
-            <!-- Testimonials Section: This section showcases client testimonials. Commented out as per user request. -->
-            <!--
-            <section id="testimonials" class="testimonials">
-                <a href="#testimonials"><h1>What Our Clients Say</h1></a>
-                <div class="container">
-                    <div class="testimonials-grid">
-                        <div class="testimonial-card">
-                            <p>"Iron Wing Dispatching found me high-paying loads that increased my earnings by 20%. Their route optimization saved me hours on the road!"</p>
-                            <div class="testimonial-author">
-                                <strong>John D.</strong><br />
-                                Owner-Operator, Dry Van
-                            </div>
-                        </div>
-                        <div class="testimonial-card">
-                            <p>"The 24/7 support is a game-changer. Reduced deadhead miles and handled all paperwork seamlessly—highly recommend!"</p>
-                            <div class="testimonial-author">
-                                <strong>Sarah K.</strong><br />
-                                Small Carrier, Flatbed
-                            </div>
-                        </div>
-                        <div class="testimonial-card">
-                            <p>"Easy sign-up process and personalized dispatching. They've helped me secure dedicated lanes with shippers directly."</p>
-                            <div class="testimonial-author">
-                                <strong>Mike R.</strong><br />
-                                Reefer Hauler
-                            </div>
-                        </div>
-                    </div>
-                    <a href="/sign-up.html" class="primary-cta">Join Satisfied Truckers</a>
-                </div>
-            </section>
-            -->
+
 
             <!-- About Us Section -->
             <section id="about" class="about">
@@ -624,7 +400,8 @@ const structuredData = {
                     loading="lazy" />
 
                 <div class="about-text">
-                    <a href="#about"><h1>About Us</h1></a>
+                    <h2>About Iron Wing</h2>
+                    <h3>By Truckers, For Truckers</h3>
                     <p>
                         At Iron Wing Dispatching, we specialize in providing
                         personalized dispatch services tailored to the unique
@@ -649,8 +426,8 @@ const structuredData = {
                         href="/sign-up.html"
                         id="contact-trigger"
                         class="primary-cta"
-                        data-contact-trigger>
-                        Still have questions?
+                        data-contact-trigger data-placement="about">
+                        Ask a dispatcher
                     </a>
                 </div>
                 <div class="logo-overlay">

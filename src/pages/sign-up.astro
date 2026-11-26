@@ -1,171 +1,67 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import QuestionPopup from "../components/QuestionPopup.astro";
 import "../normalize.css";
 import "../shared.css";
 import "../sign-up-form/sign-up.css";
 import { TURNSTILE_SITEKEY } from "../turnstile.js";
 ---
-
 <BaseLayout
-    title="Sign-up! - Iron Wing Dispatching"
-    description="Apply for truck dispatching from Iron Wing Dispatching. Tell us about your fleet and we will be in touch shortly."
+    title="Apply for truck dispatching | Iron Wing Dispatching"
+    description="Request a call or email about dispatching for your truck and lanes."
+    contactPopup
 >
-<main>
-            <section class="hero">
-                <img
-                    src="/assets/images/pexels-photoscom-93398_1024.webp"
-                    alt="A lone truck driving in the distance..." />
-                <div class="hero-text">
-                    <h3>
-                        <br />
-                        Iron Wing Dispatching is here to transform the way you
-                        do business. Our experienced team handles the heavy
-                        lifting, so you can stay focused on the road and what
-                        matters most.
-                    </h3>
-                    <br />
-                    <br />
-                    <br />
-                    <h3>Sign up now and let us keep your wheels turning!</h3>
+    <main class="application">
+        <section class="application-panel" aria-labelledby="application-title">
+            <h1 id="application-title">Apply for dispatching</h1>
+            <div id="offer-details" hidden>
+                <h2>Black Friday · 3% Dispatch Essentials</h2>
+                <p>New carriers can request this rate by November 30, 2026 at 11:59 p.m. Central. It applies to eligible loads we book through December 31, 2026, Central time. Loads booked starting January 1, 2027 are 5%.</p>
+                <p>On a $2,400 confirmation including $400 in fuel, the fee is $72 at 3% or $120 at 5%. Dispatch + Back Office is $240 at 10%.</p>
+            </div>
+            <p id="offer-status" hidden></p>
+            <p>A dispatcher will contact you about your truck and lanes. You can apply now and send documents later.</p>
+            <p class="application-actions">
+                <a href="#popup-overlay" data-contact-trigger data-placement="application" id="application-question">Ask a dispatcher</a>
+                <a href="tel:+18178653016" data-phone-placement="application">Call (817) 865-3016</a>
+            </p>
+            <form id="sign-up-form">
+                <label for="plan">Service</label>
+                <select id="plan" name="plan">
+                    <option value="DISCUSS">Discuss with dispatcher</option>
+                    <option value="ESSENTIAL">Dispatch Essentials (5%)</option>
+                    <option value="FULL_SERVICE">Dispatch + Back Office (10%)</option>
+                    <option value="FLEET">Fleet pricing</option>
+                </select>
+
+                <label for="applicant-name">Your name</label>
+                <input id="applicant-name" name="name" autocomplete="name" maxlength="100" required />
+
+                <p id="contact-hint">Enter an email or callback number.</p>
+                <div class="application-contact" aria-describedby="contact-hint">
+                    <div>
+                        <label for="applicant-email">Email</label>
+                        <input id="applicant-email" name="email" type="email" autocomplete="email" maxlength="254" />
+                    </div>
+                    <div>
+                        <label for="applicant-phone">Callback number</label>
+                        <input id="applicant-phone" name="phone" type="tel" autocomplete="tel" maxlength="30" />
+                    </div>
                 </div>
-                <div class="logo-overlay">
-                    <img
-                        src="/assets/images/NewLogo.png"
-                        alt="Iron Wing Dispatching Services for Owner-Operators and small motor Carriers"
-                        width="350"
-                        height="117"
-                        loading="lazy" />
-                </div>
-            </section>
 
-            <section class="right-section">
-                <div class="form-container">
-                    <form id="sign-up-form" novalidate>
-                        <fieldset>
-                            <legend>
-                                You selected the
-                                <span class="break"></span>
-                                <span id="plan-name"></span>
-                                !
-                            </legend>
-                            <input
-                                type="hidden"
-                                id="plan-input"
-                                name="selected-plan"
-                                value="your plan" />
+                <label for="trailer-type">Trailer type (optional)</label>
+                <select id="trailer-type" name="trailerType">
+                    <option value="">Select…</option>
+                    {["Dry van", "Flatbed", "Reefer", "Power only", "Other"].map((type) => <option value={type}>{type}</option>)}
+                </select>
 
-                            <div class="user-info">
-                                <div class="first-name">
-                                    <label for="first-name">FIRST NAME</label>
-                                    <input
-                                        id="first-name"
-                                        type="text"
-                                        name="first-name"
-                                        required
-                                        autocomplete
-                                        minlength="3"
-                                        maxlength="50" />
-                                    <span
-                                        class="error-message"
-                                        data-error-for="first-name"></span>
-                                </div>
-                                <div class="last-name">
-                                    <label for="last-name">LAST NAME</label>
-                                    <input
-                                        id="last-name"
-                                        type="text"
-                                        name="last-name"
-                                        required
-                                        autocomplete
-                                        minlength="3"
-                                        maxlength="50" />
-                                    <span
-                                        class="error-message"
-                                        data-error-for="last-name"></span>
-                                </div>
-                            </div>
-
-                            <div class="user-info">
-                                <div class="e-mail">
-                                    <label for="e-mail">E-MAIL</label>
-                                    <input
-                                        id="e-mail"
-                                        type="email"
-                                        name="e-mail"
-                                        required
-                                        autocomplete />
-                                    <span
-                                        class="error-message"
-                                        data-error-for="e-mail"></span>
-                                </div>
-                                <div class="tel">
-                                    <label for="tel">TELEPHONE NUMBER</label>
-                                    <input id="tel" type="tel" name="tel" />
-                                    <span
-                                        class="error-message"
-                                        data-error-for="tel"></span>
-                                </div>
-                            </div>
-
-                            <div class="user-info">
-                                <div class="fleet-size">
-                                    <label for="fleet-size">
-                                        NUMBER OF TRUCKS
-                                    </label>
-                                    <input
-                                        id="fleet-size"
-                                        name="fleet-size"
-                                        type="number"
-                                        min="1"
-                                        maxlength="4"
-                                        required
-                                        autocomplete />
-                                    <span
-                                        class="error-message"
-                                        data-error-for="fleet-size"></span>
-                                </div>
-                                <div class="trailer-type">
-                                    <label for="trailer-type">
-                                        TYPE OF TRAILER
-                                    </label>
-                                    <select
-                                        id="trailer-type"
-                                        name="trailer-type"
-                                        required>
-                                        <option value="">Select…</option>
-                                        <option value="Dry van">Dry van</option>
-                                        <option value="Flatbed">Flatbed</option>
-                                        <option value="Reefer">Reefer</option>
-                                        <option value="Power only">Power only</option>
-                                        <option value="Other">Other</option>
-                                    </select>
-                                    <span
-                                        class="error-message"
-                                        data-error-for="trailer-type"></span>
-                                </div>
-                            </div>
-                        </fieldset>
-
-                        <p class="signup-note">
-                            We will contact you shortly to go over your setup.
-                            It helps to have your MC authority, insurance
-                            certificate and W-9 ready.
-                        </p>
-                        <div
-                            class="cf-turnstile"
-                            data-sitekey={TURNSTILE_SITEKEY}
-                            data-action="turnstile-spin-v1">
-                        </div>
-                        <button type="submit" class="primary-cta">
-                            SIGN UP!
-                        </button>
-                    </form>
-                    <span id="confirmation-message" class="hidden">
-                        Thank you for signing up! We'll be in touch shortly.
-                    </span>
-                </div>
-            </section>
-        </main>
+                <div class="cf-turnstile" data-sitekey={TURNSTILE_SITEKEY} data-action="turnstile-spin-v1"></div>
+                <button type="submit" class="primary-cta">Send my application</button>
+            </form>
+            <p id="confirmation-message" role="status" aria-live="polite"></p>
+        </section>
+        <QuestionPopup />
+    </main>
     <script>
         import "../sign-up-form/sign-up.js";
     </script>

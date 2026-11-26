@@ -1,322 +1,61 @@
-main {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
-    justify-content: center;
-    align-items: center;
-}
+@import "../styles.css";
 
-/* LEFT SIDE */
-.hero {
-    position: relative;
-    grid-column: 1;
-    width: 50vw;
-    height: 100vh;
+.application {
+    padding: clamp(1rem, 4vw, 4rem);
+    background: #e9edf2;
+    color: #162943;
 }
-
-.hero:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        172deg,
-        rgb(0, 98, 139) 0%,
-        rgba(0, 0, 0, 0.7) 100%
-    );
-    z-index: 1;
-}
-
-.hero img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 0;
-}
-
-.hero-text {
-    position: relative;
-    width: 60%;
+.application-panel {
+    max-width: 42rem;
     margin: auto;
-    z-index: 2;
-    margin-top: auto;
-    line-height: 1.6;
+    padding: clamp(1rem, 5vw, 3rem);
+    background: white;
+    border-radius: 0.5rem;
 }
-
-h3 {
-    padding: 30px;
-    text-align: center;
-    color: rgb(178, 178, 178);
+.application-panel h1 {
+    margin: 0 0 1rem;
 }
-
-.logo-overlay {
-    position: relative;
-    top: 2rem;
-    left: 35%;
-    z-index: 2;
+.application-panel p {
+    line-height: 1.5;
 }
-
-.logo-overlay img {
-    width: 100%;
-    max-width: 350px;
-    height: auto;
-    opacity: 0.4;
+#offer-details {
+    border-left: 0.25rem solid #08347c;
+    padding-left: 1rem;
 }
-
-/* RIGHT SIDE */
-.right-section {
-    grid-column: 2;
+.application-actions {
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    width: 50vw;
-    height: 100vh;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
-
-.form-container {
-    height: 75vh;
-    width: 100%;
-    padding-top: 35px;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-fieldset {
-    border: none;
-    height: 67%;
-    color: rgb(108, 105, 105);
-    padding: 15px;
-}
-
-legend {
-    text-align: center;
-    padding-left: 20px;
-    padding-top: 20px;
-    font-weight: 700;
-    font-size: 1.5rem;
-}
-
-legend a {
-    color: inherit !important;
-    text-decoration: underline !important;
-}
-
-.user-info {
-    display: flex;
-    margin: 25px;
-}
-
-label {
-    align-self: flex-start;
-    font-size: 0.58em;
-    font-weight: 700;
-    color: rgb(136, 132, 132);
-}
-
-input,
-select {
-    border: 0.5px solid #e5e7eb;
-    border-radius: 3px;
-    height: 35px;
-}
-
-/* A select has no default width or fill matching the text inputs beside it */
-select {
-    width: 213px;
-    background-color: #fff;
-}
-
-.first-name {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.last-name {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-left: 20px;
-}
-
-.e-mail {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.tel {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-left: 20px;
-}
-
-.fleet-size {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.trailer-type {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-left: 20px;
-}
-
-input:hover,
-select:hover {
-    background: rgba(200, 210, 239, 0.1);
-}
-
-input:focus,
-select:focus {
-    border: 1px solid blue;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Show error message when input is invalid and submit button is clicked */
-span.show-error {
-    position: absolute;
+#sign-up-form label {
     display: block;
-    font-size: 0.6rem;
-    color: red;
-    top: 33px;
-    left: 5px;
+    margin-top: 1rem;
+    font-weight: 600;
 }
-
-/* The select always shows text ("Select…"), so its error sits below the box */
-.trailer-type span.show-error {
-    top: 100%;
+#sign-up-form input,
+#sign-up-form select {
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 2.75rem;
+    padding: 0.5rem;
+    border: 1px solid #63758b;
+    border-radius: 0.25rem;
+    margin-top: 0.25rem;
 }
-
-#confirmation-message.hidden,
-.primary-cta.hidden {
-    display: none;
+#sign-up-form .cf-turnstile {
+    margin-top: 1rem;
 }
-
-#confirmation-message {
-    display: block;
-    margin-top: 2rem;
-    color: #4caf50; /* Green for success */
-    font-size: 1rem;
-    text-align: center;
+#contact-hint {
+    margin-bottom: 0;
 }
-
-@media (max-width: 1024px) {
-    .hero-text {
-        margin: 0;
-        width: 100%;
-    }
-    .logo-overlay {
-        top: 1.5rem;
-        left: 25%;
-        width: 250px;
-    }
+.application-contact {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
 }
-@media (max-width: 768px) {
-    main {
+@media (max-width: 540px) {
+    .application-contact {
         grid-template-columns: 1fr;
-        grid-template-rows: 600px 880px;
+        gap: 0;
     }
-    .hero {
-        grid-column: 1;
-        grid-row: 2;
-        width: 100vw;
-    }
-    .hero-text {
-        margin: 0;
-        width: 100%;
-    }
-    .logo-overlay {
-        top: 1.5rem;
-        left: 35%;
-        width: 250px;
-    }
-    .right-section {
-        grid-column: 1;
-        grid-row: 1;
-        width: 100vw;
-        height: 65vh;
-    }
-    .form-container {
-        height: 80%;
-        padding-top: 0;
-    }
-    fieldset {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 0;
-    }
-    fieldset .user-info {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin: 0;
-    }
-    legend {
-        padding: 0;
-    }
-    .user-info div {
-        margin: 10px 0 0 0;
-    }
-    .user-info input,
-    .user-info select {
-        width: 280px;
-    }
-    .primary-cta {
-        margin-top: 30px;
-        width: 280px;
-    }
-}
-
-@media (max-width: 428px) {
-    .logo-overlay {
-        top: 1rem;
-        left: 25%;
-        width: 250px;
-        transform: translateX(0%);
-    }
-}
-
-@media (max-width: 350px) {
-    .logo-overlay {
-        top: 1rem;
-        left: 10%;
-        width: 250px;
-        transform: translateX(0%);
-    }
-}
-
-.signup-note {
-    font-size: 0.9rem;
-    margin: 1rem 0;
-    text-align: center;
 }

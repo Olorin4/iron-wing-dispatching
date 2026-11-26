@@ -1,4 +1,4 @@
-export const HERO_FLAG = "homepage-hero-message";
+export const HERO_FLAG = "homepage-hero-dispatch-copy-2026-11";
 
 // Inlined in the homepage head. Keep this function independent of module scope.
 export function assignHero(storageKey, flag, sha1) {

@@ -48,6 +48,7 @@ function contactPopup() {
     const popupClose = document.getElementById("popup-close");
     if (!popupOverlay || !popupContent || !popupClose) return;
 
+    let opener;
     // Show the popup when any contact link is clicked
     contactTriggers.forEach((trigger) => {
         trigger.addEventListener("click", (event) => {
@@ -56,24 +57,31 @@ function contactPopup() {
                 .querySelector(".nav-links.active")
                 ?.classList.remove("active");
             popupOverlay.style.display = "flex";
-            const emailField = popupContent.querySelector("#email");
-            emailField.focus();
+            opener = trigger;
+            const form = popupContent.querySelector("form");
+            form.dataset.placement = trigger.dataset.placement || "navigation";
+            form.dataset.offer = trigger.dataset.offer || "";
+            form.querySelector("[data-offer-question]").hidden =
+                !form.dataset.offer;
+            form.querySelector("#message").focus();
             track("contact_popup_opened", {
-                trigger_text: trigger.textContent.trim().slice(0, 60),
+                placement: form.dataset.placement,
+                offer: form.dataset.offer,
             });
         });
     });
 
-    // Close the popup when clicking "x"
-    popupClose.addEventListener("click", () => {
+    function close() {
         popupOverlay.style.display = "none";
-    });
+        opener?.focus();
+    }
 
-    // Close the popup when clicking outside the popup content
-    popupOverlay.addEventListener("click", (e) => {
-        if (e.target === popupOverlay) {
-            popupOverlay.style.display = "none";
-        }
+    popupClose.addEventListener("click", close);
+    popupOverlay.addEventListener("click", (event) => {
+        if (event.target === popupOverlay) close();
+    });
+    popupOverlay.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") close();
     });
 }
 
@@ -109,18 +117,22 @@ function imageFadeIn() {
 }
 
 function registerPricingPlan() {
-    const ctaLinks = document.querySelectorAll("a[data-plan]");
-    ctaLinks.forEach((link) => {
-        link.addEventListener("click", (event) => {
-            const planName = link.getAttribute("data-plan");
-            if (planName) {
-                const href = link.getAttribute("href");
-                const updatedHref = `${href}?plan=${encodeURIComponent(planName)}`;
-                link.setAttribute("href", updatedHref);
-                track("pricing_plan_selected", { plan: planName });
-            }
+    for (const link of document.querySelectorAll("a[data-plan]")) {
+        link.addEventListener("click", () =>
+            track("pricing_plan_selected", { plan: link.dataset.plan })
+        );
+    }
+    const pricing = document.querySelector("#pricing");
+    if (!pricing || !("IntersectionObserver" in window)) return;
+    const observer = new IntersectionObserver(([entry]) => {
+        if (!entry.isIntersecting) return;
+        track("pricing_viewed", {
+            hero_variant:
+                document.documentElement.dataset.heroVariant || "control",
         });
+        observer.disconnect();
     });
+    observer.observe(pricing);
 }
 
 export {

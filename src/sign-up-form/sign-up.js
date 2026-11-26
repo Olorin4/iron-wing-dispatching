@@ -1,241 +1,183 @@
-// sign-up.js contains form validation
-import validator from "validator";
+import { attributionFields, track } from "../analytics.js";
 import {
-    TURNSTILE_PENDING_MESSAGE,
-    TurnstileError,
     getTurnstileToken,
     resetTurnstile,
+    TURNSTILE_PENDING_MESSAGE,
 } from "../turnstile.js";
-import {
-    attributionFields,
-    identifyVisitor,
-    track,
-    trackError,
-} from "../analytics.js";
 
-function pricingChoice() {
-    const planName = document.getElementById("plan-name");
-    const planInput = document.getElementById("plan-input");
+const API = "https://api.iron-wing-dispatching.com";
+const OFFER = "black-friday-2026";
+const LEGACY_PLANS = new Map([
+    ["essential plan (5%)", "ESSENTIAL"],
+    ["essential", "ESSENTIAL"],
+    ["full-service plan (10%)", "FULL_SERVICE"],
+    ["full-service", "FULL_SERVICE"],
+    ["fleet pricing", "FLEET"],
+]);
 
-    if (!planInput) {
-        console.error("❌ Error: Element with ID 'plan-input' not found.");
+const form = document.querySelector("#sign-up-form");
+const plan = form.elements.plan;
+const button = form.querySelector("button[type=submit]");
+const question = document.querySelector("#application-question");
+const status = document.querySelector("#confirmation-message");
+const params = new URLSearchParams(location.search);
+const requestedOffer = params.get("offer") === OFFER ? OFFER : null;
+const requestedPlan = params.get("plan") || "";
+const planKey = requestedOffer
+    ? "ESSENTIAL"
+    : LEGACY_PLANS.get(requestedPlan.toLowerCase()) ||
+      requestedPlan.toUpperCase();
+if ([...plan.options].some((option) => option.value === planKey))
+    plan.value = planKey;
+let offer = null;
+let expiresTimer;
+
+function showOffer(open) {
+    offer = open ? OFFER : null;
+    document.querySelector("#offer-details").hidden = !open;
+    const offerStatus = document.querySelector("#offer-status");
+    offerStatus.hidden = open;
+    offerStatus.textContent =
+        "Black Friday enrollment is closed. You can still apply at standard rates.";
+    question.textContent = open ? "Ask about this offer" : "Ask a dispatcher";
+    question.dataset.offer = open ? OFFER : "";
+    if (open) plan.value = "ESSENTIAL";
+    plan.disabled = open;
+    button.textContent = open ? "Request my 3% rate" : "Send my application";
+}
+
+async function refreshOffer() {
+    try {
+        const response = await fetch(API + "/dispatch-offer", {
+            cache: "no-store",
+            signal: AbortSignal.timeout(5000),
+        });
+        if (!response.ok) throw new Error();
+        const data = await response.json();
+        const remaining =
+            Date.parse(data.enrollmentEndsAt) - Date.parse(data.serverTime);
+        showOffer(data.open === true && remaining > 0);
+        if (offer) expiresTimer = setTimeout(() => showOffer(false), remaining);
+    } catch {
+        showOffer(false);
+    } finally {
+        button.disabled = false;
+    }
+}
+
+if (requestedOffer) {
+    button.disabled = true;
+    void refreshOffer();
+    window.addEventListener("pagehide", () => clearTimeout(expiresTimer));
+    window.addEventListener("pageshow", (event) => {
+        if (event.persisted && !form.hidden) void refreshOffer();
+    });
+}
+
+const properties = () => ({ plan: plan.value, offer: requestedOffer });
+track("sign_up_viewed", properties());
+form.addEventListener(
+    "input",
+    () => track("sign_up_form_started", properties()),
+    { once: true }
+);
+form.addEventListener(
+    "invalid",
+    (event) => {
+        track("sign_up_form_invalid", {
+            ...properties(),
+            field: event.target.name,
+        });
+    },
+    true
+);
+
+let previousPayload;
+let requestId;
+form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const fields = new FormData(form);
+    const name = String(fields.get("name")).trim();
+    const email = String(fields.get("email")).trim();
+    const phone = String(fields.get("phone")).trim();
+    if (!name || !(email || phone)) {
+        status.textContent = "Enter your name and an email or callback number.";
+        track("sign_up_form_invalid", properties());
+        return;
+    }
+    const token = getTurnstileToken(form);
+    if (!token) {
+        status.textContent = TURNSTILE_PENDING_MESSAGE;
         return;
     }
 
-    // Extract the 'plan' parameter from the query string
-    const params = new URLSearchParams(window.location.search);
-    const chosenPlan = params.get("plan");
-
-    // Update the span and the hidden input
-    if (chosenPlan) {
-        planName.textContent = chosenPlan;
-        planInput.value = chosenPlan;
-    } else {
-        planName.closest("legend").innerHTML =
-            `Please select a<span class="break"></span> pricing plan <a href="./index.html#pricing">here</a>.`;
-        planInput.value = "No plan selected";
+    // Keep the same key when a response is lost. Edited applications get a new key.
+    const payload = JSON.stringify({
+        name,
+        email,
+        phone,
+        plan: plan.value,
+        offer: requestedOffer,
+        trailerType: fields.get("trailerType"),
+    });
+    if (payload !== previousPayload) {
+        requestId = crypto.randomUUID();
+        previousPayload = payload;
     }
-
-    console.log("✅ Plan set to:", planInput.value);
-}
-
-class FormValidator {
-    constructor(form) {
-        this.form = form;
-        // Exclude the hidden token field Turnstile injects into the form
-        this.inputs = form.querySelectorAll(
-            'input:not([name="cf-turnstile-response"]), select'
-        );
-        this.init();
-    }
-
-    init() {
-        this.form.addEventListener("submit", (event) => {
-            event.preventDefault(); // Prevent form submission by default
-            const confirmationMessage = document.getElementById(
-                "confirmation-message"
-            );
-            if (this.validateForm()) {
-                console.log("Form is valid!");
-                confirmationMessage.classList.remove("hidden");
-                this.submitForm();
-            } else {
-                console.log("Form has errors.");
-                confirmationMessage.classList.add("hidden");
-            }
+    button.disabled = true;
+    status.textContent = "Sending your application…";
+    try {
+        const { campaign, ...attribution } = attributionFields();
+        const response = await fetch(API + "/sign-up-forms", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            signal: AbortSignal.timeout(15_000),
+            body: JSON.stringify({
+                ...JSON.parse(payload),
+                requestId,
+                campaign,
+                ...attribution,
+                turnstileToken: token,
+            }),
         });
-    }
-
-    validateForm() {
-        const invalidFields = [];
-        this.inputs.forEach((input) => {
-            if (!this.validateField(input)) invalidFields.push(input.id);
+        if (!response.ok) {
+            status.textContent =
+                response.status === 400
+                    ? "Check your name, email or callback number and try again."
+                    : "We could not confirm your application. Please try again.";
+            track("sign_up_form_failed", {
+                ...properties(),
+                status: response.status,
+            });
+            return;
+        }
+        const result = await response.json();
+        if (!result.id || !Number.isFinite(Date.parse(result.receivedAt)))
+            throw new Error();
+        const time = new Intl.DateTimeFormat("en-US", {
+            timeZone: "America/Chicago",
+            dateStyle: "medium",
+            timeStyle: "short",
+        }).format(new Date(result.receivedAt));
+        const receipt = `Application #${result.id} received ${time} Central.`;
+        status.textContent =
+            result.claimStatus === "pending_review"
+                ? receipt + " A dispatcher will confirm your offer eligibility."
+                : receipt +
+                  (result.claimStatus === "closed"
+                      ? " Enrollment is closed. A dispatcher will contact you about standard rates."
+                      : " A dispatcher will be in touch.");
+        form.hidden = true;
+        track("sign_up_form_submitted", {
+            ...properties(),
+            claim_status: result.claimStatus,
         });
-        if (invalidFields.length > 0)
-            track("sign_up_form_invalid", { invalid_fields: invalidFields });
-        return invalidFields.length === 0;
+    } catch {
+        status.textContent =
+            "We could not confirm your application. Please try again.";
+        track("sign_up_form_failed", properties());
+    } finally {
+        button.disabled = false;
+        resetTurnstile(form);
     }
-
-    validateField(input) {
-        const value = input.value.trim();
-        // Validate First Name
-        if (input.id === "first-name" && (value === "" || value.length < 3)) {
-            this.showError(input, "First name must be at least 3 characters.");
-            return false;
-        }
-        // Validate Last Name
-        if (input.id === "last-name" && (value === "" || value.length < 3)) {
-            this.showError(input, "Last name must be at least 3 characters.");
-            return false;
-        }
-        // Validate Email. Keyed on the field, not its type attribute: a
-        // mistyped type once switched this check off without any error.
-        if (input.id === "e-mail" && !validator.isEmail(value)) {
-            this.showError(input, "Please enter a valid email address.");
-            return false;
-        }
-        // Validate Fleet Size. Required: an empty value fails too, which
-        // also covers letters, since a number input reports them as empty.
-        if (input.id === "fleet-size" && !validator.isInt(value, { min: 1 })) {
-            this.showError(input, "Please enter a valid number of trucks.");
-            return false;
-        }
-        // Validate Trailer Type
-        if (input.id === "trailer-type" && value === "") {
-            this.showError(input, "Please choose the type of trailer.");
-            return false;
-        }
-        // Validate Plan Selection
-        if (
-            input.id === "plan-input" &&
-            (value === "" || value === "No plan selected")
-        ) {
-            this.showError(input, "Please select a pricing plan.");
-            return false;
-        }
-        // Clear error if validation passes
-        this.hideError(input);
-        return true;
-    }
-
-    showError(input, message) {
-        const errorElement = this.form.querySelector(
-            `.error-message[data-error-for="${input.id}"]`
-        );
-        if (errorElement) {
-            errorElement.textContent = message;
-            errorElement.classList.add("show-error");
-            input.style.borderColor = "red";
-        } else {
-            console.warn(`Error element not found for input: ${input.id}`);
-        }
-    }
-
-    hideError(input) {
-        const errorElement = this.form.querySelector(
-            `.error-message[data-error-for="${input.id}"]`
-        );
-        if (errorElement) {
-            errorElement.textContent = "";
-            errorElement.classList.remove("show-error");
-            input.style.borderColor = "";
-        } else {
-            console.warn(`Error element not found for input: ${input.id}`);
-        }
-    }
-
-    async submitForm() {
-        const jsonObject = {
-            firstName: document.getElementById("first-name").value,
-            lastName: document.getElementById("last-name").value,
-            email: document.getElementById("e-mail").value,
-            phone: document.getElementById("tel").value,
-            fleetSize: document.getElementById("fleet-size").value,
-            trailerType: document.getElementById("trailer-type").value,
-            plan: document.getElementById("plan-input").value,
-        };
-
-        const signUpButton = document.querySelector(".primary-cta");
-        const confirmationMessage = document.getElementById(
-            "confirmation-message"
-        );
-        // Disable the button to prevent multiple clicks
-        signUpButton.disabled = true;
-        confirmationMessage.innerText = "Submitting...";
-        console.log("📩 Submitting Form Data:", jsonObject);
-
-        try {
-            const turnstileToken = getTurnstileToken(this.form);
-            if (!turnstileToken) throw new Error(TURNSTILE_PENDING_MESSAGE);
-
-            const response = await fetch(
-                "https://api.iron-wing-dispatching.com/sign-up-forms",
-                {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        ...jsonObject,
-                        turnstileToken,
-                        ...attributionFields(),
-                    }),
-                }
-            );
-
-            if (response.status === 403) throw new TurnstileError();
-            if (!response.ok)
-                throw new Error(`Server responded with ${response.status}`);
-
-            const data = await response.json();
-            console.log("Form successfully submitted!", data);
-
-            signUpButton.classList.add("hidden");
-            confirmationMessage.classList.remove("hidden");
-            confirmationMessage.innerText =
-                "✅ Submission successful! We'll contact you soon.";
-
-            // Push event to GTM
-            window.dataLayer = window.dataLayer || [];
-            window.dataLayer.push({
-                event: "form_submission",
-                form_url: window.location.href,
-            });
-            console.log("📊 GTM Event Pushed: form_submission");
-
-            identifyVisitor(jsonObject.email, {
-                first_name: jsonObject.firstName,
-                last_name: jsonObject.lastName,
-                fleet_size: jsonObject.fleetSize,
-                trailer_type: jsonObject.trailerType,
-                plan: jsonObject.plan,
-            });
-            track("sign_up_form_submitted", {
-                plan: jsonObject.plan,
-                fleet_size: Number(jsonObject.fleetSize) || null,
-                trailer_type: jsonObject.trailerType,
-                has_phone: Boolean(jsonObject.phone.trim()),
-            });
-        } catch (error) {
-            console.error("Error submitting form:", error);
-            const reason =
-                error instanceof TurnstileError
-                    ? "turnstile"
-                    : error.message === TURNSTILE_PENDING_MESSAGE
-                      ? "turnstile_pending"
-                      : "server";
-            track("sign_up_form_failed", { reason, plan: jsonObject.plan });
-            if (reason === "server") trackError(error, { form: "sign_up" });
-            confirmationMessage.innerText = `⚠️ ${error.message || "Server error. Please try again later."}`;
-        } finally {
-            resetTurnstile(this.form);
-            signUpButton.disabled = false;
-        }
-    }
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-    console.log("Sign-Up Page JS Loaded");
-    pricingChoice();
-    // Select the form and initialize the FormValidator
-    const form = document.querySelector("#sign-up-form");
-    new FormValidator(form);
 });

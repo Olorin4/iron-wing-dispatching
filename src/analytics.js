@@ -65,6 +65,54 @@ function markInternalTraffic() {
     history.replaceState(history.state, "", url);
 }
 
+const landingKeys = [
+    "utm_source",
+    "utm_medium",
+    "utm_campaign",
+    "fbclid",
+    "ref",
+];
+const landingParams = new URLSearchParams(location.search);
+let firstLanding = {};
+try {
+    firstLanding =
+        JSON.parse(sessionStorage.getItem("iwd-first-landing") || "{}") || {};
+} catch {
+    // Attribution can still use the current URL.
+}
+for (const key of landingKeys) {
+    const value = landingParams.get(key);
+    if (!firstLanding[key] && value && value.length <= 255) {
+        firstLanding[key] = value;
+        if (key === "fbclid") firstLanding.fbclidAtMs = Date.now();
+    }
+}
+try {
+    sessionStorage.setItem("iwd-first-landing", JSON.stringify(firstLanding));
+} catch {
+    // The original parameters are also included in outgoing application links.
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    for (const link of document.querySelectorAll('a[href^="/sign-up.html"]')) {
+        const url = new URL(link.href);
+        for (const key of landingKeys) {
+            if (firstLanding[key] && !url.searchParams.has(key))
+                url.searchParams.set(key, firstLanding[key]);
+        }
+        link.href = url.pathname + url.search + url.hash;
+    }
+    for (const link of document.querySelectorAll('a[href^="tel:"]')) {
+        link.addEventListener("click", () =>
+            track("phone_tapped", {
+                placement:
+                    link.dataset.phonePlacement ||
+                    (link.closest("header") ? "topbar" : "footer"),
+            })
+        );
+    }
+});
+
 if (enabled) {
     const hero = window.__heroAssignment;
     let initialDeviceId = hero?.newDeviceId;
@@ -139,15 +187,25 @@ export function identifyVisitor(email, properties = {}) {
  * analytics off. Never throws, so a PostHog problem cannot block a form.
  */
 export function attributionFields() {
-    const fields = { outreachRef: null, posthogDistinctId: null };
+    const { ref, ...campaign } = firstLanding;
+    const fields = {
+        outreachRef: OUTREACH_REF.test(ref || "") ? ref : null,
+        posthogDistinctId: null,
+        campaign,
+        internalTraffic: landingParams.get("internal") === "1",
+    };
     if (!enabled) return fields;
     try {
         const ref = posthog.get_property("outreach_ref");
-        if (typeof ref === "string") fields.outreachRef = ref;
+        if (!fields.outreachRef && typeof ref === "string")
+            fields.outreachRef = ref;
     } catch {
         // Leave outreachRef null.
     }
     try {
+        fields.internalTraffic = Boolean(
+            posthog.get_property("internal_traffic")
+        );
         const id = posthog.get_distinct_id();
         if (typeof id === "string" && id) fields.posthogDistinctId = id;
     } catch {
@@ -158,11 +216,9 @@ export function attributionFields() {
 
 /** Let the SDK record an exposure to the hero that was actually rendered. */
 export function trackHeroExposure(variant) {
-    if (
-        enabled &&
-        !posthog.get_property("internal_traffic") &&
-        posthog.getFeatureFlag(HERO_FLAG, { send_event: false }) === variant
-    ) {
+    if (!enabled || posthog.get_property("internal_traffic")) return;
+    track("homepage_hero_exposed", { flag: HERO_FLAG, hero_variant: variant });
+    if (posthog.getFeatureFlag(HERO_FLAG, { send_event: false }) === variant) {
         posthog.getFeatureFlag(HERO_FLAG);
     }
 }
