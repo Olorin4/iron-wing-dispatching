@@ -295,6 +295,28 @@
     color: #fff;
 }
 
+.popup-call {
+    display: block;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 0.75rem 1rem;
+    border: 2px solid white;
+    border-radius: 5px;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+.popup-call:hover,
+.popup-call:focus-visible {
+    background: white;
+    color: rgb(8, 13, 23);
+}
+.popup-or {
+    text-align: center;
+    color: white;
+    margin: 0.75rem 0 1rem;
+}
+
 .popup-form label {
     display: block;
     margin-bottom: 0.5rem;

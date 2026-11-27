@@ -5,18 +5,20 @@ import { TURNSTILE_SITEKEY } from "../turnstile.js";
     <div class="popup-content" id="popup-content" role="dialog" aria-labelledby="question-title" aria-modal="true">
         <div class="popup-header">
             <h2 id="question-title">Ask a dispatcher</h2>
-            <button type="button" class="popup-close" id="popup-close" aria-label="Close question form">&times;</button>
+            <button type="button" class="popup-close" id="popup-close" aria-label="Close message form">&times;</button>
         </div>
+        <a href="tel:+18178653016" class="popup-call" data-phone-placement="popup">Call a dispatcher now · (817) 865-3016</a>
+        <p class="popup-or">or send a message</p>
         <form class="popup-form">
-            <label for="message">Your question</label>
+            <label for="message">Your message</label>
             <textarea id="message" name="message" rows="4" required></textarea>
-            <label for="email">Email for our reply</label>
+            <label for="email">Email</label>
             <input type="email" id="email" name="email" autocomplete="email" required />
-            <label for="phone">Phone, if you’d prefer a call (optional)</label>
+            <label for="phone">Phone (optional)</label>
             <input type="tel" id="phone" name="phone" autocomplete="tel" />
             <p data-offer-question hidden>To request the offer, submit the separate application.</p>
             <div class="cf-turnstile" data-sitekey={TURNSTILE_SITEKEY} data-action="turnstile-spin-v1"></div>
-            <button type="submit" class="primary-cta">Send my question</button>
+            <button type="submit" class="primary-cta">Send my message</button>
             <p role="status" data-question-status></p>
         </form>
     </div>

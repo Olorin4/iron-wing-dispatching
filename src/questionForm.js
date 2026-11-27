@@ -40,11 +40,11 @@ form?.addEventListener("submit", async (event) => {
         );
         if (!response.ok) throw new Error("Question submission failed");
         form.reset();
-        status.textContent = "Your question was sent. A dispatcher will reply.";
+        status.textContent = "Your message was sent. A dispatcher will reply.";
         track("contact_form_submitted", properties);
     } catch {
         status.textContent =
-            "Your question could not be sent. Please try again.";
+            "Your message could not be sent. Please try again.";
         track("contact_form_failed", properties);
     } finally {
         button.disabled = false;
