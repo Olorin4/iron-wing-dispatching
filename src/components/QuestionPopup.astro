@@ -7,8 +7,6 @@ import { TURNSTILE_SITEKEY } from "../turnstile.js";
             <h2 id="question-title">Ask a dispatcher</h2>
             <button type="button" class="popup-close" id="popup-close" aria-label="Close message form">&times;</button>
         </div>
-        <a href="tel:+18178653016" class="popup-call" data-phone-placement="popup">Call a dispatcher now · (817) 865-3016</a>
-        <p class="popup-or">or send a message</p>
         <form class="popup-form">
             <label for="message">Your message</label>
             <textarea id="message" name="message" rows="4" required></textarea>
@@ -21,6 +19,8 @@ import { TURNSTILE_SITEKEY } from "../turnstile.js";
             <button type="submit" class="primary-cta">Send my message</button>
             <p role="status" data-question-status></p>
         </form>
+        <p class="popup-or">OR</p>
+        <a href="tel:+18178653016" class="popup-call" data-phone-placement="popup">Call a dispatcher now · (817) 865-3016</a>
     </div>
 </div>
 <script>

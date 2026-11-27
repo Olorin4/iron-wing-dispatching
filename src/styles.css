@@ -314,7 +314,10 @@
 .popup-or {
     text-align: center;
     color: white;
-    margin: 0.75rem 0 1rem;
+    font-weight: bold;
+    letter-spacing: 0.15em;
+    font-size: 0.9rem;
+    margin: 0.75rem 0;
 }
 
 .popup-form label {
