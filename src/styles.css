@@ -869,6 +869,13 @@
     align-items: center;
     gap: 0.75rem;
 }
+.hero-or {
+    color: white;
+    font-weight: bold;
+    letter-spacing: 0.15em;
+    font-size: 0.9rem;
+    opacity: 0.85;
+}
 .hero-question {
     display: inline-block;
     color: white;
